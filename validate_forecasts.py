@@ -8,34 +8,15 @@ import dask.array as da
 
 
 def compute_all(work_dir, memory_to_allocate_gb, date_strings):
-    """
-    Parameters
-    ----------
-
-    work_dir: str
-        Folder containing the NetCDF files generated from the "compress_netcdf.py" script. The files must be names as
-        YYYYMMDD.nc for this script to work.
-
-    memory_to_allocate_gb: float
-        The memory to allocate when performing calculations, care should be taken to not allocate to much, as this could
-        decrease performace significantly if the computer has to store data in swap memory.
-
-    date_strings: list of str
-        List of the date strings in the time series.
-
-    """
-
-    # Configuring chunk size based on the allocated memory
     array_size_bytes = 3060  # Based on 15 x 51 member array
     memory_to_allocate_bytes = memory_to_allocate_gb * 1e9
-    chunk_size = int(np.floor(memory_to_allocate_bytes / ((array_size_bytes * len(date_strings)) + len(date_strings))))
+
+    files = [os.path.join(work_dir, i + ".nc") for i in date_strings]
+
+    chunk_size = int(np.floor(memory_to_allocate_bytes / ((array_size_bytes * len(files)) + len(files))))
 
     print("Chunk Size:", chunk_size)
 
-    # Creating a list of files to get data from
-    files = [os.path.join(work_dir, i + ".nc") for i in date_strings]
-
-    # Initializing lists to store dask arrays from all of the NetCDF Files
     list_of_dask_q_arrays = []
     list_of_dask_init_arrays = []
 
@@ -53,9 +34,11 @@ def compute_all(work_dir, memory_to_allocate_gb, date_strings):
         ds.close()
     end = time.time()
 
-    # Stacking individual arrays to form a large array
     big_dask_q_array = da.stack(list_of_dask_q_arrays)
     big_dask_init_array = da.stack(list_of_dask_init_arrays)
+
+    print(big_dask_q_array.shape)
+    print(big_dask_init_array.shape)
 
     print("Time to create dask arrays: ", end - start)
 
@@ -67,13 +50,11 @@ def compute_all(work_dir, memory_to_allocate_gb, date_strings):
 
     tmp_dataset.close()
 
-    # Initializing values for the main loop
     num_chunk_iterations = int(np.ceil(num_of_streams / chunk_size))
     start_chunk = 0
     end_chunk = chunk_size
     list_of_tuples_with_metrics = []
 
-    # Main loop to calculate metrics for the data in memory, then move on to next chunk
     for chunk_number in range(num_chunk_iterations):
 
         start = time.time()
@@ -94,14 +75,13 @@ def compute_all(work_dir, memory_to_allocate_gb, date_strings):
         for rivid in range(results_array.shape[1]):
             for forecast_day in range(results_array.shape[0]):
                 tmp_array = results_array[forecast_day, rivid, :]
-                tuple_to_append = (rivids_chunk[rivid], '{} Day Forecast'.format(forecast_day + 1),
+                tuple_to_append = (rivids_chunk[rivid], '{} Day Forecast'.format(str(forecast_day + 1).zfill(2)),
                                    tmp_array[0], tmp_array[1], tmp_array[2])
                 list_of_tuples_with_metrics.append(tuple_to_append)
 
         start_chunk += chunk_size
         end_chunk += chunk_size
 
-    # Saving the results of the validation in CSV format
     final_df = pd.DataFrame(list_of_tuples_with_metrics,
                             columns=['Rivid', 'Forecast Day', 'CRPS', 'CRPS BENCH', 'CRPSS'])
     final_df.to_csv(r'/Users/wade/PycharmProjects/Forecast_Validation/South_America_Test_DF.csv', index=False)
@@ -233,13 +213,13 @@ def numba_crps(ens, obs, rows, cols, col_len_array, sad_ens_half, sad_obs, crps,
 if __name__ == "__main__":
 
     starting_date = "2018-08-19"
-    ending_date = "2019-01-13"
+    ending_date = "2018-12-16"
 
     dates_range = pd.date_range(starting_date, ending_date)
     dates_strings = dates_range.strftime("%Y%m%d").tolist()
 
-    workspace = r'/home/wade/Remote/global_streamflow_backup/reforecasts/South_America'
-    MEMORY_TO_ALLOCATE = 1  # GB
+    workspace = r'/Users/wade/Documents/South_America_Forecasts'
+    MEMORY_TO_ALLOCATE = 1.0  # GB
 
     start = time.time()
     compute_all(workspace, MEMORY_TO_ALLOCATE, dates_strings)
