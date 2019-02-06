@@ -4,3 +4,4 @@ dask
 xarray
 pandas
 numba
+netcdf4

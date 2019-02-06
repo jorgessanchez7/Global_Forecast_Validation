@@ -7,7 +7,7 @@ import xarray as xr
 
 class TestCompressNetcdf(unittest.TestCase):
     """
-    Tests the functions included in this repository to make sure that they are working correctly with
+    Tests the functions included in compress_netcdf.py to make sure that they are working correctly with
     your python version.
     """
 
@@ -58,6 +58,18 @@ class TestCompressNetcdf(unittest.TestCase):
 
     def tearDown(self):
         os.remove("Test_files/20190104.nc")
+
+
+class TestValidateForecasts(unittest.TestCase):
+
+    def setUp(self):
+        pass
+
+    def test_compress_netcdf(self):
+        pass
+
+    def tearDown(self):
+        pass
 
 
 if __name__ == '__main__':
