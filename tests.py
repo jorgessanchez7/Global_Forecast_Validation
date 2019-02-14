@@ -1,4 +1,6 @@
 import numpy as np
+import pandas as pd
+import hydrostats.ens_metrics as em
 import unittest
 from compress_netcdf import compress_netcfd
 import os
@@ -66,7 +68,57 @@ class TestValidateForecasts(unittest.TestCase):
         pass
 
     def test_compress_netcdf(self):
-        pass
+        work_dir = "/Test_files/Forecast_Validation_Files"
+        starting_date = "2018-08-19"
+        ending_date = "2018-12-16"
+
+        dates_range = pd.date_range(starting_date, ending_date)
+        date_strings = dates_range.strftime("%Y%m%d").tolist()
+
+        files = [os.path.join(work_dir, i + ".nc") for i in date_strings]
+
+        data_sets = [xr.open_dataset(file) for file in files]
+
+        for rivid in range(10):
+            for forecast_day in range(15):
+                dates = []
+                init_dates = []
+                data = []
+                init_data = []
+
+                for ds in data_sets:
+                    dates.append(ds["date"].data[forecast_day])
+                    data.append(ds["Qout"].data[rivid, forecast_day, :])
+
+                    init_data.append(ds["initialization_values"].data[rivid])
+                    init_dates.append(ds["start_date"].data)
+
+                pd_dates = pd.to_datetime(dates)
+                np_data = np.array(data)
+
+                df = pd.DataFrame(np_data, index=pd_dates,
+                                  columns=["Ensemble {}".format(str(i).zfill(2)) for i in range(51)])
+
+                init_df = pd.DataFrame(init_data, index=pd.to_datetime(init_dates), columns=["Water Balance"])
+
+                benchmark_df = init_df.copy()
+                benchmark_df.index = init_df.index + pd.DateOffset(1)
+                benchmark_df.columns = ["Benchmark"]
+
+                big_df = pd.DataFrame.join(init_df, [benchmark_df, df]).dropna()
+
+                obs = big_df.iloc[:, 0].values.astype(np.float64)
+                benchmark = big_df.iloc[:, 1].values
+                forecasts = big_df.iloc[:, 2:].values.astype(np.float64)
+
+                crps = em.ens_crps(obs, forecasts)["crpsMean"]
+                crps_bench = np.mean(np.abs(obs - benchmark))  # MAE
+                crpss = em.skill_score(crps, crps_bench, perf_score=0)
+                print("River: {}, Forecast Day: {}".format(rivid, forecast_day))
+                print("crps: {}, crps bench: {}, crpss: {}".format(crps, crps_bench, crpss["skillScore"]))
+
+        for ds in data_sets:
+            ds.close()
 
     def tearDown(self):
         pass

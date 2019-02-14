@@ -1,3 +1,4 @@
+hydrostats
 numpy
 scipy
 dask

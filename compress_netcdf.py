@@ -98,3 +98,14 @@ def compress_netcfd(folder_path, start_date, out_folder, file_name, num_of_rivid
 
 if __name__ == "__main__":
     pass
+    # num_rivids = 24328
+    # file_name = "Qout_south_asia_mainland"
+    # out_path = "/Users/wade/Documents/South_Asia_Small"
+    #
+    # base_path = "/Users/wade/Documents/South_Asia_Forecasts"
+    # folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path)]
+    #
+    # for folder_path in folder_paths:
+    #     date_string = folder_path[43:-2]
+    #
+    #     compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
