@@ -9,6 +9,6 @@ sure you are in the same directory as the Requirements.txt folder when you type 
 `conda install --file Requirements.txt`
 
 ## Testing
-Once the dependencies are installed, it is highly recommeded to run the testing suite contained in the tests.py file.
+Once the dependencies are installed, it is highly recommeded to run the testing suite contained in the `tests.py` file.
 Simply activate the environment and run the file to check if all the tests pass. If not, there may
 be an issue with updates to the dependencies and an issue should be submitted on Github.
