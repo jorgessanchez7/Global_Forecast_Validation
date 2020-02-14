@@ -97,15 +97,303 @@ def compress_netcfd(folder_path, start_date, out_folder, file_name, num_of_rivid
 
 
 if __name__ == "__main__":
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/africa-continental/20170101.00/Qout_africa_continental_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/asia-middle_east/20170101.00/Qout_asia_middle_east_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/asia-north_asia/20170101.00/Qout_asia_north_asia_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/australasia-continental/20170101.00/Qout_australasia_continental_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/australia-geoglows/20170101.00/Qout_australia_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/cuba-national/20170101.00/Qout_cuba_national_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/dominican_republic-hand/20170101.00/Qout_dominican_republic_hand_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/dominican_republic-national/20170101.00/Qout_dominican_republic_national_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/europe-global/20170101.00/Qout_europe_global_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/north_america-continental/20170101.00/Qout_north_america_continental_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/south_america-continental/20170101.00/Qout_south_america_continental_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/south_asia-mainland/20170101.00/Qout_south_asia_mainland_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/south_asia-sri_lanka/20170101.00/Qout_south_asia_sri_lanka_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    '''
+    print('Africa')
     pass
-    # num_rivids = 24328
-    # file_name = "Qout_south_asia_mainland"
-    # out_path = "/Users/wade/Documents/South_Asia_Small"
-    #
-    # base_path = "/Users/wade/Documents/South_Asia_Forecasts"
-    # folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path)]
-    #
-    # for folder_path in folder_paths:
-    #     date_string = folder_path[43:-2]
-    #
-    #     compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+    num_rivids = 53118
+    file_name = "Qout_africa_continental"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/africa-continental"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/africa-continental"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[70:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+    '''
+    print('Asia Middle East')
+    pass
+    num_rivids = 57394
+    file_name = "Qout_asia_middle_east"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/asia-middle_east"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/asia-middle_east"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[68:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+    '''
+    print('North Asia')
+    pass
+    num_rivids = 48717
+    file_name = "Qout_asia_north_asia"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/asia-north_asia"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/asia-north_asia"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[67:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+    print('Australia')
+    pass
+    num_rivids = 62987
+    file_name = "Qout_australia_geoglows"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/australia-geoglows"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/australia-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[70:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+
+
+    '''
+    print('Australasia')
+    pass
+    num_rivids = 38320
+    file_name = "Qout_australasia_continental"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/australasia-continental"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/australasia-continental"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[75:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+    '''
+    print('Cuba')
+    pass
+    num_rivids = 1401
+    file_name = "Qout_cuba_national"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/cuba-national"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/cuba-national"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[65:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+    '''
+    print('Dominican Republic')
+    pass
+    num_rivids = 1365
+    file_name = "Qout_dominican_republic_hand"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/dominican_republic-hand"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/dominican_republic-hand"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[75:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+
+    print('Dominican Republic')
+    pass
+    num_rivids = 1500
+    file_name = "Qout_dominican_republic_national"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/dominican_republic-national"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/dominican_republic-national"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[79:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+
+
+    '''
+    print('Europe')
+    pass
+    num_rivids = 30133
+    file_name = "Qout_europe_global"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/europe-global"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/europe-global"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[65:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+
+    '''
+
+
+    print('North America')
+    pass
+    num_rivids = 62788
+    file_name = "Qout_north_america_continental"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/north_america-continental"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/north_america-continental"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[77:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+
+
+
+    print('South America')
+    pass
+    num_rivids = 62317
+    file_name = "Qout_south_america_continental"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/south_america-continental"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/south_america-continental"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[77:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+
+
+
+    print('South Asia')
+    pass
+    num_rivids = 24328
+    file_name = "Qout_south_asia_mainland"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/south_asia-mainland"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/south_asia-mainland"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[71:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+
+    
+    '''
+    print('Sri Lanka')
+    pass
+    num_rivids = 2040
+    file_name = "Qout_south_asia_sri_lanka"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/south_asia-sri_lanka"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/south_asia-sri_lanka"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[72:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+
+    '''
