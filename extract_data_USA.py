@@ -87,11 +87,14 @@ def extract_by_rivid(rivid, folder_path, outpath):
 
 
 if __name__ == "__main__":
-    path_to_files = r"/Volumes/BYU_HD/input/north_america-continental/"
+    #path_to_files = r"/Volumes/BYU_HD/input/north_america-continental/"
     #path_to_files = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/north_america-continental/"
+    path_to_files = r"Z:\ECMWF_Gridded_Runoff_Files\output_compressed\north_america-continental"
 
     #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/North_America/United_States_Stations.csv')
-    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/North_America/United_States_Stations_v2.csv')
+    #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/North_America/United_States_Stations_v2.csv')
+    #df = pd.read_csv(r'C:\Users\jorgessanchez7\Dropbox\PhD\2019 Fall\Dissertation_v8\North_America\United_States_Stations_v2.csv')
+    df = pd.read_csv(r'C:\Users\jorgessanchez7\Dropbox\PhD\2019 Fall\Dissertation_v8\North_America\United_States_Stations_v3.csv')
 
     #spt_id = df['STAID'].tolist()
     #names = df['STANAME'].tolist()
@@ -101,9 +104,18 @@ if __name__ == "__main__":
     names = df['Name'].tolist()
     stations = df['COMID'].tolist()
 
+    '''On Mac'''
+    #for name, spt, comid in zip(names, spt_id, stations):
+    #    if not os.path.isdir("/Users/student/Desktop/output/North_America/United_States/{0}-{1}".format(spt, name)):
+    #        os.makedirs("/Users/student/Desktop/output/North_America/United_States/{0}-{1}".format(spt, name))
+    #    output_path = "/Users/student/Desktop/output/North_America/United_States/{0}-{1}".format(spt, name)
+    #    print(spt, comid, path_to_files, output_path)
+    #    extract_by_rivid(comid, path_to_files, output_path)
+
+    '''On Windows'''
     for name, spt, comid in zip(names, spt_id, stations):
-        if not os.path.isdir("/Users/student/Desktop/output/North_America/United_States/{0}-{1}".format(spt, name)):
-            os.makedirs("/Users/student/Desktop/output/North_America/United_States/{0}-{1}".format(spt, name))
-        output_path = "/Users/student/Desktop/output/North_America/United_States/{0}-{1}".format(spt, name)
+        if not os.path.isdir('C:\\Users\\jorgessanchez7\\Desktop\output\\North_America\\United_States\\{0}-{1}'.format(spt, name)):
+            os.makedirs("C:\\Users\\jorgessanchez7\\Desktop\\output\\North_America\\United_States\\{0}-{1}".format(spt, name))
+        output_path = "C:\\Users\\jorgessanchez7\\Desktop\\output\\North_America\\United_States\\{0}-{1}".format(spt, name)
         print(spt, comid, path_to_files, output_path)
         extract_by_rivid(comid, path_to_files, output_path)
