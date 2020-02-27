@@ -207,6 +207,7 @@ if __name__ == "__main__":
         print("Finished")
     '''
 
+    '''
     print('Australia')
     pass
     num_rivids = 62987
@@ -223,6 +224,7 @@ if __name__ == "__main__":
         print("Starting: ", date_string)
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
+    '''
 
 
     '''
@@ -282,7 +284,7 @@ if __name__ == "__main__":
         print("Finished")
     '''
 
-
+    '''
     print('Dominican Republic')
     pass
     num_rivids = 1500
@@ -299,7 +301,7 @@ if __name__ == "__main__":
         print("Starting: ", date_string)
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
-
+    '''
 
     '''
     print('Europe')
@@ -321,7 +323,7 @@ if __name__ == "__main__":
 
     '''
 
-
+    '''
     print('North America')
     pass
     num_rivids = 62788
@@ -338,9 +340,9 @@ if __name__ == "__main__":
         print("Starting: ", date_string)
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
+    '''
 
-
-
+    '''
     print('South America')
     pass
     num_rivids = 62317
@@ -357,7 +359,7 @@ if __name__ == "__main__":
         print("Starting: ", date_string)
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
-
+    '''
 
 
     print('South Asia')
