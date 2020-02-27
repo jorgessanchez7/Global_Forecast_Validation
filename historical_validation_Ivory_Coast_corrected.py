@@ -26,7 +26,7 @@ simFiles = []
 
 
 for id, comid, name in zip(IDs, COMIDs, Names):
-	obsFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/observed_data/' + str(
+	obsFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/observed_data/Original/' + str(
 		id) + '_' + str(name) + '.csv')
 	simFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/simulated_data/ERA_Interim-Corrected/' + str(
 		comid) + '_' + str(name) + '.csv')
