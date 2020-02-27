@@ -87,7 +87,8 @@ def extract_by_rivid(rivid, folder_path, outpath):
 
 
 if __name__ == "__main__":
-    path_to_files = r"/Volumes/BYU_HD/input/dominican_republic-national/"
+    #path_to_files = r"/Volumes/BYU_HD/input/dominican_republic-national/"
+    path_to_files = r"/Users/student/Desktop/input/dominican_republic-national/"
     #path_to_files = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/dominican_republic-national/"
 
     df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/Dominican_Republic/Dominican_Republic_Stations.csv')

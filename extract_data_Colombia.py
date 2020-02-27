@@ -92,7 +92,7 @@ if __name__ == "__main__":
 
     #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/Stations_Selected_Colombia.csv')
     df = pd.read_csv(
-        r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/Stations_Selected_Colombia_v3.csv')
+        r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/Stations_Selected_Colombia.csv')
     #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/Stations_Selected_Colombia_v2.csv')
 
     spt_id = df['Codigo'].tolist()
