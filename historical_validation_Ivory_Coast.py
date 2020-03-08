@@ -11,7 +11,8 @@ import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-df = pd.read_csv(r'/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Stations_Ivory_Coast.csv')
+#df = pd.read_csv(r'/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Stations_Ivory_Coast.csv')
+df = pd.read_csv(r'C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Stations_Ivory_Coast.csv')
 
 IDs = df['Code'].tolist()
 COMIDs = df['COMID'].tolist()
@@ -26,14 +27,16 @@ simFiles = []
 
 
 for id, comid, name in zip(IDs, COMIDs, Names):
-	obsFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/observed_data/' + str(
-		id) + '_' + str(name) + '.csv')
-	simFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/simulated_data/' + str(
-		comid) + '_' + str(name) + '.csv')
+	#obsFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/observed_data/' + str(id) + '_' + str(name) + '.csv')
+	obsFiles.append('C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Data\\Historical\\observed_data\\Original\\' + str(id) + '_' + str(name) + '.csv')
+	#simFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/simulated_data/Original/' + str(comid) + '_' + str(name) + '.csv')
+	simFiles.append('C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Data\\Historical\\simulated_data\\ERA_Interim\\' + str(comid) + '_' + str(name) + '.csv')
+
 
 #User Input
 country = 'Ivory_Coast'
-output_dir = '/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/validationResults/'
+#output_dir = '/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/validationResults/'
+output_dir = 'C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Data\\Historical\\validationResults\\'
 
 '''Initializing Variables to Append to'''
 #Creating blank dataframe for Tables
@@ -149,7 +152,7 @@ for id, comid, name, rio, obsFile, simFile in zip(IDs, COMIDs, Names, Rivers, ob
 	'''Tables and Plots'''
 	# Appending the table to the final table
 	table = hs.make_table(merged_df,
-	                      metrics=['ME', 'MAE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)', 'R (Pearson)',
+	                      metrics=['ME', 'MAE', 'MAPE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)', 'R (Pearson)',
 	                               'R (Spearman)', 'r2'], location=id, remove_neg=False, remove_zero=False)
 	all_station_table = all_station_table.append(table)
 
@@ -244,7 +247,7 @@ for id, comid, name, rio, obsFile, simFile in zip(IDs, COMIDs, Names, Rivers, ob
 	plt.savefig(path.join(qqplot_out_dir, '{0}_{1}_qq-plot.png'.format(str(id), name)))
 
 	'''Time Lag Analysis'''
-	time_lag_metrics = ['ME', 'MAE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)', 'SA', 'R (Pearson)',
+	time_lag_metrics = ['ME', 'MAE', 'MAPE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)', 'SA', 'R (Pearson)',
 	                    'R (Spearman)', 'r2']
 
 

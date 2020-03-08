@@ -88,17 +88,28 @@ def extract_by_rivid(rivid, folder_path, outpath):
         '''
 
 if __name__ == "__main__":
-    path_to_files = r"/Volumes/BYU_HD/input/africa-continental/"
+    #path_to_files = r"/Volumes/BYU_HD/input/africa-continental/"
     #path_to_files = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/africa-continental/"
+    path_to_files = r"Z:\\ECMWF_Gridded_Runoff_Files\\output_compressed\\africa-continental"
 
-    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/Africa/Blue_Nile_Stations.csv')
+    #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/Africa/Blue_Nile_Stations.csv')
+    df = pd.read_csv(r'C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2019 Fall\\Dissertation_v8\\Africa\\Blue_Nile_Stations.csv')
 
     spt_id = df['COMID'].tolist()
     names = df['Station'].tolist()
 
+    '''On Mac'''
+    #for name, spt in zip(names, spt_id):
+    #    if not os.path.isdir("/Users/student/Desktop/output/Africa/Blue_Nile/{0}-{1}".format(spt, name)):
+    #        os.makedirs("/Users/student/Desktop/output/Africa/Blue_Nile/{0}-{1}".format(spt, name))
+    #    output_path = "/Users/student/Desktop/output/Africa/Blue_Nile/{0}-{1}".format(spt, name)
+    #    print(spt, path_to_files, output_path)
+    #    extract_by_rivid(spt, path_to_files, output_path)
+
+    '''On Windows'''
     for name, spt in zip(names, spt_id):
-        if not os.path.isdir("/Users/student/Desktop/output/Africa/Blue_Nile/{0}-{1}".format(spt, name)):
-            os.makedirs("/Users/student/Desktop/output/Africa/Blue_Nile/{0}-{1}".format(spt, name))
-        output_path = "/Users/student/Desktop/output/Africa/Blue_Nile/{0}-{1}".format(spt, name)
+        if not os.path.isdir("C:\\Users\\jorgessanchez7\\Desktop\output\\Africa\\Blue_Nile\\{0}-{1}".format(spt, name)):
+            os.makedirs("C:\\Users\\jorgessanchez7\\Desktop\output\\Africa\\Blue_Nile\\{0}-{1}".format(spt, name))
+        output_path = "C:\\Users\\jorgessanchez7\\Desktop\output\\Africa\\Blue_Nile\\{0}-{1}".format(spt, name)
         print(spt, path_to_files, output_path)
         extract_by_rivid(spt, path_to_files, output_path)

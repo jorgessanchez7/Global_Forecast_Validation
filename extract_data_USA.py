@@ -93,8 +93,7 @@ if __name__ == "__main__":
 
     #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/North_America/United_States_Stations.csv')
     #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/North_America/United_States_Stations_v2.csv')
-    #df = pd.read_csv(r'C:\Users\jorgessanchez7\Dropbox\PhD\2019 Fall\Dissertation_v8\North_America\United_States_Stations_v2.csv')
-    df = pd.read_csv(r'C:\Users\jorgessanchez7\Dropbox\PhD\2019 Fall\Dissertation_v8\North_America\United_States_Stations_v3.csv')
+    df = pd.read_csv(r'C:\Users\jorgessanchez7\Dropbox\PhD\2019 Fall\Dissertation_v8\North_America\United_States_Stations_v2.csv')
 
     #spt_id = df['STAID'].tolist()
     #names = df['STANAME'].tolist()

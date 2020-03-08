@@ -92,9 +92,9 @@ if __name__ == "__main__":
     path_to_files = r"Z:\ECMWF_Gridded_Runoff_Files\output_compressed\south_america-continental"
 
     #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/Stations_Selected_Colombia.csv')
-    #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/Stations_Selected_Colombia_v3.csv')
     #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/Stations_Selected_Colombia_v2.csv')
-    df = pd.read_csv(r'C:\Users\jorgessanchez7\Dropbox\PhD\2019 Fall\Dissertation_v8\South_America\Colombia\Stations_Selected_Colombia.csv')
+    # df = pd.read_csv(r'C:\Users\jorgessanchez7\Dropbox\PhD\2019 Fall\Dissertation_v8\South_America\Colombia\Stations_Selected_Colombia.csv')
+    df = pd.read_csv( r'C:\Users\jorgessanchez7\Dropbox\PhD\2019 Fall\Dissertation_v8\South_America\Colombia\Stations_Selected_Colombia_v3.csv')
 
     spt_id = df['Codigo'].tolist()
     names = df['Nombre'].tolist()
