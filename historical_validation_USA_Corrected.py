@@ -31,12 +31,12 @@ for id, comid, name in zip(IDs, COMIDs, Names):
 		obsFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/North_America/USA/Historical/Observed_Data/SI/0' + str(id) + '_' + str(name) + '.csv')
 	else:
 		obsFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/North_America/USA/Historical/Observed_Data/SI/' + str(id) + '_' + str(name) + '.csv')
-	simFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/North_America/USA/Historical/Simulated_Data/ERA_Interim/' + str(comid) + '_' + str(name) + '.csv')
+	simFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/North_America/USA/Historical/Simulated_Data/ERA_Interim-Corrected/' + str(comid) + '_' + str(name) + '.csv')
 
 
 #User Input
 country = 'United_States_of_America'
-output_dir = '/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/North_America/USA/Historical/validationResults/'
+output_dir = '/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/North_America/USA/Historical/validationResults_Corrected/'
 
 '''Initializing Variables to Append to'''
 #Creating blank dataframe for Tables
@@ -128,7 +128,7 @@ for id, comid, name, rio, obsFile, simFile in zip(IDs, COMIDs, Names, Rivers, ob
 	dates_sim = sim_df.index.tolist()
 	dates=[]
 	for date in dates_sim:
-		dates.append(dt.datetime.strptime(date, "%Y-%m-%d %H:%M:%S"))
+		dates.append(dt.datetime.strptime(date, "%Y-%m-%d"))
 	dates_sim = dates
 
 	plt.figure(2)
