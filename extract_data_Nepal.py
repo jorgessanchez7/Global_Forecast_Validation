@@ -88,18 +88,31 @@ def extract_by_rivid(rivid, folder_path, outpath):
 
 if __name__ == "__main__":
     #path_to_files = r"/Volumes/BYU_HD/input/south_asia-mainland/"
-    path_to_files = r"/Users/student/Desktop/input/south_asia-mainland/"
+    #path_to_files = r"/Users/student/Desktop/input/south_asia-mainland/"
     #path_to_files = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/south_asia-mainland/"
+    path_to_files = r"Z:\ECMWF_Gridded_Runoff_Files\output_compressed\south_asia-mainland"
 
-    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_Asia/Nepal/Nepal_Selected_Stations.csv')
+    #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_Asia/Nepal/Nepal_Selected_Stations.csv')
+    df = pd.read_csv(r'C:\\Users\\User-1\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\South_Asia\\Nepal\\Nepal_Stations.csv')
 
     spt_id = df['Station'].tolist()
     streams = df['Stream'].tolist()
     stations = df['COMID'].tolist()
 
+    '''On Mac'''
+    #for spt, stream, comid in zip(spt_id, streams, stations):
+    #    if not os.path.isdir("/Users/student/Desktop/output/South_Asia/Nepal/{0}-{1}-{2}".format(comid, spt, stream)):
+    #        os.makedirs("/Users/student/Desktop/output/South_Asia/Nepal/{0}-{1}-{2}".format(comid, spt, stream))
+    #    output_path = "/Users/student/Desktop/output/South_Asia/Nepal/{0}-{1}-{2}".format(comid, spt, stream)
+    #    print(spt, comid, path_to_files, output_path)
+    #    extract_by_rivid(comid, path_to_files, output_path)
+
+    '''On Windows'''
     for spt, stream, comid in zip(spt_id, streams, stations):
-        if not os.path.isdir("/Users/student/Desktop/output/South_Asia/Nepal/{0}-{1}-{2}".format(comid, spt, stream)):
-            os.makedirs("/Users/student/Desktop/output/South_Asia/Nepal/{0}-{1}-{2}".format(comid, spt, stream))
-        output_path = "/Users/student/Desktop/output/South_Asia/Nepal/{0}-{1}-{2}".format(comid, spt, stream)
+        if not os.path.isdir(
+                'C:\\Users\\\User-1\\Desktop\output\\South_Asia\\Nepal\\{0}-{1}'.format(comid, spt, stream)):
+            os.makedirs(
+                "C:\\Users\\\User-1\\Desktop\\output\\South_Asia\\Nepal\\{0}-{1}".format(comid, spt, stream))
+        output_path = "C:\\Users\\jorgessanchez7\\Desktop\\output\\South_Asia\\Nepal\\{0}-{1}".format(comid, spt, stream)
         print(spt, comid, path_to_files, output_path)
         extract_by_rivid(comid, path_to_files, output_path)
