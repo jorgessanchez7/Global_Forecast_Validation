@@ -94,7 +94,7 @@ if __name__ == "__main__":
     #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/Stations_Selected_Colombia.csv')
     #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/Stations_Selected_Colombia_v2.csv')
     # df = pd.read_csv(r'C:\Users\jorgessanchez7\Dropbox\PhD\2019 Fall\Dissertation_v8\South_America\Colombia\Stations_Selected_Colombia.csv')
-    df = pd.read_csv( r'C:\Users\jorgessanchez7\Dropbox\PhD\2019 Fall\Dissertation_v8\South_America\Colombia\Stations_Selected_Colombia_v3.csv')
+    df = pd.read_csv( r'C:\Users\jsanch3z\Dropbox\PhD\2019 Fall\Dissertation_v8\South_America\Colombia\Stations_Selected_Colombia_v3.csv')
 
     spt_id = df['Codigo'].tolist()
     names = df['Nombre'].tolist()
@@ -111,8 +111,8 @@ if __name__ == "__main__":
     '''On Windows'''
     for name, spt, comid in zip(names, spt_id, stations):
         if not os.path.isdir(
-                'C:\\Users\\jorgessanchez7\\Desktop\output\\South_America\\Colombia\\{0}-{1}'.format(spt, name)):
-            os.makedirs("C:\\Users\\jorgessanchez7\\Desktop\\output\\South_America\\Colombia\\{0}-{1}".format(spt, name))
-        output_path = "C:\\Users\\jorgessanchez7\\Desktop\\output\\South_America\\Colombia\\{0}-{1}".format(spt, name)
+                'D:\\output\\South_America\\Colombia\\{0}-{1}'.format(spt, name)):
+            os.makedirs("D:\\output\\South_America\\Colombia\\{0}-{1}".format(spt, name))
+        output_path = "D:\\output\\South_America\\Colombia\\{0}-{1}".format(spt, name)
         print(spt, comid, path_to_files, output_path)
         extract_by_rivid(comid, path_to_files, output_path)
