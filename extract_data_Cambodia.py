@@ -87,15 +87,14 @@ def extract_by_rivid(rivid, folder_path, outpath):
 
 
 if __name__ == "__main__":
-    #path_to_files = r"/Volumes/BYU_HD/input/south_asia-mainland/"
-    path_to_files = r"/Users/student/Desktop/input/south_asia-mainland/"
+    path_to_files = r"/Volumes/BYU_HD/input/south_asia-mainland/"
+    #path_to_files = r"/Users/student/Desktop/input/south_asia-mainland/"
     #path_to_files = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/south_asia-mainland/"
 
     #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_Asia/Cambodia/Stations_Cambodia.csv')
-    df = pd.read_csv(
-        r'/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_Asia/Cambodia/Stations_Cambodia.csv')
+    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_Asia/Cambodia/Stations_Cambodia_v2.csv')
 
-    names = df['Statn_Name'].tolist()
+    names = df['StnName'].tolist()
     stations = df['COMID'].tolist()
 
     for name, comid in zip(names, stations):

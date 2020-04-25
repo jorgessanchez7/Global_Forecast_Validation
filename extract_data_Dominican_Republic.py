@@ -91,15 +91,16 @@ if __name__ == "__main__":
     path_to_files = r"/Users/student/Desktop/input/dominican_republic-national/"
     #path_to_files = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/dominican_republic-national/"
 
-    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/Dominican_Republic/Dominican_Republic_Stations.csv')
+    #df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/Dominican_Republic/Dominican_Republic_Stations.csv')
+    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Central_America/Dominican_Republic/INDRHI_Stations_Selected.csv')
 
     spt_id = df['Code'].tolist()
     names = df['Name'].tolist()
     stations = df['COMID'].tolist()
 
     for name, spt, comid in zip(names, spt_id, stations):
-        if not os.path.isdir("/Users/student/Desktop/output/Dominican_Republic/{0}-{1}".format(spt, name)):
-            os.makedirs("/Users/student/Desktop/output/Dominican_Republic/{0}-{1}".format(spt, name))
-        output_path = "/Users/student/Desktop/output/Dominican_Republic/{0}-{1}".format(spt, name)
+        if not os.path.isdir("/Users/student/Desktop/output/Central_America/Dominican_Republic/{0}-{1}".format(spt, name)):
+            os.makedirs("/Users/student/Desktop/output/Central_America/Dominican_Republic/{0}-{1}".format(spt, name))
+        output_path = "/Users/student/Desktop/output/Central_America/Dominican_Republic/{0}-{1}".format(spt, name)
         print(spt, comid, path_to_files, output_path)
         extract_by_rivid(comid, path_to_files, output_path)
