@@ -92,12 +92,16 @@ if __name__ == "__main__":
     #path_to_files = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/south_asia-mainland/"
     #path_to_files = r"Z:\ECMWF_Gridded_Runoff_Files\output_compressed\south_asia-mainland"
 
-    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_Asia/Nepal/Nepal_Stations_v2.csv')
+    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_Asia/Nepal/Nepal_Stations_new.csv')
     #df = pd.read_csv(r'C:\\Users\\User-1\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\South_Asia\\Nepal\\Nepal_Stations.csv')
 
     spt_id = df['Station'].tolist()
     streams = df['Stream'].tolist()
     stations = df['COMID'].tolist()
+
+    #spt_id = ['Rakseni']
+    #streams = ['Sotkhola']
+    #stations = [55496]
 
     '''On Mac'''
     for spt, stream, comid in zip(spt_id, streams, stations):

@@ -87,9 +87,9 @@ def extract_by_rivid(rivid, folder_path, outpath):
 
 
 if __name__ == "__main__":
-    path_to_files = r"/home/water/extract_forecast_data/mnt/ECMWF_Gridded_Runoff_Files/output_compressed/south_america-continental"
+    path_to_files = r"/Volumes/BYU_HD/input/south_america-continental"
 
-    df = pd.read_csv(r'/home/water/extract_forecast_data/Stations_Selected_Colombia_v3.csv')
+    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/servers/09/Stations_Selected_Colombia.csv')
 
     spt_id = df['Codigo'].tolist()
     names = df['Nombre'].tolist()
@@ -97,8 +97,8 @@ if __name__ == "__main__":
 
     '''On Mac'''
     for name, spt, comid in zip(names, spt_id, stations):
-        if not os.path.isdir("/home/water/extract_forecast_data/output/South_America/Colombia/{0}-{1}".format(spt, name)):
-            os.makedirs("/home/water/extract_forecast_data/output/South_America/Colombia/{0}-{1}".format(spt, name))
-        output_path = "/home/water/extract_forecast_data/output/South_America/Colombia/{0}-{1}".format(spt, name)
+        if not os.path.isdir("/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name)):
+            os.makedirs("/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name))
+        output_path = "/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name)
         print(spt, comid, path_to_files, output_path)
         extract_by_rivid(comid, path_to_files, output_path)

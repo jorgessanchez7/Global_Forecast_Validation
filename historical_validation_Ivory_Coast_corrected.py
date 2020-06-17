@@ -11,8 +11,8 @@ import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-#df = pd.read_csv(r'/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Stations_Ivory_Coast.csv')
-df = pd.read_csv(r'C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Stations_Ivory_Coast.csv')
+df = pd.read_csv(r'/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Stations_Ivory_Coast.csv')
+#df = pd.read_csv(r'C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Stations_Ivory_Coast.csv')
 
 IDs = df['Code'].tolist()
 COMIDs = df['COMID'].tolist()
@@ -27,15 +27,15 @@ simFiles = []
 
 
 for id, comid, name in zip(IDs, COMIDs, Names):
-	#obsFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/observed_data/Original/' + str(id) + '_' + str(name) + '.csv')
-	obsFiles.append('C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Data\\Historical\\observed_data\\Original\\' + str(id) + '_' + str(name) + '.csv')
-	#simFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/simulated_data/ERA_Interim-Corrected/' + str(comid) + '_' + str(name) + '.csv')
-	simFiles.append('C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Data\\Historical\\simulated_data\\ERA_Interim-Corrected\\' + str(comid) + '_' + str(name) + '.csv')
+	obsFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/observed_data/Original/' + str(id) + '_' + str(name) + '.csv')
+	#obsFiles.append('C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Data\\Historical\\observed_data\\Original\\' + str(id) + '_' + str(name) + '.csv')
+	simFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/simulated_data/ERA_Interim-Corrected/' + str(comid) + '_' + str(name) + '.csv')
+	#simFiles.append('C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Data\\Historical\\simulated_data\\ERA_Interim-Corrected\\' + str(comid) + '_' + str(name) + '.csv')
 
 #User Input
 country = 'Ivory_Coast'
-#output_dir = '/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/validationResults_Corrected/'
-output_dir = 'C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Data\\Historical\\validationResults_Corrected\\'
+output_dir = '/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/Africa/Ivory_Coast/Data/Historical/validationResults_Corrected/'
+#output_dir = 'C:\\Users\\jorgessanchez7\\Dropbox\\PhD\\2020 Winter\\Dissertation_v9\\Africa\\Ivory_Coast\\Data\\Historical\\validationResults_Corrected\\'
 
 '''Initializing Variables to Append to'''
 #Creating blank dataframe for Tables
