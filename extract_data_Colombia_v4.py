@@ -89,16 +89,14 @@ def extract_by_rivid(rivid, folder_path, outpath):
 if __name__ == "__main__":
     path_to_files = r"/Volumes/BYU_HD/input/south_america-continental"
 
-    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/servers/06/Stations_Selected_Colombia.csv')
+    df = pd.read_csv(r'/Users/student/Downloads/HydroID_Putumayo.CSV')
 
-    spt_id = df['Codigo'].tolist()
-    names = df['Nombre'].tolist()
-    stations = df['COMID'].tolist()
+    spt_id = df['HydroID'].tolist()
 
     '''On Mac'''
-    for name, spt, comid in zip(names, spt_id, stations):
-        if not os.path.isdir("/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name)):
-            os.makedirs("/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name))
-        output_path = "/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name)
-        print(spt, comid, path_to_files, output_path)
-        extract_by_rivid(comid, path_to_files, output_path)
+    for spt in spt_id:
+        if not os.path.isdir("/Users/student/Desktop/output/South_America/Colombia/Ovidio/{0}".format(spt)):
+            os.makedirs("/Users/student/Desktop/output/South_America/Colombia/Ovidio/{0}".format(spt))
+        output_path = "/Users/student/Desktop/output/South_America/Colombia/Ovidio/{0}".format(spt)
+        print(spt, path_to_files, output_path)
+        extract_by_rivid(spt, path_to_files, output_path)

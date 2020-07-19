@@ -41,7 +41,7 @@ def extract_by_rivid(rivid, folder_path, outpath):
         init_df = init_df.append(pd.DataFrame(init_value, index=[date], columns=["Initialization (m^3/s)"]))
 
         ds.close()
-
+    
     # Writing the init df to csv
     init_df.to_csv(os.path.join(outpath, "Initialization_Values.csv"), index_label="Date")
 
@@ -68,6 +68,7 @@ def extract_by_rivid(rivid, folder_path, outpath):
         temp_df.to_csv(os.path.join(outpath, file_name), index_label="Date")
 
     # Creating forecast files for each forecast day
+    '''
     for i in range(10):
 
         high_res_df = pd.DataFrame()
@@ -84,21 +85,20 @@ def extract_by_rivid(rivid, folder_path, outpath):
 
         file_name = "{}_Day_Forecasts_High_Res.csv".format(i + 1)
         high_res_df.to_csv(os.path.join(outpath, file_name), index_label="Date")
+        '''
 
 
 if __name__ == "__main__":
-    path_to_files = r"/Volumes/BYU_HD/input/south_america-continental"
+    path_to_files = r"/Volumes/BYU_HD/input/africa-continental"
 
-    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/servers/06/Stations_Selected_Colombia.csv')
+    df = pd.read_csv(r'/Users/student/Dropbox/East_Africa_Stations.csv')
 
-    spt_id = df['Codigo'].tolist()
-    names = df['Nombre'].tolist()
-    stations = df['COMID'].tolist()
+    spt_id = df['COMID'].tolist()
 
     '''On Mac'''
-    for name, spt, comid in zip(names, spt_id, stations):
-        if not os.path.isdir("/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name)):
-            os.makedirs("/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name))
-        output_path = "/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name)
-        print(spt, comid, path_to_files, output_path)
-        extract_by_rivid(comid, path_to_files, output_path)
+    for spt in spt_id:
+        if not os.path.isdir("/Users/student/Desktop/output/Africa/East_Africa/{0}".format(spt)):
+            os.makedirs("/Users/student/Desktop/output/Africa/East_Africa/{0}".format(spt))
+        output_path = "/Users/student/Desktop/output/Africa/East_Africa/{0}".format(spt)
+        print(spt, path_to_files, output_path)
+        extract_by_rivid(spt, path_to_files, output_path)

@@ -7,13 +7,12 @@ import hydrostats as hs
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-#regions = ['central_america-geoglows', 'south_america-geoglows', 'north_america-geoglows', 'australia-geoglows',
-#           'africa-geoglows','central_asia-geoglows', 'east_asia-geoglows', 'europe-geoglows',
-#           'islands-geoglows', 'japan-geoglows', 'middle_east-geoglows', 'south_asia-geoglows',
-#           'west_asia-geoglows']
+#regions = ['japan-geoglows', 'islands-geoglows', 'middle_east-geoglows', 'central_america-geoglows',
+#           'central_asia-geoglows', 'australia-geoglows', 'south_asia-geoglows', 'east_asia-geoglows',
+#           'europe-geoglows', 'north_america-geoglows', 'west_asia-geoglows', 'africa-geoglows',
+#           'south_america-geoglows']
 
-regions = ['central_america-geoglows', 'south_america-geoglows', 'north_america-geoglows', 'australia-geoglows',
-           'africa-geoglows']
+regions = ['australia-geoglows']
 
 for region in regions:
 
@@ -94,7 +93,7 @@ for region in regions:
 
 		'''Get Era_Interim Data'''
 		eraI_df = pd.read_csv('/Volumes/BYU_HD/Streamflow_Prediction_Tool/Time_Series/ERA_Interim/{0}/{1}.csv'.format(region, comid), index_col=0)
-		eraI_df.index = pd.to_datetime(era5_df.index)
+		eraI_df.index = pd.to_datetime(eraI_df.index)
 
 		#'''Hydrostats Analysis'''
 
@@ -132,11 +131,11 @@ for region in regions:
 
 		#'''Tables and Plots'''
 		# Appending the table to the final table
-		#table = hs.make_table(merged_df,
-		#                      metrics=['ME', 'MAE', 'MAPE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)',
-		#                               'R (Pearson)', 'R (Spearman)', 'r2'], location=comid, remove_neg=False,
-		#                      remove_zero=False)
-		#all_station_table = all_station_table.append(table)
+		table = hs.make_table(merged_df,
+		                      metrics=['ME', 'MAE', 'MAPE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)',
+		                               'R (Pearson)', 'R (Spearman)', 'r2'],
+		                      location=comid, remove_neg=False, remove_zero=False)
+		all_station_table = all_station_table.append(table)
 
 		# Making plots for all the stations
 		sim_array = merged_df.iloc[:, 0].values
@@ -160,7 +159,7 @@ for region in regions:
 			obs_volume_cum.append(sum_obs)
 
 		volume_percent_diff = (max(sim_volume_cum) - max(obs_volume_cum)) / max(sim_volume_cum)
-		volume_list.append([id, max(obs_volume_cum), max(sim_volume_cum), volume_percent_diff])
+		volume_list.append([comid, max(obs_volume_cum), max(sim_volume_cum), volume_percent_diff])
 
 		#plt.figure(3)
 		#plt.figure(figsize=(15, 9))
@@ -264,7 +263,7 @@ for region in regions:
 
 	# Writing the Volume Dataframe to a csv
 	volume_df = pd.DataFrame(volume_list,
-	                         columns=['Station', 'ERA-5 Volume', 'ERA-Interim Volume', 'Percent Difference'])
+	                         columns=['Location', 'ERA-5 Volume', 'ERA-Interim Volume', 'Percent Difference'])
 	volume_df.to_csv(path.join(table_out_dir, 'Volume_Table.csv'))
 	#volume_df.to_excel(path.join(table_out_dir, 'Volume_Table.xlsx'))
 
