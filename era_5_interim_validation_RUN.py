@@ -7,22 +7,20 @@ import hydrostats as hs
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-#regions = ['japan-geoglows', 'islands-geoglows', 'middle_east-geoglows', 'central_america-geoglows',
-#           'central_asia-geoglows', 'australia-geoglows', 'south_asia-geoglows', 'east_asia-geoglows',
-#           'europe-geoglows', 'north_america-geoglows', 'west_asia-geoglows', 'africa-geoglows',
-#           'south_america-geoglows']
-
-regions = ['africa-geoglows']
+regions = ['japan-geoglows', 'islands-geoglows', 'middle_east-geoglows', 'central_america-geoglows',
+           'central_asia-geoglows', 'australia-geoglows', 'south_asia-geoglows', 'east_asia-geoglows',
+           'europe-geoglows', 'north_america-geoglows', 'west_asia-geoglows', 'africa-geoglows',
+           'south_america-geoglows']
 
 for region in regions:
 
-	df = pd.read_csv('/Volumes/BYU_HD/Streamflow_Prediction_Tool/Shapes/{0}-drainageline.csv'.format(region))
+	df = pd.read_csv('/Users/ElkiGio/Desktop/ERA_5-ERA_Interim/{0}.csv'.format(region))
 
-	COMIDs = df['COMID'].tolist()
+	POINTs = df['POINT'].tolist()
 
 	# User Input
 	catchment = 'World'
-	output_dir = '/Volumes/BYU_HD/Streamflow_Prediction_Tool/validationResults/{0}/'.format(region)
+	output_dir = '/Users/ElkiGio/Desktop/ERA_5-ERA_Interim/validationResults_Runoff/{0}/'.format(region)
 
 	'''Initializing Variables to Append to'''
 	# Creating blank dataframe for Tables
@@ -83,17 +81,19 @@ for region in regions:
 	#if not path.isdir(lag_out_dir):
 	#	os.makedirs(lag_out_dir)
 
-	for comid in COMIDs:
+	for point in POINTs:
 
-		print (region, '-', comid)
+		print (region, '-', point)
 
 		'''Get Era_5 Data'''
-		era5_df = pd.read_csv('/Volumes/BYU_HD/Streamflow_Prediction_Tool/Time_Series/ERA_5/{0}/{1}.csv'.format(region, comid), index_col=0)
+		era5_df = pd.read_csv('/Volumes/files/ECMWF_Runoff/Time_Series/ERA_5/{0}/{1}.csv'.format(region, point), index_col=0)
 		era5_df.index = pd.to_datetime(era5_df.index)
+		era5_df.rename({'Runoff (mm)': 'ERA-5 Runoff (mm)'}, axis=1, inplace=True)
 
 		'''Get Era_Interim Data'''
-		eraI_df = pd.read_csv('/Volumes/BYU_HD/Streamflow_Prediction_Tool/Time_Series/ERA_Interim/{0}/{1}.csv'.format(region, comid), index_col=0)
+		eraI_df = pd.read_csv('/Volumes/files/ECMWF_Runoff/Time_Series/ERA_Interim/{0}/{1}.csv'.format(region, point), index_col=0)
 		eraI_df.index = pd.to_datetime(eraI_df.index)
+		eraI_df.rename({'Runoff (mm)': 'ERA-I Runoff (mm)'}, axis=1, inplace=True)
 
 		#'''Hydrostats Analysis'''
 
@@ -134,7 +134,7 @@ for region in regions:
 		table = hs.make_table(merged_df,
 		                      metrics=['ME', 'MAE', 'MAPE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)',
 		                               'R (Pearson)', 'R (Spearman)', 'r2'],
-		                      location=comid, remove_neg=False, remove_zero=False)
+		                      location=point, remove_neg=False, remove_zero=False)
 		all_station_table = all_station_table.append(table)
 
 		# Making plots for all the stations
@@ -159,106 +159,106 @@ for region in regions:
 			obs_volume_cum.append(sum_obs)
 
 		volume_percent_diff = (max(sim_volume_cum) - max(obs_volume_cum)) / max(sim_volume_cum)
-		volume_list.append([comid, max(obs_volume_cum), max(sim_volume_cum), volume_percent_diff])
+		volume_list.append([point, max(obs_volume_cum), max(sim_volume_cum), volume_percent_diff])
 
 		#plt.figure(3)
 		#plt.figure(figsize=(15, 9))
 		#plt.plot(merged_df.index, sim_volume_cum, 'k', color='blue', label='ERA-Interim Volume')
 		#plt.plot(merged_df.index, obs_volume_cum, 'k', color='red', label='ERA-5 Volume')
-		#plt.title('Volume Analysis for COMID: ' + str(comid))
+		#plt.title('Volume Analysis for point: ' + str(point))
 		#plt.xlabel('Date')
 		#plt.ylabel('Volume (Mm^3)')
 		#plt.legend()
 		#plt.grid()
-		#plt.savefig(volume_analysis_out_dir + '/Volume Analysis for ' + str(comid) + '.png')
+		#plt.savefig(volume_analysis_out_dir + '/Volume Analysis for ' + str(point) + '.png')
 
 		#hv.plot(merged_df, legend=('ERA-Interim', 'ERA-5'), grid=True,
-		#        title='Hydrograph for COMID: ' + str(comid),
+		#        title='Hydrograph for point: ' + str(point),
 		#        labels=['Datetime', 'Streamflow (m$^3$/s)'], linestyles=['b-', 'r-'], fig_size=(15, 9))
-		#plt.savefig(path.join(plot_out_dir, '{0}_hydrographs.png'.format(str(comid))))
+		#plt.savefig(path.join(plot_out_dir, '{0}_hydrographs.png'.format(str(point))))
 
 		#daily_avg = hd.daily_average(merged_df)
 		#daily_std_error = hd.daily_std_error(merged_data=merged_df)
 		#hv.plot(merged_data_df=daily_avg, legend=('ERA-Interim', 'ERA-5'), grid=True, x_season=True,
-		#        title='Daily Average Streamflow (Standard Error) for COMID: ' + str(comid),
+		#        title='Daily Average Streamflow (Standard Error) for point: ' + str(point),
 		#        labels=['Datetime', 'Streamflow (m$^3$/s)'], linestyles=['b-', 'r-'], fig_size=(15, 9),
 		#        ebars=daily_std_error,
 		#        ecolor=('b', 'r'), tight_xlim=False)
-		#plt.savefig(path.join(daily_average_out_dir, '{0}_daily_average.png'.format(str(comid))))
+		#plt.savefig(path.join(daily_average_out_dir, '{0}_daily_average.png'.format(str(point))))
 
 		#hv.plot(merged_data_df=daily_avg, legend=('ERA-Interim', 'ERA-5'), grid=True, x_season=True,
-		#        title='Daily Average Streamflow for COMID: ' + str(comid),
+		#        title='Daily Average Streamflow for point: ' + str(point),
 		#        labels=['Datetime', 'Streamflow (m$^3$/s)'], linestyles=['b-', 'r-'], fig_size=(15, 9))
-		#plt.savefig(path.join(daily_average_out_dir, '{0}_daily_average_1.png'.format(str(comid))))
+		#plt.savefig(path.join(daily_average_out_dir, '{0}_daily_average_1.png'.format(str(point))))
 
 		#monthly_avg = hd.monthly_average(merged_df)
 		#monthly_std_error = hd.monthly_std_error(merged_data=merged_df)
 		#hv.plot(merged_data_df=monthly_avg, legend=('ERA-Interim', 'ERA-5'), grid=True, x_season=True,
-		#        title='Monthly Average Streamflow (Standard Error) for COMID: ' + str(comid),
+		#        title='Monthly Average Streamflow (Standard Error) for point: ' + str(point),
 		#        labels=['Datetime', 'Streamflow (m$^3$/s)'], linestyles=['b-', 'r-'], fig_size=(15, 9),
 		#        ebars=monthly_std_error, ecolor=('b', 'r'), tight_xlim=False)
-		#plt.savefig(path.join(monthly_average_out_dir, '{0}_monthly_average.png'.format(str(comid))))
+		#plt.savefig(path.join(monthly_average_out_dir, '{0}_monthly_average.png'.format(str(point))))
 
 		#try:
 		#	hv.scatter(merged_data_df=merged_df, grid=True,
-		#	           title='Scatter Plot for COMID: ' + str(comid),
+		#	           title='Scatter Plot for point: ' + str(point),
 		#	           labels=('ERA-Interim', 'ERA-5'), line45=True, best_fit=True, figsize=(15, 9))
-		#	plt.savefig(path.join(scatter_out_dir, '{0}_scatter_plot.png'.format(str(comid))))
+		#	plt.savefig(path.join(scatter_out_dir, '{0}_scatter_plot.png'.format(str(point))))
 		#except:
 		#	hv.scatter(merged_data_df=merged_df, grid=True,
-		#	           title='Scatter Plot for COMID: ' + str(comid),
+		#	           title='Scatter Plot for point: ' + str(point),
 		#	           labels=('ERA-Interim', 'ERA-5'), line45=True, best_fit=False, figsize=(15, 9))
-		#	plt.savefig(path.join(scatter_out_dir, '{0}_scatter_plot.png'.format(str(comid))))
+		#	plt.savefig(path.join(scatter_out_dir, '{0}_scatter_plot.png'.format(str(point))))
 
 
 		#try:
 		#	hv.scatter(sim_array=sim_array, obs_array=obs_array, grid=True,
-		#	           title='Scatter Plot (Log Scale) for COMID: ' + str(comid),
+		#	           title='Scatter Plot (Log Scale) for point: ' + str(point),
 		#	           labels=('ERA-Interim', 'ERA-5'), line45=True, best_fit=True, log_scale=True, figsize=(15, 9))
-		#	plt.savefig(path.join(scatter_ls_out_dir, '{0}_scatter_plot-log_scale.png'.format(str(comid))))
+		#	plt.savefig(path.join(scatter_ls_out_dir, '{0}_scatter_plot-log_scale.png'.format(str(point))))
 
 		#except:
 		#	hv.scatter(sim_array=sim_array, obs_array=obs_array, grid=True,
-		#	           title='Scatter Plot (Log Scale) for COMID: ' + str(comid),
+		#	           title='Scatter Plot (Log Scale) for point: ' + str(point),
 		#	           labels=('ERA-Interim', 'ERA-5'), line45=True, best_fit=False, log_scale=True, figsize=(15, 9))
-		#	plt.savefig(path.join(scatter_ls_out_dir, '{0}_scatter_plot-log_scale.png'.format(str(comid))))
+		#	plt.savefig(path.join(scatter_ls_out_dir, '{0}_scatter_plot-log_scale.png'.format(str(point))))
 
 		#hv.hist(merged_data_df=merged_df, num_bins=100, legend=('ERA-Interim', 'ERA-5'), grid=True,
-		#        title='Histogram of Streamflows for COMID: ' + str(comid),
+		#        title='Histogram of Streamflows for point: ' + str(point),
 		#        labels=('Bins', 'Frequency'), figsize=(15, 9))
-		#plt.savefig(path.join(hist_out_dir, '{0}_histograms.png'.format(str(comid))))
+		#plt.savefig(path.join(hist_out_dir, '{0}_histograms.png'.format(str(point))))
 
 		#hv.qqplot(merged_data_df=merged_df,
-		#          title='Quantile-Quantile Plot of Data for COMID: ' + str(comid),
+		#          title='Quantile-Quantile Plot of Data for point: ' + str(point),
 		#          xlabel='ERA-Interim', ylabel='ERA-5', legend=True, figsize=(15, 9))
-		#plt.savefig(path.join(qqplot_out_dir, '{0}_qq-plot.png'.format(str(comid))))
+		#plt.savefig(path.join(qqplot_out_dir, '{0}_qq-plot.png'.format(str(point))))
 
 		#'''Time Lag Analysis'''
 		#time_lag_metrics = ['ME', 'MAE', 'MAPE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)', 'SA',
 		#                    'R (Pearson)', 'R (Spearman)', 'r2']
 
 		## station_out_dir = path.join(lag_out_dir, str(id))
-		#station_out_dir = path.join(lag_out_dir, str(comid))
+		#station_out_dir = path.join(lag_out_dir, str(point))
 		#if not path.isdir(station_out_dir):
 		#	os.makedirs(station_out_dir)
 
 		#for metric in time_lag_metrics:
 		#	_, time_table = hs.time_lag(merged_dataframe=merged_df, metrics=[metric], interp_freq='1D',
 		#	                            interp_type='pchip', shift_range=(-10, 10), remove_neg=False, remove_zero=False,
-		#	                            plot_title=metric + ' at Different Lags for COMID: ' + str(comid), plot=True,
+		#	                            plot_title=metric + ' at Different Lags for point: ' + str(point), plot=True,
 		#	                            ylabel=metric + ' Values', xlabel='Number of Lagas', figsize=(15, 9),
 		#	                            save_fig=path.join(station_out_dir,
-		#	                                               '{0}_timelag_plot_for{1}.png'.format(metric, str(comid))))
+		#	                                               '{0}_timelag_plot_for{1}.png'.format(metric, str(point))))
 		#	plt.grid()
 		#	all_lag_table = all_lag_table.append(time_table)
 
 		#for i in range(0, len(time_lag_metrics)):
-		#	comid_array.append(comid)
+		#	point_array.append(point)
 
 		#plt.close('all')
 
 	# Writing the lag table to excel
-	#all_lag_table = all_lag_table.assign(COMID=comid_array)
+	#all_lag_table = all_lag_table.assign(point=point_array)
 	#all_lag_table.to_excel(path.join(lag_out_dir, 'Summary_of_all_Stations.xlsx'))
 
 	# Writing the Volume Dataframe to a csv

@@ -1,6 +1,6 @@
+import numpy as np
 import xarray as xr
 import pandas as pd
-import numpy as np
 import os
 
 def extract_by_rivid(rivid, folder_path, outpath):
@@ -89,7 +89,7 @@ def extract_by_rivid(rivid, folder_path, outpath):
 if __name__ == "__main__":
     path_to_files = r"/Volumes/BYU_HD/input/south_america-continental"
 
-    df = pd.read_csv(r'/Users/student/Dropbox/PhD/2019 Fall/Dissertation_v8/South_America/Colombia/servers/06/Stations_Selected_Colombia.csv')
+    df = pd.read_csv(r'/Users/ElkiGio/Dropbox/servers/06/Stations_Selected_Colombia.csv')
 
     spt_id = df['Codigo'].tolist()
     names = df['Nombre'].tolist()
@@ -97,8 +97,8 @@ if __name__ == "__main__":
 
     '''On Mac'''
     for name, spt, comid in zip(names, spt_id, stations):
-        if not os.path.isdir("/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name)):
-            os.makedirs("/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name))
-        output_path = "/Users/student/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name)
+        if not os.path.isdir("/Users/ElkiGio/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name)):
+            os.makedirs("/Users/ElkiGio/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name))
+        output_path = "/Users/ElkiGio/Desktop/output/South_America/Colombia/{0}-{1}".format(spt, name)
         print(spt, comid, path_to_files, output_path)
         extract_by_rivid(comid, path_to_files, output_path)

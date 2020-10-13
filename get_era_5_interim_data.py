@@ -1,5 +1,5 @@
 import pandas as pd
-import geoglows
+#import geoglows
 import os
 import requests
 import datetime as dt
@@ -9,8 +9,9 @@ import datetime as dt
 #           'islands-geoglows', 'japan-geoglows', 'middle_east-geoglows', 'south_asia-geoglows',
 #           'west_asia-geoglows']
 
-watersheds = ['islands']
+watersheds = ['africa']
 subbasins = ['geoglows']
+
 
 #for region in regions:
 for watershed, subbasin in zip (watersheds, subbasins):
