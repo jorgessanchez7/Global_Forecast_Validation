@@ -87,29 +87,16 @@ def extract_by_rivid(rivid, folder_path, outpath):
 
 
 if __name__ == "__main__":
-    path_to_files = r"/Volumes/BYU_HD/input/australia-geoglows/"
-    #path_to_files = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/australia-geoglows/"
-    #path_to_files = r"Z:\\ECMWF_Gridded_Runoff_Files\\output_compressed\\australia-geoglows"
+    path_to_files = r"/Users/ElkiGio/Desktop/input/islands-geoglows/"
 
-    df = pd.read_csv(r'/Users/ElkiGio/Desktop/australia-stations_v2.csv')
-    #df = pd.read_csv(r'C:\Users\\jorgessanchez7\\Dropbox\PhD\\2019 Fall\\Dissertation_v8\\Australasia\\australia-stations_v2.csv')
+    df = pd.read_csv(r'/Volumes/files/ECMWF_GEOGloWS_Streamflow/validationResults/islands-geoglows/Tables/Table_of_all_stations_v3.csv')
 
-    spt_id = df['Code'].tolist()
-    names = df['Name'].tolist()
-    stations = df['new_COMID'].tolist()
+    stations = df['Location'].tolist()
 
     '''On Mac'''
-    for name, spt, comid in zip(names, spt_id, stations):
-        if not os.path.isdir("/Users/ElkiGio/Desktop/output/Australia/Australia/{0}-{1}".format(spt, name)):
-            os.makedirs("/Users/ElkiGio/Desktop/output/Australia/Australia/{0}-{1}".format(spt, name))
-        output_path = "/Users/ElkiGio/Desktop/output/Australia/Australia/{0}-{1}".format(spt, name)
-        print(spt, comid, path_to_files, output_path)
-        extract_by_rivid(comid, path_to_files, output_path)
-
-    '''On Windows'''
-    #for name, spt, comid in zip(names, spt_id, stations):
-    #    if not os.path.isdir("C:\\Users\\jorgessanchez7\\Desktop\output\\Australia\\Australia\\{0}-{1}".format(spt, name)):
-    #        os.makedirs("C:\\Users\\jorgessanchez7\\Desktop\output\\Australia\\Australia\\{0}-{1}".format(spt, name))
-    #    output_path = "C:\\Users\\jorgessanchez7\\Desktop\output\\Australia\\Australia\\{0}-{1}".format(spt, name)
-    #    print(spt, comid, path_to_files, output_path)
-    #    extract_by_rivid(comid, path_to_files, output_path)
+    for spt in stations:
+        if not os.path.isdir("/Volumes/files/ECMWF_GEOGloWS_Streamflow/Time_Series/Forecast/islands-geoglows/{0}".format(spt)):
+            os.makedirs("/Volumes/files/ECMWF_GEOGloWS_Streamflow/Time_Series/Forecast/islands-geoglows/{0}".format(spt))
+        output_path = "/Volumes/files/ECMWF_GEOGloWS_Streamflow/Time_Series/Forecast/islands-geoglows/{0}".format(spt)
+        print(spt, "islands-geoglows", path_to_files, output_path)
+        extract_by_rivid(spt, path_to_files, output_path)

@@ -118,6 +118,14 @@ if __name__ == "__main__":
     #ds = xr.open_dataset(path)
     #print(ds)
 
+    #path = r"/Volumes/files/ECMWF/output_20140101-20141231/central_america-geoglows/20140101.00/Qout_central_america_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/files/ECMWF/output_20140101-20141231/central_asia-geoglows/20140101.00/Qout_central_asia_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
     #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/cuba-national/20170101.00/Qout_cuba_national_1.nc"
     #ds = xr.open_dataset(path)
     #print(ds)
@@ -134,6 +142,22 @@ if __name__ == "__main__":
     #ds = xr.open_dataset(path)
     #print(ds)
 
+    #path = r"/Volumes/files/ECMWF/output_20140101-20141231/europe-geoglows/20140101.00/Qout_europe_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/files/ECMWF/output_20140101-20141231/islands-geoglows/20140101.00/Qout_islands_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/files/ECMWF/output_20140101-20141231/japan-geoglows/20140101.00/Qout_japan_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/files/ECMWF/output_20140101-20141231/middle_east-geoglows/20140101.00/Qout_middle_east_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
     #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/north_america-continental/20170101.00/Qout_north_america_continental_1.nc"
     #ds = xr.open_dataset(path)
     #print(ds)
@@ -142,11 +166,19 @@ if __name__ == "__main__":
     #ds = xr.open_dataset(path)
     #print(ds)
 
+    #path = r"/Volumes/files/ECMWF/output_20140101-20141231/south_america-geoglows/20140101.00/Qout_south_america_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
     #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/south_asia-mainland/20170101.00/Qout_south_asia_mainland_1.nc"
     #ds = xr.open_dataset(path)
     #print(ds)
 
     #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/south_asia-sri_lanka/20170101.00/Qout_south_asia_sri_lanka_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/files/ECMWF/output_20140101-20141231/south_asia-geoglows/20140101.00/Qout_south_asia_geoglows_1.nc"
     #ds = xr.open_dataset(path)
     #print(ds)
 
@@ -226,7 +258,6 @@ if __name__ == "__main__":
         print("Finished")
     '''
 
-
     '''
     print('Australasia')
     pass
@@ -245,6 +276,45 @@ if __name__ == "__main__":
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
     '''
+
+    '''
+    print('Central America')
+    pass
+    num_rivids = 55358
+    file_name = "Qout_central_america_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/central_america-geoglows"
+
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/central_america-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[71:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+    '''
+    print('Central Asia')
+    pass
+    num_rivids = 55621
+    file_name = "Qout_central_asia_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/central_asia-geoglows"
+    
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/central_asia-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+    
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[68:-3]
+        
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
 
     '''
     print('Cuba')
@@ -324,6 +394,81 @@ if __name__ == "__main__":
     '''
 
     '''
+    print('Europe')
+    pass
+    num_rivids = 80769
+    file_name = "Qout_europe_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/europe-geoglows"
+
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/europe-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[62:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+    '''
+    print('Islands')
+    pass
+    num_rivids = 29829
+    file_name = "Qout_islands_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/islands-geoglows"
+
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/islands-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[63:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+    '''
+    print('Japan')
+    pass
+    num_rivids = 5302
+    file_name = "Qout_japan_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/japan-geoglows"
+
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/japan-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[61:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+    '''
+    print('Middle East')
+    pass
+    num_rivids = 41041
+    file_name = "Qout_middle_east_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/middle_east-geoglows"
+
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/middle_east-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[67:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+    '''
     print('North America')
     pass
     num_rivids = 62788
@@ -362,6 +507,44 @@ if __name__ == "__main__":
     '''
 
 
+    print('South America')
+    pass
+    num_rivids = 149384
+    file_name = "Qout_south_america_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/south_america-geoglows"
+
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/south_america-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[69:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+
+
+    '''
+    print('South Asia')
+    pass
+    num_rivids = 84095
+    file_name = "Qout_south_asia_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/south_asia-geoglows"
+    
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/south_asia-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+    
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[66:-3]
+        
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+    '''
     print('South Asia')
     pass
     num_rivids = 24328
@@ -378,8 +561,8 @@ if __name__ == "__main__":
         print("Starting: ", date_string)
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
+    '''
 
-    
     '''
     print('Sri Lanka')
     pass
