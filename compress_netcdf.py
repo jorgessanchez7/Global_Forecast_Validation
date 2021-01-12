@@ -126,6 +126,10 @@ if __name__ == "__main__":
     #ds = xr.open_dataset(path)
     #print(ds)
 
+    #path = r"/Volumes/files/ECMWF/output_20140101-20141231/east_asia-geoglows/20140101.00/Qout_east_asia_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
     #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/cuba-national/20170101.00/Qout_cuba_national_1.nc"
     #ds = xr.open_dataset(path)
     #print(ds)
@@ -162,6 +166,10 @@ if __name__ == "__main__":
     #ds = xr.open_dataset(path)
     #print(ds)
 
+    #path = r"/Volumes/files/ECMWF/output_20140101-20141231/north_america-geoglows/20140101.00/Qout_north_america_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
     #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/south_america-continental/20170101.00/Qout_south_america_continental_1.nc"
     #ds = xr.open_dataset(path)
     #print(ds)
@@ -179,6 +187,10 @@ if __name__ == "__main__":
     #print(ds)
 
     #path = r"/Volumes/files/ECMWF/output_20140101-20141231/south_asia-geoglows/20140101.00/Qout_south_asia_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
+    #path = r"/Volumes/files/ECMWF/output_20140101-20141231/west_asia-geoglows/20140101.00/Qout_west_asia_geoglows_1.nc"
     #ds = xr.open_dataset(path)
     #print(ds)
 
@@ -296,6 +308,24 @@ if __name__ == "__main__":
         print("Finished")
     '''
 
+    print('Central America')
+    pass
+    num_rivids = 55358
+    file_name = "Qout_central_america_geoglows"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/central_america-geoglows"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_20140101-20191231/central_america-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[94:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+
+
     '''
     print('Central Asia')
     pass
@@ -314,7 +344,6 @@ if __name__ == "__main__":
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
     '''
-
 
     '''
     print('Cuba')
@@ -367,6 +396,25 @@ if __name__ == "__main__":
     folder_paths.sort()
     for folder_path in folder_paths:
         date_string = folder_path[79:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+    '''
+    print('East Asia')
+    pass
+    num_rivids = 79931
+    file_name = "Qout_east_asia_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/east_asia-geoglows"
+
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/east_asia-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[65:-3]
 
         print("Starting: ", date_string)
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
@@ -430,6 +478,24 @@ if __name__ == "__main__":
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
     '''
+
+    print('Islands')
+    pass
+    num_rivids = 29829
+    file_name = "Qout_islands_geoglows"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/islands-geoglows"
+
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_20140101-20191231/islands-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[86:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+
     '''
     print('Japan')
     pass
@@ -488,6 +554,26 @@ if __name__ == "__main__":
     '''
 
     '''
+    print('North America')
+    pass
+    num_rivids = 82912
+    file_name = "Qout_north_america_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/north_america-geoglows"
+
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/north_america-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[69:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+    '''
+
+
+    '''
     print('South America')
     pass
     num_rivids = 62317
@@ -506,7 +592,7 @@ if __name__ == "__main__":
         print("Finished")
     '''
 
-
+    '''
     print('South America')
     pass
     num_rivids = 149384
@@ -523,7 +609,7 @@ if __name__ == "__main__":
         print("Starting: ", date_string)
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
-
+    '''
 
     '''
     print('South Asia')
@@ -581,4 +667,23 @@ if __name__ == "__main__":
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
 
+    '''
+
+    '''
+    print('West Asia')
+    pass
+    num_rivids = 94025
+    file_name = "Qout_west_asia_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/west_asia-geoglows"
+
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/west_asia-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[65:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
     '''

@@ -91,10 +91,10 @@ if __name__ == "__main__":
     #path_to_files = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/south_america-continental/"
     #path_to_files = r"Z:\ECMWF_Gridded_Runoff_Files\output_compressed\south_america-continental"
 
-    df = pd.read_csv( r'/Users/ElkiGio/Desktop/Stations_Madeira.csv')
+    df = pd.read_csv( r'/Users/ElkiGio/Desktop/madeira_stations.csv')
 
     spt_id = df['CodEstacao'].tolist()
-    names = df['NomeEstacao'].tolist()
+    names = df['NomeEstaca'].tolist()
     stations = df['COMID'].tolist()
 
     '''On Mac'''

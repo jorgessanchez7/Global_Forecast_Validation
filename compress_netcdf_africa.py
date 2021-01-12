@@ -112,7 +112,11 @@ if __name__ == "__main__":
     #ds = xr.open_dataset(path)
     #print(ds)
 
+    ##path = r"/Volumes/files/ECMWF/output_20140101-20141231/africa-geoglows/20140101.00/Qout_africa_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
 
+    '''
     print('Africa')
     pass
     num_rivids = 53118
@@ -129,3 +133,23 @@ if __name__ == "__main__":
         print("Starting: ", date_string)
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
+    '''
+
+
+    print('Africa')
+    pass
+    num_rivids = 106706
+    file_name = "Qout_africa_geoglows"
+    out_path = "/Volumes/files/ECMWF/output_compressed_2014/africa-geoglows"
+
+    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/africa-geoglows"
+    folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
+
+    folder_paths.sort()
+    for folder_path in folder_paths:
+        date_string = folder_path[62:-3]
+
+        print("Starting: ", date_string)
+        compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
+        print("Finished")
+
