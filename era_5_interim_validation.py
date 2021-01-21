@@ -7,12 +7,10 @@ import hydrostats as hs
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-#regions = ['japan-geoglows', 'islands-geoglows', 'middle_east-geoglows', 'central_america-geoglows',
-#           'central_asia-geoglows', 'australia-geoglows', 'south_asia-geoglows', 'east_asia-geoglows',
-#           'europe-geoglows', 'north_america-geoglows', 'west_asia-geoglows', 'africa-geoglows',
-#           'south_america-geoglows']
-
-regions = ['africa-geoglows']
+regions = ['japan-geoglows', 'islands-geoglows', 'middle_east-geoglows', 'central_america-geoglows',
+           'central_asia-geoglows', 'australia-geoglows', 'south_asia-geoglows', 'east_asia-geoglows',
+           'europe-geoglows', 'north_america-geoglows', 'west_asia-geoglows', 'africa-geoglows',
+           'south_america-geoglows']
 
 for region in regions:
 
