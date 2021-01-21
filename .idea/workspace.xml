@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a4e8b0b-64c7-4dd7-ab33-127173db99c7" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/era_5_interim_analysis.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/get_DailyData_Bangladesh.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/historical_validation_Peru.py" />
       <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/era_5_interim_validation.py" afterPath="$PROJECT_DIR$/era_5_interim_validation.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,7 +35,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="historical_validation_Peru.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="historical_validation_Peru.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/historical_validation_Peru.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
@@ -47,6 +43,16 @@
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29580">
+              <caret line="1972" column="8" lean-forward="false" selection-start-line="1972" selection-start-column="8" selection-end-line="1972" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -62,7 +68,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dims_oi</find>
       <find>201</find>
       <find>country</find>
       <find>ated</find>
@@ -92,6 +97,7 @@
       <find>volume_list</find>
       <find>index</find>
       <find>all_station_table</find>
+      <find>$PROJECT_DIR$/../../../</find>
     </findStrings>
     <replaceStrings>
       <replace>int</replace>
@@ -120,6 +126,7 @@
       <replace>Africa/Ivory_Coast</replace>
       <replace>$USER_HOME$/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name)</replace>
       <replace>$PROJECT_DIR$/../../../</replace>
+      <replace>/Users/</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -957,14 +964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="1954" column="7" lean-forward="false" selection-start-line="1954" selection-start-column="7" selection-end-line="1954" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/historical_validation_Peru.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -972,6 +971,14 @@
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29580">
+          <caret line="1972" column="8" lean-forward="false" selection-start-line="1972" selection-start-column="8" selection-end-line="1972" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
