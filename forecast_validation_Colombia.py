@@ -11,7 +11,7 @@ import hydrostats.ens_metrics as em
 from io import StringIO
 import numpy as np
 
-df = pd.read_csv('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Stations_Selected_Colombia_v2.csv')
+df = pd.read_csv('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Stations_Selected_Colombia_v2.csv')
 
 IDs = df['Codigo'].tolist()
 COMIDs = df['COMID'].tolist()
