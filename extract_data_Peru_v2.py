@@ -89,28 +89,26 @@ def extract_by_rivid(rivid, folder_path, outpath):
 if __name__ == "__main__":
     #path_to_files = r"/Volumes/BYU_HD/input/south_america-continental/"
     #path_to_files = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/south_america-continental/"
-    #path_to_files = r"Z:\ECMWF_Gridded_Runoff_Files\output_compressed\south_america-continental"
-    path_to_files = r"C:\\Users\\water\\Documents\\input\\south_america-continental"
+    path_to_files = r"Z:\ECMWF_Gridded_Runoff_Files\output_compressed\south_america-continental"
 
-    #df = pd.read_csv( r'/Users/ElkiGio/Desktop/madeira_stations.csv')
-    df = pd.read_csv(r'C:\\Users\\water\\Documents\\input\\Brazil_Stations.csv')
+    df = pd.read_csv(r'D:\\input\\Peru_Stations.csv')
 
-    spt_id = df['CodEstacao'].tolist()
-    names = df['NomeEstaca'].tolist()
+    spt_id = df['id_Estacio'].tolist()
+    names = df['Estacion'].tolist()
     stations = df['COMID'].tolist()
 
     '''On Mac'''
     #for name, spt, comid in zip(names, spt_id, stations):
-    #    if not os.path.isdir("/Users/ElkiGio/Desktop/output/South_America/Brazil/Madeira/{0}-{1}".format(spt, name)):
-    #        os.makedirs("/Users/ElkiGio/Desktop/output/South_America/Brazil/Madeira/{0}-{1}".format(spt, name))
-    #    output_path = "/Users/ElkiGio/Desktop/output/South_America/Brazil/Madeira/{0}-{1}".format(spt, name)
+    #    if not os.path.isdir("/Users/ElkiGio/Desktop/output/South_America/Peru/{0}-{1}".format(spt, name)):
+    #        os.makedirs("/Users/ElkiGio/Desktop/output/South_America/Peru/{0}-{1}".format(spt, name))
+    #    output_path = "/Users/ElkiGio/Desktop/output/South_America/Peru/{0}-{1}".format(spt, name)
     #    print(spt, comid, path_to_files, output_path)
     #    extract_by_rivid(comid, path_to_files, output_path)
 
     '''On Windows'''
     for name, spt, comid in zip(names, spt_id, stations):
-        if not os.path.isdir('C:\\Users\\water\\Documents\\output\\South_America\\Brazil\\{0}-{1}'.format(spt, name)):
-            os.makedirs("C:\\Users\\water\\Documents\\output\\South_America\\Brazil\\{0}-{1}".format(spt, name))
-        output_path = "C:\\Users\\water\\Documents\\output\\South_America\\Brazil\\{0}-{1}".format(spt, name)
+        if not os.path.isdir('D:\\output\\South_America\\Peru\\{0}-{1}'.format(spt, name)):
+            os.makedirs("D:\\output\\South_America\\Peru\\{0}-{1}".format(spt, name))
+        output_path = "D:\\output\\South_America\\Peru\\{0}-{1}".format(spt, name)
         print(spt, comid, path_to_files, output_path)
         extract_by_rivid(comid, path_to_files, output_path)
