@@ -47,40 +47,40 @@ forecastFiles_9Day_HR = []
 forecastFiles_10Day_HR = []
 
 for id, name in zip(IDs, Names):
-	obsFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Observed_Data/Streamflow/' + str(id) + '.csv')
-	initializationFiles.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + 'Initialization_Values.csv')
-	forecastFiles_1Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '1_Day_Forecasts.csv')
-	forecastFiles_2Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '2_Day_Forecasts.csv')
-	forecastFiles_3Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '3_Day_Forecasts.csv')
-	forecastFiles_4Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '4_Day_Forecasts.csv')
-	forecastFiles_5Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '5_Day_Forecasts.csv')
-	forecastFiles_6Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '6_Day_Forecasts.csv')
-	forecastFiles_7Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '7_Day_Forecasts.csv')
-	forecastFiles_8Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '8_Day_Forecasts.csv')
-	forecastFiles_9Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '9_Day_Forecasts.csv')
-	forecastFiles_10Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '10_Day_Forecasts.csv')
-	forecastFiles_11Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '11_Day_Forecasts.csv')
-	forecastFiles_12Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '12_Day_Forecasts.csv')
-	forecastFiles_13Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '13_Day_Forecasts.csv')
-	forecastFiles_14Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '14_Day_Forecasts.csv')
-	forecastFiles_15Day.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '15_Day_Forecasts.csv')
-	forecastFiles_1Day_HR.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '1_Day_Forecasts_High_Res.csv')
-	forecastFiles_2Day_HR.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '2_Day_Forecasts_High_Res.csv')
-	forecastFiles_3Day_HR.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '3_Day_Forecasts_High_Res.csv')
-	forecastFiles_4Day_HR.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '4_Day_Forecasts_High_Res.csv')
-	forecastFiles_5Day_HR.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '5_Day_Forecasts_High_Res.csv')
-	forecastFiles_6Day_HR.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '6_Day_Forecasts_High_Res.csv')
-	forecastFiles_7Day_HR.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '7_Day_Forecasts_High_Res.csv')
-	forecastFiles_8Day_HR.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '8_Day_Forecasts_High_Res.csv')
-	forecastFiles_9Day_HR.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '9_Day_Forecasts_High_Res.csv')
-	forecastFiles_10Day_HR.append('/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '10_Day_Forecasts_High_Res.csv')
+	obsFiles.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Observed_Data/Streamflow/' + str(id) + '.csv')
+	initializationFiles.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + 'Initialization_Values.csv')
+	forecastFiles_1Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '1_Day_Forecasts.csv')
+	forecastFiles_2Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '2_Day_Forecasts.csv')
+	forecastFiles_3Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '3_Day_Forecasts.csv')
+	forecastFiles_4Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '4_Day_Forecasts.csv')
+	forecastFiles_5Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '5_Day_Forecasts.csv')
+	forecastFiles_6Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '6_Day_Forecasts.csv')
+	forecastFiles_7Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '7_Day_Forecasts.csv')
+	forecastFiles_8Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '8_Day_Forecasts.csv')
+	forecastFiles_9Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '9_Day_Forecasts.csv')
+	forecastFiles_10Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '10_Day_Forecasts.csv')
+	forecastFiles_11Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '11_Day_Forecasts.csv')
+	forecastFiles_12Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '12_Day_Forecasts.csv')
+	forecastFiles_13Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '13_Day_Forecasts.csv')
+	forecastFiles_14Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '14_Day_Forecasts.csv')
+	forecastFiles_15Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '15_Day_Forecasts.csv')
+	forecastFiles_1Day_HR.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '1_Day_Forecasts_High_Res.csv')
+	forecastFiles_2Day_HR.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '2_Day_Forecasts_High_Res.csv')
+	forecastFiles_3Day_HR.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '3_Day_Forecasts_High_Res.csv')
+	forecastFiles_4Day_HR.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '4_Day_Forecasts_High_Res.csv')
+	forecastFiles_5Day_HR.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '5_Day_Forecasts_High_Res.csv')
+	forecastFiles_6Day_HR.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '6_Day_Forecasts_High_Res.csv')
+	forecastFiles_7Day_HR.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '7_Day_Forecasts_High_Res.csv')
+	forecastFiles_8Day_HR.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '8_Day_Forecasts_High_Res.csv')
+	forecastFiles_9Day_HR.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '9_Day_Forecasts_High_Res.csv')
+	forecastFiles_10Day_HR.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '10_Day_Forecasts_High_Res.csv')
 
 # Making directories for all the Stations
 
 # User Input
 country = 'Colombia'
 typeOfData = 'Observed_Values'
-output_dir = '/Users/student/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/validationResults/'
+output_dir = '/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/validationResults/'
 
 # Making directories for all the all the Desired Plots
 plot_obs_hyd_dir = os.path.join(output_dir, 'Observed')
@@ -660,9 +660,9 @@ for daysAhead in forecastDaysAhead:
 
 		plt.figure(2)
 		plt.figure(figsize=(15, 9))
-		plt.plot(dates_obs, obs_df.iloc[:, 0].values, 'g-', label='Observed Values')
+		plt.plot(dates_obs, obs_df.iloc[:, 0].values, '#b7410e', label='Observed Values')
 		plt.plot(dates_initialization, initialization_df.iloc[:, 0].values, 'k', color='red', label='Initialization')
-		plt.plot(dates_persistence_obs, persistence_obs_df.iloc[:, 0].values, ':', color='m', label='Benchmark')
+		#plt.plot(dates_persistence_obs, persistence_obs_df.iloc[:, 0].values, ':', color='m', label='Benchmark')
 		if int(daysAhead) < 11:
 			plt.plot(dates_hr_forecast, forecast_hr_df.iloc[:, 0].values, 'k', color='black', label='HRES')
 		plt.plot(dates_forecast, avg_series, 'k', color='blue', label='Mean')

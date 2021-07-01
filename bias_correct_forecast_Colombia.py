@@ -57,10 +57,11 @@ def _flow_and_probability_mapper(monthly_data: pd.DataFrame, to_probability: boo
             return interpolate.interp1d(cdf, bin_edges, fill_value='extrapolate')
         return interpolate.interp1d(cdf, bin_edges)
 
-df = pd.read_csv('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Stations_Selected_Colombia_v2.csv')
+df = pd.read_csv('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Stations_Selected_Colombia_v3.csv')
 
 IDs = df['Codigo'].tolist()
-COMIDs = df['COMID'].tolist()
+#COMIDs = df['COMID'].tolist()
+COMIDs = df['new_COMID'].tolist()
 Names = df['Nombre'].tolist()
 Rivers = df['Corriente'].tolist()
 
@@ -95,7 +96,8 @@ forecastFiles_10Day_HR = []
 
 for id, comid, name in zip(IDs, COMIDs, Names):
 	obsFiles.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Observed_Data/Streamflow/' + str(id) + '.csv')
-	simFiles.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Historical/Simulated_Data/ERA_5/Daily/' + str(comid) + '_' + str(name) + '.csv')
+	#simFiles.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Historical/Simulated_Data/ERA_5/Daily/' + str(comid) + '_' + str(name) + '.csv')
+	simFiles.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Historical/Simulated_Data/ERA_5/' + str(comid) + '.csv')
 	initializationFiles.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + 'Initialization_Values.csv')
 	forecastFiles_1Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '1_Day_Forecasts.csv')
 	forecastFiles_2Day.append('/Users/student/Dropbox/PhD/2020_Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name) + '2_Day_Forecasts.csv')
@@ -138,144 +140,144 @@ forecastDaysAhead = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '1
 forecastDaysAhead_HR = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
 
-# for id, comid, name, rio, obsFile, simFile, initializationFile, forecastFile_1Day, forecastFile_2Day, forecastFile_3Day, forecastFile_4Day, forecastFile_5Day, forecastFile_6Day, forecastFile_7Day, forecastFile_8Day, forecastFile_9Day, forecastFile_10Day, forecastFile_11Day, forecastFile_12Day, forecastFile_13Day, forecastFile_14Day, forecastFile_15Day, forecastFile_1Day_HR, forecastFile_2Day_HR, forecastFile_3Day_HR, forecastFile_4Day_HR, forecastFile_5Day_HR, forecastFile_6Day_HR, forecastFile_7Day_HR, forecastFile_8Day_HR, forecastFile_9Day_HR, forecastFile_10Day_HR in zip(IDs, COMIDs, Names, Rivers, obsFiles, simFiles, initializationFiles, forecastFiles_1Day, forecastFiles_2Day, forecastFiles_3Day, forecastFiles_4Day, forecastFiles_5Day, forecastFiles_6Day, forecastFiles_7Day, forecastFiles_8Day, forecastFiles_9Day, forecastFiles_10Day, forecastFiles_11Day, forecastFiles_12Day, forecastFiles_13Day, forecastFiles_14Day, forecastFiles_15Day, forecastFiles_1Day_HR, forecastFiles_2Day_HR, forecastFiles_3Day_HR, forecastFiles_4Day_HR, forecastFiles_5Day_HR, forecastFiles_6Day_HR, forecastFiles_7Day_HR, forecastFiles_8Day_HR, forecastFiles_9Day_HR, forecastFiles_10Day_HR):
-# 	print(id, comid, name, rio, 'Initialization')
-#
-# 	'''Historic Observed Values'''
-# 	observed_df = pd.read_csv(obsFile, index_col=0)
-# 	observed_df[observed_df < 0] = 0
-# 	observed_df.index = pd.to_datetime(observed_df.index)
-# 	observed_df.index = observed_df.index.to_series().dt.strftime("%Y-%m-%d")
-# 	observed_df.index = pd.to_datetime(observed_df.index)
-#
-# 	'''Historic Simulated Values'''
-# 	simulated_df = pd.read_csv(simFile, index_col=0)
-# 	simulated_df[simulated_df < 0] = 0
-# 	simulated_df.index = pd.to_datetime(simulated_df.index)
-# 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
-# 	simulated_df.index = pd.to_datetime(simulated_df.index)
-#
-# 	'''Initialization Values'''
-# 	initialization_df = pd.read_csv(initializationFile, index_col=0)
-# 	initialization_df[initialization_df < 0] = 0
-# 	initialization_df.index = pd.to_datetime(initialization_df.index)
-# 	initialization_df.index = initialization_df.index.to_series().dt.strftime("%Y-%m-%d")
-# 	initialization_df.index = pd.to_datetime(initialization_df.index)
-#
-# 	'''Bias Corrected Initialization'''
-#
-# 	corrected_initialization = pd.DataFrame()
-#
-# 	meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-#
-# 	for mes in meses:
-# 		monthly_initialization = initialization_df[initialization_df.index.month == mes].dropna()
-# 		monthly_simulated = simulated_df[simulated_df.index.month == mes].dropna()
-# 		monthly_observed = observed_df[observed_df.index.month == mes].dropna()
-# 		to_prob = _flow_and_probability_mapper(monthly_simulated, to_probability=True, extrapolate=True)
-# 		to_flow = _flow_and_probability_mapper(monthly_observed, to_flow=True, extrapolate=True)
-#
-# 		min_simulated = np.min(monthly_simulated.iloc[:,0].to_list())
-# 		max_simulated = np.max(monthly_simulated.iloc[:, 0].to_list())
-#
-# 		for column in monthly_initialization.columns:
-# 			tmp = monthly_initialization[column].dropna().to_frame()
-# 			min_factor = tmp.copy()
-# 			max_factor = tmp.copy()
-# 			min_factor.loc[min_factor[column] >= min_simulated, column] = 1
-# 			min_index_value = tmp[tmp[column] < min_simulated].index.tolist()
-# 			for element in min_index_value:
-# 				min_factor[column].loc[min_factor.index == element] = tmp[column].loc[tmp.index == element] / min_simulated
-# 			max_factor.loc[max_factor[column] <= max_simulated, column] = 1
-# 			max_index_value = tmp[tmp[column] > max_simulated].index.tolist()
-# 			for element in max_index_value:
-# 				max_factor[column].loc[max_factor.index == element] = tmp[column].loc[tmp.index == element] / max_simulated
-# 			tmp.loc[tmp[column] <= min_simulated, column] = min_simulated
-# 			tmp.loc[tmp[column] >= max_simulated, column] = max_simulated
-# 			monthly_initialization.update(pd.DataFrame(to_flow(to_prob(tmp[column].values)), index=tmp.index, columns=[column]))
-# 			monthly_initialization = monthly_initialization.multiply(min_factor[column], axis=0)
-# 			monthly_initialization = monthly_initialization.multiply(max_factor[column], axis=0)
-#
-#
-# 		corrected_initialization = corrected_initialization.append(monthly_initialization)
-# 	corrected_initialization.sort_index(inplace=True)
-#
-# 	ouput_folder = os.path.join(output_dir, 'Simulated_Data/{0}-{1}'.format(id, name))
-# 	if not os.path.isdir(ouput_folder):
-# 		os.makedirs(ouput_folder)
-#
-# 	corrected_initialization.to_csv(ouput_folder + '/Initialization_Values_BC.csv')
+for id, comid, name, rio, obsFile, simFile, initializationFile, forecastFile_1Day, forecastFile_2Day, forecastFile_3Day, forecastFile_4Day, forecastFile_5Day, forecastFile_6Day, forecastFile_7Day, forecastFile_8Day, forecastFile_9Day, forecastFile_10Day, forecastFile_11Day, forecastFile_12Day, forecastFile_13Day, forecastFile_14Day, forecastFile_15Day, forecastFile_1Day_HR, forecastFile_2Day_HR, forecastFile_3Day_HR, forecastFile_4Day_HR, forecastFile_5Day_HR, forecastFile_6Day_HR, forecastFile_7Day_HR, forecastFile_8Day_HR, forecastFile_9Day_HR, forecastFile_10Day_HR in zip(IDs, COMIDs, Names, Rivers, obsFiles, simFiles, initializationFiles, forecastFiles_1Day, forecastFiles_2Day, forecastFiles_3Day, forecastFiles_4Day, forecastFiles_5Day, forecastFiles_6Day, forecastFiles_7Day, forecastFiles_8Day, forecastFiles_9Day, forecastFiles_10Day, forecastFiles_11Day, forecastFiles_12Day, forecastFiles_13Day, forecastFiles_14Day, forecastFiles_15Day, forecastFiles_1Day_HR, forecastFiles_2Day_HR, forecastFiles_3Day_HR, forecastFiles_4Day_HR, forecastFiles_5Day_HR, forecastFiles_6Day_HR, forecastFiles_7Day_HR, forecastFiles_8Day_HR, forecastFiles_9Day_HR, forecastFiles_10Day_HR):
+	print(id, comid, name, rio, 'Initialization')
 
-# for daysAhead in forecastDaysAhead_HR:
-#
-# 	for id, comid, name, rio, obsFile, simFile, initializationFile, forecastFile_1Day, forecastFile_2Day, forecastFile_3Day, forecastFile_4Day, forecastFile_5Day, forecastFile_6Day, forecastFile_7Day, forecastFile_8Day, forecastFile_9Day, forecastFile_10Day, forecastFile_11Day, forecastFile_12Day, forecastFile_13Day, forecastFile_14Day, forecastFile_15Day, forecastFile_1Day_HR, forecastFile_2Day_HR, forecastFile_3Day_HR, forecastFile_4Day_HR, forecastFile_5Day_HR, forecastFile_6Day_HR, forecastFile_7Day_HR, forecastFile_8Day_HR, forecastFile_9Day_HR, forecastFile_10Day_HR in zip(IDs, COMIDs, Names, Rivers, obsFiles, simFiles, initializationFiles, forecastFiles_1Day, forecastFiles_2Day, forecastFiles_3Day, forecastFiles_4Day, forecastFiles_5Day, forecastFiles_6Day, forecastFiles_7Day, forecastFiles_8Day, forecastFiles_9Day, forecastFiles_10Day, forecastFiles_11Day, forecastFiles_12Day, forecastFiles_13Day, forecastFiles_14Day, forecastFiles_15Day, forecastFiles_1Day_HR, forecastFiles_2Day_HR, forecastFiles_3Day_HR, forecastFiles_4Day_HR, forecastFiles_5Day_HR, forecastFiles_6Day_HR, forecastFiles_7Day_HR, forecastFiles_8Day_HR, forecastFiles_9Day_HR, forecastFiles_10Day_HR):
-#
-# 		print(id, comid, name, rio, '{}_Day_Forecast_HR'.format(daysAhead))
-#
-# 		'''Historic Observed Values'''
-# 		observed_df = pd.read_csv(obsFile, index_col=0)
-# 		observed_df[observed_df < 0] = 0
-# 		observed_df.index = pd.to_datetime(observed_df.index)
-# 		observed_df.index = observed_df.index.to_series().dt.strftime("%Y-%m-%d")
-# 		observed_df.index = pd.to_datetime(observed_df.index)
-#
-# 		'''Historic Simulated Values'''
-# 		simulated_df = pd.read_csv(simFile, index_col=0)
-# 		simulated_df[simulated_df < 0] = 0
-# 		simulated_df.index = pd.to_datetime(simulated_df.index)
-# 		simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
-# 		simulated_df.index = pd.to_datetime(simulated_df.index)
-#
-# 		'''Forecast Values (High Res)'''
-# 		forecast_hr_df = pd.read_csv(globals()['forecastFile_{}Day_HR'.format(daysAhead)], index_col=0)
-# 		forecast_hr_df[forecast_hr_df < 0] = 0
-# 		forecast_hr_df.index = pd.to_datetime(forecast_hr_df.index)
-# 		forecast_hr_df.index = forecast_hr_df.index.to_series().dt.strftime("%Y-%m-%d")
-# 		forecast_hr_df.index = pd.to_datetime(forecast_hr_df.index)
-#
-# 		'''Bias Corrected Forecast Values (High Res)'''
-#
-# 		corrected_forecast_hr = pd.DataFrame()
-#
-# 		meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-#
-# 		for mes in meses:
-# 			monthly_forecast_hr = forecast_hr_df[forecast_hr_df.index.month == mes].dropna()
-# 			monthly_simulated = simulated_df[simulated_df.index.month == mes].dropna()
-# 			monthly_observed = observed_df[observed_df.index.month == mes].dropna()
-# 			to_prob = _flow_and_probability_mapper(monthly_simulated, to_probability=True, extrapolate=True)
-# 			to_flow = _flow_and_probability_mapper(monthly_observed, to_flow=True, extrapolate=True)
-#
-# 			min_simulated = np.min(monthly_simulated.iloc[:, 0].to_list())
-# 			max_simulated = np.max(monthly_simulated.iloc[:, 0].to_list())
-#
-# 			for column in monthly_forecast_hr.columns:
-# 				tmp = monthly_forecast_hr[column].dropna().to_frame()
-# 				min_factor = tmp.copy()
-# 				max_factor = tmp.copy()
-# 				min_factor.loc[min_factor[column] >= min_simulated, column] = 1
-# 				min_index_value = tmp[tmp[column] < min_simulated].index.tolist()
-# 				for element in min_index_value:
-# 					min_factor[column].loc[min_factor.index == element] = tmp[column].loc[tmp.index == element] / min_simulated
-# 				max_factor.loc[max_factor[column] <= max_simulated, column] = 1
-# 				max_index_value = tmp[tmp[column] > max_simulated].index.tolist()
-# 				for element in max_index_value:
-# 					max_factor[column].loc[max_factor.index == element] = tmp[column].loc[tmp.index == element] / max_simulated
-# 				tmp.loc[tmp[column] <= min_simulated, column] = min_simulated
-# 				tmp.loc[tmp[column] >= max_simulated, column] = max_simulated
-# 				monthly_forecast_hr.update(pd.DataFrame(to_flow(to_prob(tmp[column].values)), index=tmp.index, columns=[column]))
-# 				monthly_forecast_hr = monthly_forecast_hr.multiply(min_factor[column], axis=0)
-# 				monthly_forecast_hr = monthly_forecast_hr.multiply(max_factor[column], axis=0)
-#
-# 			corrected_forecast_hr = corrected_forecast_hr.append(monthly_forecast_hr)
-#
-# 		corrected_forecast_hr.sort_index(inplace=True)
-#
-# 		ouput_folder = os.path.join(output_dir, 'Simulated_Data/{0}-{1}'.format(id, name))
-# 		if not os.path.isdir(ouput_folder):
-# 			os.makedirs(ouput_folder)
-#
-# 		corrected_forecast_hr.to_csv(ouput_folder + '/{}_Day_Forecasts_High_Res_BC.csv'.format(daysAhead))
+	'''Historic Observed Values'''
+	observed_df = pd.read_csv(obsFile, index_col=0)
+	observed_df[observed_df < 0] = 0
+	observed_df.index = pd.to_datetime(observed_df.index)
+	observed_df.index = observed_df.index.to_series().dt.strftime("%Y-%m-%d")
+	observed_df.index = pd.to_datetime(observed_df.index)
+
+	'''Historic Simulated Values'''
+	simulated_df = pd.read_csv(simFile, index_col=0)
+	simulated_df[simulated_df < 0] = 0
+	simulated_df.index = pd.to_datetime(simulated_df.index)
+	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
+	simulated_df.index = pd.to_datetime(simulated_df.index)
+
+	'''Initialization Values'''
+	initialization_df = pd.read_csv(initializationFile, index_col=0)
+	initialization_df[initialization_df < 0] = 0
+	initialization_df.index = pd.to_datetime(initialization_df.index)
+	initialization_df.index = initialization_df.index.to_series().dt.strftime("%Y-%m-%d")
+	initialization_df.index = pd.to_datetime(initialization_df.index)
+
+	'''Bias Corrected Initialization'''
+
+	corrected_initialization = pd.DataFrame()
+
+	meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+	for mes in meses:
+		monthly_initialization = initialization_df[initialization_df.index.month == mes].dropna()
+		monthly_simulated = simulated_df[simulated_df.index.month == mes].dropna()
+		monthly_observed = observed_df[observed_df.index.month == mes].dropna()
+		to_prob = _flow_and_probability_mapper(monthly_simulated, to_probability=True, extrapolate=True)
+		to_flow = _flow_and_probability_mapper(monthly_observed, to_flow=True, extrapolate=True)
+
+		min_simulated = np.min(monthly_simulated.iloc[:,0].to_list())
+		max_simulated = np.max(monthly_simulated.iloc[:, 0].to_list())
+
+		for column in monthly_initialization.columns:
+			tmp = monthly_initialization[column].dropna().to_frame()
+			min_factor = tmp.copy()
+			max_factor = tmp.copy()
+			min_factor.loc[min_factor[column] >= min_simulated, column] = 1
+			min_index_value = tmp[tmp[column] < min_simulated].index.tolist()
+			for element in min_index_value:
+				min_factor[column].loc[min_factor.index == element] = tmp[column].loc[tmp.index == element] / min_simulated
+			max_factor.loc[max_factor[column] <= max_simulated, column] = 1
+			max_index_value = tmp[tmp[column] > max_simulated].index.tolist()
+			for element in max_index_value:
+				max_factor[column].loc[max_factor.index == element] = tmp[column].loc[tmp.index == element] / max_simulated
+			tmp.loc[tmp[column] <= min_simulated, column] = min_simulated
+			tmp.loc[tmp[column] >= max_simulated, column] = max_simulated
+			monthly_initialization.update(pd.DataFrame(to_flow(to_prob(tmp[column].values)), index=tmp.index, columns=[column]))
+			monthly_initialization = monthly_initialization.multiply(min_factor[column], axis=0)
+			monthly_initialization = monthly_initialization.multiply(max_factor[column], axis=0)
+
+
+		corrected_initialization = corrected_initialization.append(monthly_initialization)
+	corrected_initialization.sort_index(inplace=True)
+
+	ouput_folder = os.path.join(output_dir, 'Simulated_Data/{0}-{1}'.format(id, name))
+	if not os.path.isdir(ouput_folder):
+		os.makedirs(ouput_folder)
+
+	corrected_initialization.to_csv(ouput_folder + '/Initialization_Values_BC.csv')
+
+for daysAhead in forecastDaysAhead_HR:
+
+	for id, comid, name, rio, obsFile, simFile, initializationFile, forecastFile_1Day, forecastFile_2Day, forecastFile_3Day, forecastFile_4Day, forecastFile_5Day, forecastFile_6Day, forecastFile_7Day, forecastFile_8Day, forecastFile_9Day, forecastFile_10Day, forecastFile_11Day, forecastFile_12Day, forecastFile_13Day, forecastFile_14Day, forecastFile_15Day, forecastFile_1Day_HR, forecastFile_2Day_HR, forecastFile_3Day_HR, forecastFile_4Day_HR, forecastFile_5Day_HR, forecastFile_6Day_HR, forecastFile_7Day_HR, forecastFile_8Day_HR, forecastFile_9Day_HR, forecastFile_10Day_HR in zip(IDs, COMIDs, Names, Rivers, obsFiles, simFiles, initializationFiles, forecastFiles_1Day, forecastFiles_2Day, forecastFiles_3Day, forecastFiles_4Day, forecastFiles_5Day, forecastFiles_6Day, forecastFiles_7Day, forecastFiles_8Day, forecastFiles_9Day, forecastFiles_10Day, forecastFiles_11Day, forecastFiles_12Day, forecastFiles_13Day, forecastFiles_14Day, forecastFiles_15Day, forecastFiles_1Day_HR, forecastFiles_2Day_HR, forecastFiles_3Day_HR, forecastFiles_4Day_HR, forecastFiles_5Day_HR, forecastFiles_6Day_HR, forecastFiles_7Day_HR, forecastFiles_8Day_HR, forecastFiles_9Day_HR, forecastFiles_10Day_HR):
+
+		print(id, comid, name, rio, '{}_Day_Forecast_HR'.format(daysAhead))
+
+		'''Historic Observed Values'''
+		observed_df = pd.read_csv(obsFile, index_col=0)
+		observed_df[observed_df < 0] = 0
+		observed_df.index = pd.to_datetime(observed_df.index)
+		observed_df.index = observed_df.index.to_series().dt.strftime("%Y-%m-%d")
+		observed_df.index = pd.to_datetime(observed_df.index)
+
+		'''Historic Simulated Values'''
+		simulated_df = pd.read_csv(simFile, index_col=0)
+		simulated_df[simulated_df < 0] = 0
+		simulated_df.index = pd.to_datetime(simulated_df.index)
+		simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
+		simulated_df.index = pd.to_datetime(simulated_df.index)
+
+		'''Forecast Values (High Res)'''
+		forecast_hr_df = pd.read_csv(globals()['forecastFile_{}Day_HR'.format(daysAhead)], index_col=0)
+		forecast_hr_df[forecast_hr_df < 0] = 0
+		forecast_hr_df.index = pd.to_datetime(forecast_hr_df.index)
+		forecast_hr_df.index = forecast_hr_df.index.to_series().dt.strftime("%Y-%m-%d")
+		forecast_hr_df.index = pd.to_datetime(forecast_hr_df.index)
+
+		'''Bias Corrected Forecast Values (High Res)'''
+
+		corrected_forecast_hr = pd.DataFrame()
+
+		meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+		for mes in meses:
+			monthly_forecast_hr = forecast_hr_df[forecast_hr_df.index.month == mes].dropna()
+			monthly_simulated = simulated_df[simulated_df.index.month == mes].dropna()
+			monthly_observed = observed_df[observed_df.index.month == mes].dropna()
+			to_prob = _flow_and_probability_mapper(monthly_simulated, to_probability=True, extrapolate=True)
+			to_flow = _flow_and_probability_mapper(monthly_observed, to_flow=True, extrapolate=True)
+
+			min_simulated = np.min(monthly_simulated.iloc[:, 0].to_list())
+			max_simulated = np.max(monthly_simulated.iloc[:, 0].to_list())
+
+			for column in monthly_forecast_hr.columns:
+				tmp = monthly_forecast_hr[column].dropna().to_frame()
+				min_factor = tmp.copy()
+				max_factor = tmp.copy()
+				min_factor.loc[min_factor[column] >= min_simulated, column] = 1
+				min_index_value = tmp[tmp[column] < min_simulated].index.tolist()
+				for element in min_index_value:
+					min_factor[column].loc[min_factor.index == element] = tmp[column].loc[tmp.index == element] / min_simulated
+				max_factor.loc[max_factor[column] <= max_simulated, column] = 1
+				max_index_value = tmp[tmp[column] > max_simulated].index.tolist()
+				for element in max_index_value:
+					max_factor[column].loc[max_factor.index == element] = tmp[column].loc[tmp.index == element] / max_simulated
+				tmp.loc[tmp[column] <= min_simulated, column] = min_simulated
+				tmp.loc[tmp[column] >= max_simulated, column] = max_simulated
+				monthly_forecast_hr.update(pd.DataFrame(to_flow(to_prob(tmp[column].values)), index=tmp.index, columns=[column]))
+				monthly_forecast_hr = monthly_forecast_hr.multiply(min_factor[column], axis=0)
+				monthly_forecast_hr = monthly_forecast_hr.multiply(max_factor[column], axis=0)
+
+			corrected_forecast_hr = corrected_forecast_hr.append(monthly_forecast_hr)
+
+		corrected_forecast_hr.sort_index(inplace=True)
+
+		ouput_folder = os.path.join(output_dir, 'Simulated_Data/{0}-{1}'.format(id, name))
+		if not os.path.isdir(ouput_folder):
+			os.makedirs(ouput_folder)
+
+		corrected_forecast_hr.to_csv(ouput_folder + '/{}_Day_Forecasts_High_Res_BC.csv'.format(daysAhead))
 
 for daysAhead in forecastDaysAhead:
 
