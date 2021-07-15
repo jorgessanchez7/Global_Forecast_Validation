@@ -162,6 +162,10 @@ if __name__ == "__main__":
     #ds = xr.open_dataset(path)
     #print(ds)
 
+    #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_20140101-20191231/middle_east-geoglows/20140101.00/Qout_middle_east_geoglows_1.nc"
+    #ds = xr.open_dataset(path)
+    #print(ds)
+
     #path = r"/Volumes/storage/ECMWF_Gridded_Runoff_Files/output/north_america-continental/20170101.00/Qout_north_america_continental_1.nc"
     #ds = xr.open_dataset(path)
     #print(ds)
@@ -308,6 +312,7 @@ if __name__ == "__main__":
         print("Finished")
     '''
 
+    '''
     print('Central America')
     pass
     num_rivids = 55358
@@ -324,7 +329,7 @@ if __name__ == "__main__":
         print("Starting: ", date_string)
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
-
+    '''
 
     '''
     print('Central Asia')
@@ -479,6 +484,7 @@ if __name__ == "__main__":
         print("Finished")
     '''
 
+    '''
     print('Islands')
     pass
     num_rivids = 29829
@@ -495,6 +501,7 @@ if __name__ == "__main__":
         print("Starting: ", date_string)
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
+    '''
 
     '''
     print('Japan')
@@ -515,24 +522,27 @@ if __name__ == "__main__":
         print("Finished")
     '''
 
-    '''
+
     print('Middle East')
     pass
     num_rivids = 41041
     file_name = "Qout_middle_east_geoglows"
-    out_path = "/Volumes/files/ECMWF/output_compressed_2014/middle_east-geoglows"
+    #out_path = "/Volumes/files/ECMWF/output_compressed_2014/middle_east-geoglows"
+    out_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_compressed/middle_east-geoglows"
 
-    base_path = "/Volumes/files/ECMWF/output_20140101-20141231/middle_east-geoglows"
+    #base_path = "/Volumes/files/ECMWF/output_20140101-20141231/middle_east-geoglows"
+    base_path = "/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_20140101-20191231/middle_east-geoglows"
     folder_paths = [os.path.join(base_path, x) for x in os.listdir(base_path) if x.endswith(".00")]
 
     folder_paths.sort()
     for folder_path in folder_paths:
-        date_string = folder_path[67:-3]
+        #date_string = folder_path[67:-3]
+        date_string = folder_path[90:-3]
 
         print("Starting: ", date_string)
         compress_netcfd(folder_path, date_string, out_path, file_name, num_rivids)
         print("Finished")
-    '''
+
 
     '''
     print('North America')
