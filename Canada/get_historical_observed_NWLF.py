@@ -9,7 +9,7 @@ IDs = stations_pd['STATION_NU'].tolist()
 #COMIDs = stations_pd['new_COMID'].tolist()
 Names = stations_pd['STATION_NA'].tolist()
 
-df = pd.read_csv(r'/Volumes/GoogleDrive/My Drive/PhD/2021_Fall/Dissertation_v12/North_America/Canada/streamflow_v2.csv',encoding='unicode_escape')
+df = pd.read_csv(r'/Volumes/GoogleDrive/My Drive/PhD/2021_Fall/Dissertation_v12/North_America/Canada/waterLevel_v2.csv',encoding='unicode_escape')
 
 
 for id, name in zip(IDs, Names):
@@ -63,7 +63,7 @@ for id, name in zip(IDs, Names):
 	values = chain.from_iterable(values)
 
 	# Create dataframe from values and datetime lists, and export to .csv
-	final_df = pd.DataFrame(values, index=dates, columns=['Streamflow (m3/s)'])
+	final_df = pd.DataFrame(values, index=dates, columns=['Water Level (m)'])
 	final_df.index.name = 'Datetime'
 	while np.isnan(final_df.iloc[:, 0].values[0]):
 		final_df = final_df.iloc[1:]
@@ -71,7 +71,7 @@ for id, name in zip(IDs, Names):
 		final_df = final_df.iloc[:len(final_df.iloc[:, 0].values) - 2]
 
 	datesObservedDischarge = pd.date_range(final_df.index[0], final_df.index[len(final_df.index) - 1], freq='D')
-	df2 = pd.DataFrame(np.nan, index=datesObservedDischarge, columns=['Streamflow (m3/s)'])
+	df2 = pd.DataFrame(np.nan, index=datesObservedDischarge, columns=['Water Level (m)'])
 	df2.index.name = 'Datetime'
 
 	#print(df2)
@@ -81,4 +81,4 @@ for id, name in zip(IDs, Names):
 	#print(df3)
 
 	#df3.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/Canada/data/historical/Observed_Data/{}.csv'.format(id))
-	df3.to_csv('/Users/student/tethysdev/historical_validation_tool_canada/tethysapp/historical_validation_tool_canada/workspaces/app_workspace/Discharge_Data/{}.csv'.format(id))
+	df3.to_csv('/Users/student/tethysdev/national_water_level_forecast_canada/tethysapp/national_water_level_forecast_canada/workspaces/app_workspace/Water_Level_Data/{}.csv'.format(id))
