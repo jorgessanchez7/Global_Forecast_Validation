@@ -4,11 +4,12 @@ import io
 import pandas as pd
 import datetime as dt
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Middle_East/Israel/Selected_Stations_Israel_Q_v0.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Africa/Ethiopia/Selected_Stations_Ethiopia_Q_v0.csv')
 
-IDs = stations_pd['statid'].tolist()
-COMIDs = stations_pd['COMID'].tolist()
+IDs = stations_pd['ID'].tolist()
+COMIDs = stations_pd['new_COMID'].tolist()
 Names = stations_pd['Name'].tolist()
+
 
 for id, name, comid in zip(IDs, Names, COMIDs):
 
@@ -27,4 +28,4 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 
-	simulated_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Middle_East/Israel/data/historical/Simulated_Data/{}.csv'.format(comid))
+	simulated_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Africa/Ethiopia/data/historical/Simulated_Data/{}.csv'.format(comid))

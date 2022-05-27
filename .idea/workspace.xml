@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a4e8b0b-64c7-4dd7-ab33-127173db99c7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="2a4e8b0b-64c7-4dd7-ab33-127173db99c7" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,77 +11,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="historical_validation_Israel.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Israel/historical_validation_Israel.py">
+      <file leaf-file-name="get_historical_simulation.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Belize/get_historical_simulation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="264" column="0" lean-forward="false" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get_bias-corrected_historical_simulation.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Ecuador/get_bias-corrected_historical_simulation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state relative-caret-position="195">
+              <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get_DailyData.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/get_DailyData.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get_DailyData_Colombia.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/get_DailyData_Colombia.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="13" column="38" lean-forward="false" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get_recent_data_Colombia_Q1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/get_recent_data_Colombia_Q1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get_bias-corrected_historical_simulation.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Israel/get_bias-corrected_historical_simulation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="get_historical_simulation.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Israel/get_historical_simulation.py">
+        <entry file="file://$PROJECT_DIR$/Honduras/get_historical_simulation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="6" column="115" lean-forward="false" selection-start-line="6" selection-start-column="100" selection-end-line="6" selection-end-column="115" />
+            <state relative-caret-position="375">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_historical_simulation.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Canada/get_historical_simulation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_historical_observed.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Canada/get_historical_observed.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="20" column="39" lean-forward="false" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_historical_observed_HVT.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Canada/get_historical_observed_HVT.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="344">
+              <caret line="83" column="158" lean-forward="false" selection-start-line="83" selection-start-column="158" selection-end-line="83" selection-end-column="158" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_historical_observed.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Australia/get_historical_observed.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="12" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -100,51 +82,39 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>station_array</find>
-      <find>simFile</find>
-      <find>ERA</find>
-      <find>Simulated</find>
-      <find>/Forecasts/</find>
-      <find>ecolor=('g', 'r')</find>
-      <find>ERA-5</find>
-      <find>ERA-Interim</find>
-      <find>obsFile</find>
-      <find>HR</find>
-      <find>River: ' + rio + '.</find>
-      <find>$USER_HOME$/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name)</find>
-      <find>dates_hr_forecast</find>
-      <find>print(</find>
-      <find>month</find>
-      <find>%Y-%m-%d</find>
-      <find>result</find>
       <find>tolis</find>
       <find>table_out_dir</find>
       <find>volume_df</find>
       <find>index</find>
-      <find>all_station_table</find>
       <find>$USER_HOME$/</find>
       <find>middle_east</find>
       <find>41041</find>
       <find>rio</find>
       <find>obs_df</find>
       <find>observed</find>
-      <find>volume_list</find>
       <find>fillna</find>
+      <find>bias</find>
+      <find>initialization_df</find>
+      <find>station</find>
+      <find>volume_list</find>
+      <find>print(df)</find>
+      <find>print('El porcentaje de</find>
+      <find>historical_df</find>
+      <find>print(' ')</find>
+      <find>r</find>
+      <find>streamflow_m^3/s</find>
+      <find>Streamflow (m3/s)</find>
+      <find>Initialization (m^3/s)</find>
+      <find>No hay evento de inundación a ser analizado</find>
+      <find>print</find>
+      <find>Colombia</find>
+      <find>obsFiles</find>
+      <find>all_station_table</find>
+      <find>Ecuador</find>
+      <find>id</find>
     </findStrings>
     <replaceStrings>
-      <replace>int</replace>
-      <replace>ensemble_1DayForecast</replace>
-      <replace>g-</replace>
-      <replace>River: '</replace>
-      <replace>initialization_hyd_dir</replace>
-      <replace>(m$^3$/s)</replace>
-      <replace>_normalised_</replace>
-      <replace>_normalised</replace>
-      <replace>ERA-5</replace>
-      <replace>ERA-Interim</replace>
       <replace>'''+ str(id)'''</replace>
-      <replace>Simulated</replace>
-      <replace>Observed</replace>
       <replace>Volume (BCM)</replace>
       <replace>Volume</replace>
       <replace>{0}</replace>
@@ -160,7 +130,20 @@
       <replace>$USER_HOME$/</replace>
       <replace>$PROJECT_DIR$/../../../</replace>
       <replace>South_America</replace>
+      <replace>historical_df</replace>
+      <replace>simulated_df</replace>
+      <replace>name</replace>
+      <replace>streamflow_m^3/s</replace>
+      <replace>#print(df)</replace>
+      <replace>#print(' ')</replace>
+      <replace>#print('El porcentaje de</replace>
+      <replace>Simulated`</replace>
+      <replace>Observed</replace>
+      <replace>Simulated</replace>
       <replace>Ecuador</replace>
+      <replace>Peru</replace>
+      <replace>North</replace>
+      <replace>USA</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -170,65 +153,65 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/forecast_validation_USA.py" />
-        <option value="$PROJECT_DIR$/extract_data_USA.py" />
-        <option value="$PROJECT_DIR$/historical_validation.py" />
-        <option value="$PROJECT_DIR$/get_observed_data_Colombia.py" />
-        <option value="$PROJECT_DIR$/get_historical_data_Colombia.py" />
-        <option value="$PROJECT_DIR$/get_historical_data_Colombia_Q.py" />
-        <option value="$PROJECT_DIR$/get_recent_data_Colombia.py" />
-        <option value="$PROJECT_DIR$/get_recent_data_Colombia_Q2.py" />
-        <option value="$PROJECT_DIR$/update_values_Colombia_Q.py" />
-        <option value="$PROJECT_DIR$/get_historical_data_Colombia_WL.py" />
-        <option value="$PROJECT_DIR$/update_values_Colombia_WL.py" />
-        <option value="$PROJECT_DIR$/get_recent_data_Colombia_WL1.py" />
-        <option value="$PROJECT_DIR$/get_recent_data_Colombia_WL2.py" />
-        <option value="$PROJECT_DIR$/extract_data_Colombia_v2.py" />
-        <option value="$PROJECT_DIR$/use_API_Colombia.py" />
-        <option value="$PROJECT_DIR$/validation_ERA-Interim_Era-5_Magdalena.py" />
-        <option value="$PROJECT_DIR$/forecast_validation_Ivory_Coast.py" />
-        <option value="$PROJECT_DIR$/get_DailyData_Colombia.py" />
-        <option value="$PROJECT_DIR$/validation_ERA-5(hour)_Era-5(agg)_Magdalena.py" />
-        <option value="$PROJECT_DIR$/validation_ERA-5(hour)_Era-5(agg)_Magdalena_v2.py" />
-        <option value="$PROJECT_DIR$/extract_data_Nepal.py" />
-        <option value="$PROJECT_DIR$/extract_data_Dominican_Republic.py" />
-        <option value="$PROJECT_DIR$/extract_data_Cambodia.py" />
-        <option value="$PROJECT_DIR$/forecast_validation_Colombia.py" />
-        <option value="$PROJECT_DIR$/get_ObservedData_Colombia.py" />
-        <option value="$PROJECT_DIR$/historical_validation_Ivory_Coast_corrected.py" />
-        <option value="$PROJECT_DIR$/update_ObservedData_Colombia.py" />
-        <option value="$PROJECT_DIR$/historical_validation_Australia.py" />
-        <option value="$PROJECT_DIR$/historical_validation_Colombia.py" />
-        <option value="$PROJECT_DIR$/historical_validation_Dominican_Republic.py" />
-        <option value="$PROJECT_DIR$/extract_data_Nepal_v2.py" />
-        <option value="$PROJECT_DIR$/extract_data_East_Africa.py" />
-        <option value="$PROJECT_DIR$/extract_data_Colombia_v4.py" />
-        <option value="$PROJECT_DIR$/get_era_5_interim_data.py" />
-        <option value="$PROJECT_DIR$/extract_data_Colombia_v3.py" />
-        <option value="$PROJECT_DIR$/get_DailyData_Bangladesh.py" />
-        <option value="$PROJECT_DIR$/get_Data_Peru.py" />
-        <option value="$PROJECT_DIR$/era_5_interim_validation_PREC.py" />
-        <option value="$PROJECT_DIR$/era_5_interim_validation.py" />
-        <option value="$PROJECT_DIR$/era_5_interim_analysis.py" />
-        <option value="$PROJECT_DIR$/historical_validation_Brazil.py" />
-        <option value="$PROJECT_DIR$/historical_validation_Peru.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/Venezuela/contingency_matrix.py" />
+        <option value="$PROJECT_DIR$/Brazil/auroc.py" />
+        <option value="$PROJECT_DIR$/Colombia/auroc.py" />
+        <option value="$PROJECT_DIR$/Ecuador/auroc.py" />
+        <option value="$PROJECT_DIR$/Peru/auroc.py" />
+        <option value="$PROJECT_DIR$/Venezuela/auroc.py" />
+        <option value="$PROJECT_DIR$/Brazil/contingency_matrix.py" />
+        <option value="$PROJECT_DIR$/Colombia/contingency_matrix.py" />
+        <option value="$PROJECT_DIR$/Ecuador/contingency_matrix.py" />
+        <option value="$PROJECT_DIR$/Peru/contingency_matrix.py" />
+        <option value="$PROJECT_DIR$/Brazil/get_stations_with_no_improvement.py" />
+        <option value="$PROJECT_DIR$/USA/get_historical_observed.py" />
+        <option value="$PROJECT_DIR$/USA/get_bias-corrected_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/USA/historical_validation_USA.py" />
+        <option value="$PROJECT_DIR$/USA/auroc.py" />
+        <option value="$PROJECT_DIR$/USA/contingency_matrix.py" />
+        <option value="$PROJECT_DIR$/USA/get_historical_observed_WL_v2.py" />
+        <option value="$PROJECT_DIR$/Canada/get_historical_observed.py" />
+        <option value="$PROJECT_DIR$/USA/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/USA/get_historical_observed_WL.py" />
+        <option value="$PROJECT_DIR$/Canada/get_historical_observed_WL.py" />
+        <option value="$PROJECT_DIR$/USA/get_hydroserver_data.py" />
+        <option value="$PROJECT_DIR$/Canada/get_hydroserver_data.py" />
+        <option value="$PROJECT_DIR$/Australia/get_historical_observed.py" />
+        <option value="$PROJECT_DIR$/Australia/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Australia/get_bias-corrected_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Australia/historical_validation_Australia.py" />
+        <option value="$PROJECT_DIR$/Australia/auroc.py" />
+        <option value="$PROJECT_DIR$/Australia/contingency_matrix.py" />
+        <option value="$PROJECT_DIR$/Bolivia/get_bias-corrected_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Bolivia/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Bolivia/historical_validation_Bolivia.py" />
+        <option value="$PROJECT_DIR$/Bolivia/auroc.py" />
+        <option value="$PROJECT_DIR$/Bolivia/contingency_matrix.py" />
+        <option value="$PROJECT_DIR$/Europe/get_Oberved_data_Europe_GRDC.py" />
+        <option value="$PROJECT_DIR$/Dominican_Republic/get_historical_observed.py" />
         <option value="$PROJECT_DIR$/Israel/get_historical_simulation.py" />
-        <option value="$PROJECT_DIR$/compress_netcdf.py" />
-        <option value="$PROJECT_DIR$/Israel/get_bias-corrected_historical_simulation.py" />
-        <option value="$PROJECT_DIR$/Ecuador/get_bias-corrected_historical_simulation.py" />
-        <option value="$PROJECT_DIR$/Ecuador/get_historical_simulation.py" />
-        <option value="$PROJECT_DIR$/Ecuador/historical_validation_Ecuador.py" />
-        <option value="$PROJECT_DIR$/Israel/historical_validation_Israel.py" />
-        <option value="$PROJECT_DIR$/get_recent_data_Colombia_Q1.py" />
+        <option value="$PROJECT_DIR$/GRDC_Islands/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Dominican_Republic/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Canada/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Nepal/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Ethiopia/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Ivory_Coast/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Kenya/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Malawi/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Rwanda/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Somalia/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Tanzania/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Belize/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Honduras/get_historical_simulation.py" />
+        <option value="$PROJECT_DIR$/Canada/get_historical_observed_HVT.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="237" />
-    <option name="y" value="61" />
-    <option name="width" value="1374" />
-    <option name="height" value="953" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="475" />
+    <option name="y" value="25" />
+    <option name="width" value="1123" />
+    <option name="height" value="810" />
   </component>
   <component name="ProjectId" id="1nOlLrNuUkZDezZOXfW3XSBClsd" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -265,8 +248,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -277,17 +258,19 @@
             <path>
               <item name="Global_Forecast_Validation" type="b2602c69:ProjectViewProjectNode" />
               <item name="Global_Forecast_Validation" type="462c0819:PsiDirectoryNode" />
-              <item name="Ecuador" type="462c0819:PsiDirectoryNode" />
+              <item name="Australia" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Global_Forecast_Validation" type="b2602c69:ProjectViewProjectNode" />
               <item name="Global_Forecast_Validation" type="462c0819:PsiDirectoryNode" />
-              <item name="Israel" type="462c0819:PsiDirectoryNode" />
+              <item name="Canada" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -298,14 +281,15 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="SearchEverywhereHistoryKey" value="Bias&#9;FILE&#9;file:///Users/student/Github/Global_Forecast_Validation/Ecuador/get_bias-corrected_historical_simulation.py" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Ecuador" />
-      <recent name="$PROJECT_DIR$/Israel" />
-      <recent name="C:\Users\water\Documents\GitHub\Global_Forecast_Validation" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/Test_files" />
+      <recent name="$PROJECT_DIR$/Canada" />
+      <recent name="$PROJECT_DIR$/Honduras" />
+      <recent name="$PROJECT_DIR$/Belize" />
+      <recent name="$PROJECT_DIR$/Tanzania" />
+      <recent name="$PROJECT_DIR$/Somalia" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -323,20 +307,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.historical_validation_Israel">
-    <configuration name="get_bias-corrected_historical_simulation (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.get_historical_observed_HVT">
+    <configuration name="get_historical_observed_HVT" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Israel" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Canada" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Global_Forecast_Validation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Israel/get_bias-corrected_historical_simulation.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Canada/get_historical_observed_HVT.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -349,12 +333,48 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Ecuador" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Honduras" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Global_Forecast_Validation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Ecuador/get_historical_simulation.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Honduras/get_historical_simulation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="get_historical_simulation (4)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Somalia" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Global_Forecast_Validation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Somalia/get_historical_simulation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="get_historical_simulation (5)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tanzania" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Global_Forecast_Validation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tanzania/get_historical_simulation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -367,12 +387,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Israel" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Belize" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Global_Forecast_Validation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Israel/get_historical_simulation.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Belize/get_historical_simulation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -396,57 +416,21 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="historical_validation_Ecuador" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Ecuador" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Global_Forecast_Validation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Ecuador/historical_validation_Ecuador.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="historical_validation_Israel" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Israel" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Global_Forecast_Validation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Israel/historical_validation_Israel.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.get_recent_data_Colombia_Q2" />
-      <item index="1" class="java.lang.String" itemvalue="Python.get_historical_simulation (1)" />
-      <item index="2" class="java.lang.String" itemvalue="Python.historical_validation_Ecuador" />
+      <item index="1" class="java.lang.String" itemvalue="Python.get_historical_simulation (4)" />
+      <item index="2" class="java.lang.String" itemvalue="Python.get_historical_simulation (5)" />
       <item index="3" class="java.lang.String" itemvalue="Python.get_historical_simulation" />
-      <item index="4" class="java.lang.String" itemvalue="Python.get_bias-corrected_historical_simulation (1)" />
-      <item index="5" class="java.lang.String" itemvalue="Python.historical_validation_Israel" />
+      <item index="4" class="java.lang.String" itemvalue="Python.get_historical_simulation (1)" />
+      <item index="5" class="java.lang.String" itemvalue="Python.get_historical_observed_HVT" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.historical_validation_Israel" />
-        <item index="1" class="java.lang.String" itemvalue="Python.get_bias-corrected_historical_simulation (1)" />
+        <item index="0" class="java.lang.String" itemvalue="Python.get_historical_observed_HVT" />
+        <item index="1" class="java.lang.String" itemvalue="Python.get_historical_simulation (1)" />
         <item index="2" class="java.lang.String" itemvalue="Python.get_historical_simulation" />
-        <item index="3" class="java.lang.String" itemvalue="Python.historical_validation_Ecuador" />
-        <item index="4" class="java.lang.String" itemvalue="Python.get_historical_simulation (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.get_historical_simulation (5)" />
+        <item index="4" class="java.lang.String" itemvalue="Python.get_historical_simulation (4)" />
       </list>
     </recent_temporary>
   </component>
@@ -486,24 +470,32 @@
       <option name="project" value="LOCAL" />
       <updated>1641528659708</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="&quot;Including Ecuador&quot;">
+      <created>1641528665875</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1641528665875</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="237" y="61" width="1374" height="953" extended-state="0" />
+    <frame x="475" y="25" width="1123" height="810" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27583697" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23419413" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730561" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3387978" sideWeight="0.507569" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329235" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3387978" sideWeight="0.49243098" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39963832" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3989071" sideWeight="0.4947183" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -533,6 +525,16 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -573,6 +575,31 @@
           <line>32</line>
           <option name="timeStamp" value="281" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Venezuela/get_historical_observed.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Canada/get_historical_observed.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Bolivia/auroc.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Europe/get_Oberved_data_Europe_GRDC.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Dominican_Republic/get_historical_observed.py</url>
+          <line>13</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -581,374 +608,375 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="61" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/historical_validation_Ivory_Coast.py">
+    <entry file="file://$PROJECT_DIR$/Peru/get_historical_observed.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="108" column="21" lean-forward="false" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="21" />
+        <state relative-caret-position="105">
+          <caret line="7" column="40" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="7" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/historical_validation_USA.py">
+    <entry file="file://$PROJECT_DIR$/Peru/get_bias-corrected_historical_simulation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="28" column="1" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+        <state relative-caret-position="465">
+          <caret line="31" column="168" lean-forward="false" selection-start-line="31" selection-start-column="138" selection-end-line="31" selection-end-column="168" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/extract_data_Cambodia.py">
+    <entry file="file://$PROJECT_DIR$/Peru/historical_validation_Peru.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="94" column="116" lean-forward="false" selection-start-line="94" selection-start-column="116" selection-end-line="94" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/forecast_validation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2385">
-          <caret line="170" column="0" lean-forward="true" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/update_values_Colombia_Q.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-303">
-          <caret line="42" column="8" lean-forward="true" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/historical_validation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="20" column="33" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="20" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/historical_validation_Ivory_Coast_corrected.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="55" column="60" lean-forward="false" selection-start-line="55" selection-start-column="60" selection-end-line="55" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/miniconda2/envs/py3k/lib/python3.6/site-packages/numpy/core/fromnumeric.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="3117" column="0" lean-forward="false" selection-start-line="3117" selection-start-column="0" selection-end-line="3117" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extract_data_Nepal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="95" column="119" lean-forward="true" selection-start-line="95" selection-start-column="119" selection-end-line="95" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extract_data_Nepal_v2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="94" column="113" lean-forward="false" selection-start-line="94" selection-start-column="113" selection-end-line="94" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/validation_ERA-Interim_Era-5__Blue_Nile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="300" column="21" lean-forward="false" selection-start-line="300" selection-start-column="8" selection-end-line="300" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/historical_validation_Dominican_Republic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="13" column="96" lean-forward="false" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extract_data_Blue_Nile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="87" column="11" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="87" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extract_data_Dominican_Republic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="91" column="32" lean-forward="false" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extract_data_East_Africa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-61">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_Data_Peru.py" />
-    <entry file="file://$PROJECT_DIR$/extract_data_Colombia_v3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/miniconda2/envs/py3k/lib/python3.6/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_historical_data_Colombia_Q.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="30" column="52" lean-forward="false" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/era_5_interim_validation_RUN.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="88" column="124" lean-forward="false" selection-start-line="88" selection-start-column="111" selection-end-line="88" selection-end-column="124" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/era_5_interim_analysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-813">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/historical_validation_Brazil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/miniconda2/envs/py3k/lib/python3.6/site-packages/numpy/core/_methods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/era_5_interim_validation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="159" column="98" lean-forward="false" selection-start-line="159" selection-start-column="8" selection-end-line="159" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_era_5_interim_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="81" column="120" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="120" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/historical_validation_Peru.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/era_5_interim_validation_PREC.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/use_API_Colombia.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/compress_netcdf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="539" column="36" lean-forward="false" selection-start-line="539" selection-start-column="36" selection-end-line="539" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/historical_validation_Australia.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="31" column="37" lean-forward="false" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/forecast_validation_Colombia.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-871">
-          <caret line="132" column="51" lean-forward="false" selection-start-line="132" selection-start-column="51" selection-end-line="132" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_ObservedData_Colombia.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-485">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extract_data_Colombia.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="823">
-          <caret line="104" column="84" lean-forward="false" selection-start-line="104" selection-start-column="31" selection-end-line="104" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/historical_validation_Colombia.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2406">
-          <caret line="110" column="0" lean-forward="true" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/update_ObservedData_Colombia.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="23" column="39" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extract_data_Colombia_v4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-607">
-          <caret line="33" column="28" lean-forward="true" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_recent_data_Colombia_Q2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-396">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_recent_data_Colombia_WL1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-366">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_DailyData_Bangladesh.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ecuador/historical_validation_Ecuador.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="53" column="33" lean-forward="false" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bias_correct_forecast_Colombia.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="270" column="0" lean-forward="false" selection-start-line="270" selection-start-column="0" selection-end-line="270" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ecuador/get_historical_simulation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="6" column="119" lean-forward="false" selection-start-line="6" selection-start-column="119" selection-end-line="6" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Israel/get_bias-corrected_historical_simulation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Israel/get_historical_simulation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="6" column="115" lean-forward="false" selection-start-line="6" selection-start-column="100" selection-end-line="6" selection-end-column="115" />
-          <folding />
+        <state relative-caret-position="465">
+          <caret line="43" column="16" lean-forward="false" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Ecuador/get_bias-corrected_historical_simulation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="30">
+          <caret line="3" column="148" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="148" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/get_DailyData.py">
+    <entry file="file://$PROJECT_DIR$/Peru/auroc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3420">
+          <caret line="236" column="13" lean-forward="false" selection-start-line="236" selection-start-column="13" selection-end-line="236" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ecuador/contingency_matrix.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-          <folding />
+          <caret line="80" column="11" lean-forward="true" selection-start-line="80" selection-start-column="11" selection-end-line="80" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/get_DailyData_Colombia.py">
+    <entry file="file://$PROJECT_DIR$/USA/get_historical_observed_WL_v2.py" />
+    <entry file="file://$PROJECT_DIR$/Venezuela/get_historical_observed.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="13" column="38" lean-forward="false" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_recent_data_Colombia_Q1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
+        <state relative-caret-position="1305">
+          <caret line="90" column="14" lean-forward="true" selection-start-line="82" selection-start-column="4" selection-end-line="90" selection-end-column="14" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Canada/get_historical_observed_WL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/get_historical_observed_WL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="57" column="176" lean-forward="true" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="176" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/get_historical_observed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="56" column="162" lean-forward="true" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="162" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/get_hydroserver_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-61">
+          <caret line="32" column="134" lean-forward="true" selection-start-line="32" selection-start-column="134" selection-end-line="32" selection-end-column="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/get_bias-corrected_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Canada/get_hydroserver_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/historical_validation_USA.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/auroc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/contingency_matrix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="49" column="13" lean-forward="false" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Australia/get_bias-corrected_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="16" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Australia/historical_validation_Australia.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3048">
+          <caret line="38" column="20" lean-forward="false" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/miniconda2/envs/py3k/lib/python3.6/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="310" column="0" lean-forward="false" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Brazil/get_bias-corrected_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="25" column="59" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="25" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bolivia/get_bias-corrected_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="109" lean-forward="false" selection-start-line="33" selection-start-column="109" selection-end-line="33" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Brazil/historical_validation_Brazil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Australia/auroc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="56" column="4" lean-forward="true" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Australia/contingency_matrix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="55" column="5" lean-forward="false" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bolivia/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="17" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bolivia/historical_validation_Bolivia.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bolivia/auroc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="31" column="2" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="42" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bolivia/contingency_matrix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="56" column="142" lean-forward="false" selection-start-line="56" selection-start-column="133" selection-end-line="56" selection-end-column="147" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Europe/get_Oberved_data_Europe_GRDC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="58" column="12" lean-forward="true" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="82" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Australia/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Israel/historical_validation_Israel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="264" column="0" lean-forward="false" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
+          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Israel/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dominican_Republic/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dominican_Republic/get_historical_observed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="62" lean-forward="true" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GRDC_Islands/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nepal/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ethiopia/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ivory_Coast/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Kenya/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Malawi/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rwanda/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Somalia/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="27" column="79" lean-forward="true" selection-start-line="27" selection-start-column="79" selection-end-line="27" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tanzania/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="6" column="96" lean-forward="false" selection-start-line="6" selection-start-column="96" selection-end-line="6" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Belize/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Honduras/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Canada/get_historical_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Australia/get_historical_observed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="12" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Canada/get_historical_observed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="20" column="39" lean-forward="false" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Canada/get_historical_observed_HVT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="83" column="158" lean-forward="false" selection-start-line="83" selection-start-column="158" selection-end-line="83" selection-end-column="158" />
+          <folding />
         </state>
       </provider>
     </entry>

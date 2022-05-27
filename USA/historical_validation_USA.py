@@ -12,26 +12,36 @@ import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/Selected_Stations_Ecuador_Q_v0.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/USA/Selected_Stations_USA_Q_v1.csv')
 
-IDs = stations_pd['Codigo'].tolist()
+IDs = stations_pd['STAID'].tolist()
 COMIDs = stations_pd['new_COMID'].tolist()
-Names = stations_pd['Nombre_de'].tolist()
+Names = stations_pd['STANAME'].tolist()
 
 obsFiles = []
 simFiles = []
 #COD = []
 
 for id, name, comid in zip(IDs, Names, COMIDs):
-	obsFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/Observed_Data/{}_Q.csv'.format(id))
-	#simFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/Simulated_Data/{}.csv'.format(comid))
-	simFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/Corrected_Data/{0}-{1}.csv'.format(id, comid))
+
+	if id < 10000000:
+		station_id = '0' + str(id)
+	else:
+		station_id = str(id)
+	param_id = "00060" #streamflow
+	#param_id = "00065"  #water level
+
+	print(station_id, ' - ', comid, ' - ', name)
+
+	obsFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/USA/data/historical/Observed_Data/{}.csv'.format(station_id))
+	simFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/USA/data/historical/Simulated_Data/{}.csv'.format(comid))
+	#simFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/USA/data/historical/Corrected_Data/{0}-{1}.csv'.format(station_id, comid))
 
 
 #User Input
-country = 'Ecuador'
-#output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/validationResults_Original/'
-output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/validationResults_Corrected/'
+country = 'USA'
+output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/USA/data/historical/validationResults_Original/'
+#output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/USA/data/historical/validationResults_Corrected/'
 
 '''Initializing Variables to Append to'''
 #Creating blank dataframe for Tables
@@ -96,7 +106,15 @@ if not path.isdir(lag_out_dir):
 '''
 
 for id, comid, name, obsFile, simFile in zip(IDs, COMIDs, Names, obsFiles, simFiles):
-	print(id, comid, name)
+
+	if id < 10000000:
+		station_id = '0' + str(id)
+	else:
+		station_id = str(id)
+	param_id = "00060" #streamflow
+	#param_id = "00065"  #water level
+
+	print(station_id, ' - ', comid, ' - ', name)
 
 	obs_df = pd.read_csv(obsFile, index_col=0)
 	obs_df[obs_df < 0] = 0
@@ -152,9 +170,7 @@ for id, comid, name, obsFile, simFile in zip(IDs, COMIDs, Names, obsFiles, simFi
 
 	'''Tables and Plots'''
 	# Appending the table to the final table
-	table = hs.make_table(merged_df,
-	                      metrics=['ME', 'MAE', 'MAPE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)', 'R (Pearson)',
-	                               'R (Spearman)', 'r2'], location=id, remove_neg=False, remove_zero=False)
+	table = hs.make_table(merged_df, metrics=['ME', 'MAE', 'MAPE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)', 'R (Pearson)', 'R (Spearman)', 'r2'], location=id, remove_neg=False, remove_zero=False)
 	all_station_table = all_station_table.append(table)
 
 	#Making plots for all the stations

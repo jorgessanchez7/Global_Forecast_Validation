@@ -7,18 +7,28 @@ import pandas as pd
 import netCDF4 as nc
 import datetime as dt
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/Total_Stations_Ecuador_Q_v0.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Peru/Total_Stations_Peru_Q_v0.csv')
 
-IDs = stations_pd['Codigo'].tolist()
+IDs = stations_pd['id_Estacio'].tolist()
+CODEs = stations_pd['Codigo'].tolist()
 COMIDs = stations_pd['new_COMID'].tolist()
-Names = stations_pd['Nombre_de'].tolist()
+Names = stations_pd['Estacion'].tolist()
 
-for id, name, comid in zip(IDs, Names, COMIDs):
+def get_units_title(unit_type):
+	"""
+	Get the title for units
+	"""
+	if unit_type == 'metric':
+		return 'm', 'meters'
+	elif unit_type == 'english':
+		return 'ft', 'feet'
 
-	print(id, ' - ', name, ' - ', comid)
+for id, code, name, comid in zip(IDs, CODEs, Names, COMIDs):
+
+	print(id, ' - ', code, '-', name, ' - ', comid)
 
 	'''Using GEOGloWS Package'''
-	#simulated_df = geoglows.streamflow.historic_simulation(comid, forcing='era_5', return_format='csv')
+	#simulated_df = geoglows.streamflow.historic_simulation(int(comid), forcing='era_5', return_format='csv')
 
 	'''Using REST API'''
 	#era_res =  requests.get('https://geoglows.ecmwf.int/api/HistoricSimulation/?reach_id=' + str(comid) + '&return_format=csv', verify=False).content
@@ -27,8 +37,8 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	'''Reading the netcdf file'''
 	unit_type = 'metric'
 
-	date_ini = dt.datetime(1979, 1, 1)
-	date_end = dt.datetime(2021, 11, 30)
+	date_ini = dt.datetime(1979,1,1)
+	date_end = dt.datetime(2021,11,30)
 
 	fechas = pd.date_range(date_ini, date_end, freq='D')
 
@@ -55,4 +65,4 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 
-	simulated_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/Simulated_Data/{}.csv'.format(comid))
+	simulated_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Peru/data/historical/Simulated_Data/{}.csv'.format(comid))

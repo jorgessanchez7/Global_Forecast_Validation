@@ -12,26 +12,33 @@ import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/Selected_Stations_Ecuador_Q_v0.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Australia/Australia/Selected_Stations_Australia_Q.csv')
 
-IDs = stations_pd['Codigo'].tolist()
-COMIDs = stations_pd['new_COMID'].tolist()
-Names = stations_pd['Nombre_de'].tolist()
+CODEs = stations_pd['Code'].tolist()
+IDs = stations_pd['ts_id'].tolist()
+#IDs = stations_pd['ts_id_water_level'].tolist() #water level
+COMIDs = stations_pd['COMID'].tolist()
+Names = stations_pd['Station'].tolist()
 
 obsFiles = []
 simFiles = []
 #COD = []
 
-for id, name, comid in zip(IDs, Names, COMIDs):
-	obsFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/Observed_Data/{}_Q.csv'.format(id))
-	#simFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/Simulated_Data/{}.csv'.format(comid))
-	simFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/Corrected_Data/{0}-{1}.csv'.format(id, comid))
+for id, code, name, comid in zip(IDs, CODEs, Names, COMIDs):
+
+	comid = int(comid)
+
+	print(id, ' - ', code, ' - ', name, ' - ', comid)
+
+	obsFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Australia/Australia/data/historical/Observed_Data/{}.csv'.format(code))
+	#simFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Australia/Australia/data/historical/Simulated_Data/{}.csv'.format(comid))
+	simFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Australia/Australia/data/historical/Corrected_Data/{0}-{1}.csv'.format(code, comid))
 
 
 #User Input
-country = 'Ecuador'
-#output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/validationResults_Original/'
-output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/validationResults_Corrected/'
+country = 'Australia'
+#output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Australia/Australia/data/historical/validationResults_Original/'
+output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Australia/Australia/data/historical/validationResults_Corrected/'
 
 '''Initializing Variables to Append to'''
 #Creating blank dataframe for Tables
@@ -95,8 +102,11 @@ if not path.isdir(lag_out_dir):
 	os.makedirs(lag_out_dir)
 '''
 
-for id, comid, name, obsFile, simFile in zip(IDs, COMIDs, Names, obsFiles, simFiles):
-	print(id, comid, name)
+for id, code, name, comid, obsFile, simFile  in zip(IDs, CODEs, Names, COMIDs, obsFiles, simFiles):
+
+	comid = int(comid)
+
+	print(id, ' - ', code, ' - ', name, ' - ', comid)
 
 	obs_df = pd.read_csv(obsFile, index_col=0)
 	obs_df[obs_df < 0] = 0
@@ -152,9 +162,7 @@ for id, comid, name, obsFile, simFile in zip(IDs, COMIDs, Names, obsFiles, simFi
 
 	'''Tables and Plots'''
 	# Appending the table to the final table
-	table = hs.make_table(merged_df,
-	                      metrics=['ME', 'MAE', 'MAPE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)', 'R (Pearson)',
-	                               'R (Spearman)', 'r2'], location=id, remove_neg=False, remove_zero=False)
+	table = hs.make_table(merged_df, metrics=['ME', 'MAE', 'MAPE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)', 'R (Pearson)', 'R (Spearman)', 'r2'], location=id, remove_neg=False, remove_zero=False)
 	all_station_table = all_station_table.append(table)
 
 	#Making plots for all the stations

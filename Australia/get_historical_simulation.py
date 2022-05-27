@@ -4,15 +4,20 @@ import io
 import pandas as pd
 import datetime as dt
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Middle_East/Israel/Selected_Stations_Israel_Q_v0.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Australia/Australia/Selected_Stations_Australia_Q.csv')
 
-IDs = stations_pd['statid'].tolist()
+CODEs = stations_pd['Code'].tolist()
+IDs = stations_pd['ts_id'].tolist()
+#IDs = stations_pd['ts_id_water_level'].tolist() #water level
 COMIDs = stations_pd['COMID'].tolist()
-Names = stations_pd['Name'].tolist()
+Names = stations_pd['Station'].tolist()
 
-for id, name, comid in zip(IDs, Names, COMIDs):
 
-	print(id, ' - ', name, ' - ', comid)
+for id, code, name, comid in zip(IDs, CODEs, Names, COMIDs):
+
+	comid = int(comid)
+
+	print(id, ' - ', code, ' - ', name, ' - ', comid)
 
 	'''Using GEOGloWS Package'''
 	simulated_df = geoglows.streamflow.historic_simulation(comid, forcing='era_5', return_format='csv')
@@ -27,4 +32,4 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 
-	simulated_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Middle_East/Israel/data/historical/Simulated_Data/{}.csv'.format(comid))
+	simulated_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Australia/Australia/data/historical/Simulated_Data/{}.csv'.format(comid))

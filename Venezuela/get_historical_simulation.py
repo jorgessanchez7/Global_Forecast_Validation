@@ -7,11 +7,11 @@ import pandas as pd
 import netCDF4 as nc
 import datetime as dt
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/Total_Stations_Ecuador_Q_v0.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Venezuela/Total_Stations_Venezuela_Q_v0.csv')
 
-IDs = stations_pd['Codigo'].tolist()
+IDs = stations_pd['SERIAL'].tolist()
 COMIDs = stations_pd['new_COMID'].tolist()
-Names = stations_pd['Nombre_de'].tolist()
+Names = stations_pd['ESTACION'].tolist()
 
 for id, name, comid in zip(IDs, Names, COMIDs):
 
@@ -55,4 +55,4 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 
-	simulated_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/data/historical/Simulated_Data/{}.csv'.format(comid))
+	simulated_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Venezuela/data/historical/Simulated_Data/{}.csv'.format(comid))
