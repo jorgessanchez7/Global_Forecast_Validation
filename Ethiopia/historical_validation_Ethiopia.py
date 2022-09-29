@@ -12,26 +12,26 @@ import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Bolivia/Selected_Stations_Bolivia_Q_v0.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Africa/Ethiopia/Selected_Stations_Ethiopia_Q_v0.csv')
 
-IDs = stations_pd['Codigo'].tolist()
-COMIDs = stations_pd['COMID'].tolist()
-Names = stations_pd['Estacion'].tolist()
+IDs = stations_pd['ID'].tolist()
+COMIDs = stations_pd['new_COMID'].tolist()
+Names = stations_pd['Name'].tolist()
 
 obsFiles = []
 simFiles = []
 #COD = []
 
 for id, name, comid in zip(IDs, Names, COMIDs):
-	obsFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Bolivia/data/historical/Observed_Data/{}.csv'.format(id))
-	simFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Bolivia/data/historical/Simulated_Data/{}.csv'.format(comid))
-	#simFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Bolivia/data/historical/Corrected_Data/{0}-{1}.csv'.format(id, comid))
+	obsFiles.append('/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Africa/Ethiopia/data/historical/Observed_Data/{}.csv'.format(id))
+	#simFiles.append('/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Africa/Ethiopia/data/historical/Simulated_Data/{}.csv'.format(comid))
+	simFiles.append('/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Africa/Ethiopia/data/historical/Corrected_Data/{0}-{1}.csv'.format(id, comid))
 
 
 #User Input
-country = 'Bolivia'
-output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Bolivia/data/historical/validationResults_Original/'
-#output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Bolivia/data/historical/validationResults_Corrected/'
+country = 'Ethiopia'
+#output_dir = '/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Africa/Ethiopia/data/historical/validationResults_Original/'
+output_dir = '/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Africa/Ethiopia/data/historical/validationResults_Corrected/'
 
 '''Initializing Variables to Append to'''
 #Creating blank dataframe for Tables

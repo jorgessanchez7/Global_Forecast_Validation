@@ -4,11 +4,11 @@ import io
 import pandas as pd
 import datetime as dt
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/Canada/Selected_Stations_Canada_Q_v1.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Central_America/Panama/Selected_Stations_Panama_Q_v0.csv')
 
-IDs = stations_pd['STATION_NU'].tolist()
-COMIDs = stations_pd['new_COMID'].tolist()
-Names = stations_pd['STATION_NA'].tolist()
+IDs = stations_pd['ID'].tolist()
+COMIDs = stations_pd['COMID'].tolist()
+Names = stations_pd['Station'].tolist()
 
 
 for id, name, comid in zip(IDs, Names, COMIDs):
@@ -28,4 +28,4 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 
-	simulated_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/Canada/data/historical/Simulated_Data/{}.csv'.format(comid))
+	simulated_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Central_America/Panama/data/historical/Simulated_Data/{}.csv'.format(comid))
