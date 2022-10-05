@@ -12,7 +12,7 @@ import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-stations_pd = pd.read_csv('/Users/student/Dropbox/PhD/2021_Fall/Dissertation_v12/Middle_East/Israel/Israel_Selected_Stations.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Middle_East/Israel/Selected_Stations_Israel_Q_v0.csv')
 
 IDs = stations_pd['statid'].tolist()
 COMIDs = stations_pd['COMID'].tolist()
@@ -23,15 +23,15 @@ simFiles = []
 #COD = []
 
 for id, name, comid in zip(IDs, Names, COMIDs):
-	obsFiles.append('/Users/student/Dropbox/PhD/2021_Fall/Dissertation_v12/Middle_East/Israel/Historical/Observed_Data/{}.csv'.format(id))
-	#simFiles.append('/Users/student/Dropbox/PhD/2021_Fall/Dissertation_v12/Middle_East/Israel/Historical/Simulated_Data/{}.csv'.format(comid))
-	simFiles.append('/Users/student/Dropbox/PhD/2021_Fall/Dissertation_v12/Middle_East/Israel/Historical/Corrected_Data/{}.csv'.format(comid))
+	obsFiles.append('/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Middle_East/Israel/data/historical/Observed_Data/{}.csv'.format(id))
+	#simFiles.append('/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Middle_East/Israel/data/historical/Simulated_Data/{}.csv'.format(comid))
+	simFiles.append('/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Middle_East/Israel/data/historical/Corrected_Data/{0}-{1}.csv'.format(id, comid))
 
 
 #User Input
 country = 'Israel'
-#output_dir = '/Users/student/Dropbox/PhD/2021_Fall/Dissertation_v12/Middle_East/Israel/Historical/validationResults_Original/'
-output_dir = '/Users/student/Dropbox/PhD/2021_Fall/Dissertation_v12/Middle_East/Israel/Historical/validationResults_Corrected/'
+#output_dir = '/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Middle_East/Israel/data/historical/validationResults_Original/'
+output_dir = '/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/Middle_East/Israel/data/historical/validationResults_Corrected/'
 
 '''Initializing Variables to Append to'''
 #Creating blank dataframe for Tables
@@ -122,7 +122,7 @@ for id, comid, name, obsFile, simFile in zip(IDs, COMIDs, Names, obsFiles, simFi
 	plt.tight_layout()
 	plt.savefig(
 		plot_obs_hyd_dir + '/Observed Hydrograph for ' + str(id) + ' - ' + name + '. COMID - ' + str(comid) + '.png')
-
+		
 	sim_df = pd.read_csv(simFile, index_col=0)
 	dates_sim = sim_df.index.tolist()
 	dates=[]
@@ -155,6 +155,9 @@ for id, comid, name, obsFile, simFile in zip(IDs, COMIDs, Names, obsFiles, simFi
 	table = hs.make_table(merged_df,
 	                      metrics=['ME', 'MAE', 'MAPE', 'RMSE', 'NRMSE (Mean)', 'NSE', 'KGE (2009)', 'KGE (2012)', 'R (Pearson)',
 	                               'R (Spearman)', 'r2'], location=id, remove_neg=False, remove_zero=False)
+	all_station_table = all_station_table.append(table)
+
+	#Making plots for all the stations
 
 	sim_array = merged_df.iloc[:, 0].values
 	obs_array = merged_df.iloc[:, 1].values
@@ -182,10 +185,10 @@ for id, comid, name, obsFile, simFile in zip(IDs, COMIDs, Names, obsFiles, simFi
 		sum_obs = sum_obs + j
 		obs_volume_cum.append(sum_obs)
 
-	volume_percent_diff = (max(sim_volume_cum) - max(obs_volume_cum)) / max(sim_volume_cum)
+	volume_percent_diff = (max(sim_volume_cum)-max(obs_volume_cum))/max(sim_volume_cum)
 
-	table['Bias'] = sim_mean/obs_mean
-	table['Variability'] = ((sim_std/sim_mean)/(obs_std/obs_mean))
+	table['Bias'] = sim_mean / obs_mean
+	table['Variability'] = ((sim_std / sim_mean) / (obs_std / obs_mean))
 	table['Observed Volume'] = max(obs_volume_cum)
 	table['Simulated Volume'] = max(sim_volume_cum)
 	table['Volume Percent Difference'] = volume_percent_diff
@@ -194,8 +197,6 @@ for id, comid, name, obsFile, simFile in zip(IDs, COMIDs, Names, obsFiles, simFi
 	all_station_table = all_station_table.append(table)
 
 	volume_list.append([id, max(obs_volume_cum), max(sim_volume_cum), volume_percent_diff])
-
-	#Making plots for all the stations
 
 	'''
 	plt.figure(3)
