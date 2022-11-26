@@ -30,7 +30,7 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 
 
 #User Input
-country = 'Colombia'
+country = 'GRDC_Central_America'
 #output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Central_America/GRDC/data/historical/validationResults_Original/'
 output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Central_America/GRDC/data/historical/validationResults_Corrected/'
 

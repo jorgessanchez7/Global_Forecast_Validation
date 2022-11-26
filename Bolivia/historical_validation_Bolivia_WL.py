@@ -1,18 +1,19 @@
 import pandas as pd
 import requests
 from io import StringIO
-from os import path
+
 import os
 import statistics
-from csv import writer as csv_writer
+from os import path
+import datetime as dt
+import hydrostats as hs
 import hydrostats.data as hd
 import hydrostats.visual as hv
-import hydrostats as hs
-import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+from csv import writer as csv_writer
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/South_America/Bolivia/Selected_Stations_Bolivia_WL_v0.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Bolivia/Selected_Stations_Bolivia_WL_v0.csv')
 
 IDs = stations_pd['Codigo'].tolist()
 COMIDs = stations_pd['COMID'].tolist()
@@ -23,13 +24,13 @@ simFiles = []
 #COD = []
 
 for id, name, comid in zip(IDs, Names, COMIDs):
-	obsFiles.append('/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/South_America/Bolivia/data/historical/Observed_Data_WL/{}.csv'.format(id))
-	simFiles.append('/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/South_America/Bolivia/data/historical/Corrected_Data_WL/{0}-{1}.csv'.format(id, comid))
+	obsFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Bolivia/data/historical/Observed_Data_WL/{}.csv'.format(id))
+	simFiles.append('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Bolivia/data/historical/Corrected_Data_WL/{0}-{1}.csv'.format(id, comid))
 
 
 #User Input
 country = 'Bolivia'
-output_dir = '/Volumes/GoogleDrive/My Drive/PhD (1)/2022_Winter/Dissertation_v13/South_America/Bolivia/data/historical/validationResults_WL/'
+output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Bolivia/data/historical/validationResults_WL/'
 
 '''Initializing Variables to Append to'''
 #Creating blank dataframe for Tables

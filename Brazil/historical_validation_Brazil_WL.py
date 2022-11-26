@@ -1,16 +1,16 @@
-import pandas as pd
-import requests
-from io import StringIO
-from os import path
 import os
+import requests
 import statistics
-from csv import writer as csv_writer
+from os import path
+import pandas as pd
+import datetime as dt
+from io import StringIO
+import hydrostats as hs
 import hydrostats.data as hd
 import hydrostats.visual as hv
-import hydrostats as hs
-import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+from csv import writer as csv_writer
 
 stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Brazil/Selected_Stations_Brazil_WL_v2.csv')
 
@@ -28,7 +28,7 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 
 
 #User Input
-country = 'Canada'
+country = 'Brazil'
 output_dir = '/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Brazil/data/historical/validationResults_WL/'
 
 '''Initializing Variables to Append to'''

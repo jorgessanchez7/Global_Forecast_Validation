@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import hydrostats.ens_metrics as em
 import unittest
-from compress_netcdf import compress_netcfd
+from Forecast_Analysis.compress_netcdf import compress_netcfd
 import os
 import xarray as xr
 

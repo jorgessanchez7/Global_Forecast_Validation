@@ -15,10 +15,17 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 
 	#Observed Data
 	df = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Peru/data/historical/Observed_Data_WL/{}.csv'.format(id), index_col=0)
-	df[df < 0] = 0
+	#df[df < 0] = 0
 	df.index = pd.to_datetime(df.index)
 	observed_df = df.groupby(df.index.strftime("%Y-%m-%d")).mean()
 	observed_df.index = pd.to_datetime(observed_df.index)
+
+	min_value = observed_df['Water Level (m)'].min()
+
+	if min_value >= 0:
+		min_value = 0
+
+	observed_adjusted = observed_df - min_value
 
 	#Simulated Data
 	simulated_df = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Peru/data/historical/Simulated_Data_WL/{}.csv'.format(comid), index_col=0)
@@ -26,8 +33,10 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
 	simulated_df.index = pd.to_datetime(simulated_df.index)
+	simulated_df = simulated_df.loc[simulated_df.index >= pd.to_datetime('1980-01-01')]
 
 	#Getting the Bias Corrected Simulation
-	corrected_df = geoglows.bias.correct_historical(simulated_df, observed_df)
+	corrected_adjusted = geoglows.bias.correct_historical(simulated_df, observed_adjusted)
+	corrected_df = corrected_adjusted + min_value
 	corrected_df.rename(columns={'Corrected Simulated Streamflow': 'Simulated Water Level (m)'}, inplace=True)
 	corrected_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Peru/data/historical/Corrected_Data_WL/{0}-{1}.csv'.format(id, comid))

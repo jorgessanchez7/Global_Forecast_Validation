@@ -1,18 +1,18 @@
-import pandas as pd
-import requests
-from io import StringIO
-from os import path
 import os
+import requests
 import statistics
-from csv import writer as csv_writer
+from os import path
+import pandas as pd
+import datetime as dt
+from io import StringIO
+import hydrostats as hs
 import hydrostats.data as hd
 import hydrostats.visual as hv
-import hydrostats as hs
-import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+from csv import writer as csv_writer
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Colombia/Selected_Stations_Colombia_WL_v1.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Colombia/Selected_Stations_Colombia_WL_v4.csv')
 
 IDs = stations_pd['CODIGO'].tolist()
 COMIDs = stations_pd['new_COMID'].tolist()

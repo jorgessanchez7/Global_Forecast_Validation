@@ -55,4 +55,5 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	observed_df.index = observed_df.index.to_series().dt.strftime("%Y-%m-%d")
 	observed_df.index = pd.to_datetime(observed_df.index)
 
-	observed_df.to_csv("/Volumes/GoogleDrive/My Drive/MSc_Darlly_Rojas/2022_Winter/CE EN 699R - Master's Thesis/Bias-Correction_Water-Level-Data/USA/{}.csv".format(station_id))
+	observed_df.to_csv("/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/USA/data/historical/Observed_Data_WL/{}.csv".format(station_id))
+	observed_df.to_csv("/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Observed_Data/North_America/USA/Observed_Data_WL/{}.csv".format(station_id))
