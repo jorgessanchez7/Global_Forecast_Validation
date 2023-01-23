@@ -1,6 +1,6 @@
-import geoglows
-import requests
 import io
+import requests
+import geoglows
 import pandas as pd
 import datetime as dt
 

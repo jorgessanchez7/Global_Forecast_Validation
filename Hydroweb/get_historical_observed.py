@@ -6,7 +6,7 @@ import pandas as pd
 from datetime import datetime
 from bs4 import BeautifulSoup
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Hydroweb/Hydroweb_v3.csv')
+stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Hydroweb/Hydroweb_v1.csv')
 
 COMIDs = stations_pd['COMID'].tolist()
 Names = stations_pd['Station'].tolist()
