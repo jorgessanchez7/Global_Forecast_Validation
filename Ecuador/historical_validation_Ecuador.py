@@ -1,16 +1,16 @@
-import pandas as pd
-import requests
-from io import StringIO
-from os import path
 import os
+import requests
 import statistics
-from csv import writer as csv_writer
+from os import path
+import pandas as pd
+import datetime as dt
+import hydrostats as hs
+from io import StringIO
 import hydrostats.data as hd
 import hydrostats.visual as hv
-import hydrostats as hs
-import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+from csv import writer as csv_writer
 
 stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/South_America/Ecuador/Selected_Stations_Ecuador_Q_v0.csv')
 

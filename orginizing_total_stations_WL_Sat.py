@@ -18,6 +18,9 @@ def _flow_and_probability_mapper(monthly_data: pd.DataFrame, to_probability: boo
     max_val = math.ceil(np.max(monthly_data.max()))
     min_val = math.floor(np.min(monthly_data.min()))
 
+    #print(max_val)
+    #print(min_val)
+
     if max_val == min_val:
         warnings.warn('The observational data has the same max and min value. You may get unanticipated results.')
         max_val += .1
@@ -30,7 +33,11 @@ def _flow_and_probability_mapper(monthly_data: pd.DataFrame, to_probability: boo
     step_width = (max_val - min_val) / number_of_classes
 
     # specify histogram bins
-    bins = np.arange(-np.min(step_width), max_val + 2 * np.min(step_width), np.min(step_width))
+    if min_val >= 0:
+        bins = np.arange(-np.min(step_width), max_val + 2 * np.min(step_width), np.min(step_width))
+    else:
+        bins = np.arange(min_val - np.min(step_width), max_val + 2 * np.min(step_width), np.min(step_width))
+    #print (bins)
 
     if bins[0] == 0:
         bins = np.concatenate((-bins[1], bins))
@@ -47,7 +54,7 @@ def _flow_and_probability_mapper(monthly_data: pd.DataFrame, to_probability: boo
     # calculate the cdfs
     cdf = np.cumsum(counts)
     cdf = np.around(cdf, decimals=10)
-
+    #print(cdf)
     # interpolated function to convert simulated streamflow to prob
     if to_probability:
         if extrapolate:
@@ -59,43 +66,33 @@ def _flow_and_probability_mapper(monthly_data: pd.DataFrame, to_probability: boo
             return interpolate.interp1d(cdf, bin_edges, fill_value='extrapolate')
         return interpolate.interp1d(cdf, bin_edges)
 
-#total_stations_Q = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_Q.csv')
-total_stations_Q = pd.read_csv('/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_Q.csv')
+#total_stations_Q = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_WL_Sat.csv')
+#total_stations_Q = pd.read_csv('/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_WL_Sat.csv')
+total_stations_Q = pd.read_csv('/Volumes/Macintosh HD/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_WL_Sat.csv')
 
-sources = total_stations_Q['Data_Source'].tolist()
-folders = total_stations_Q['Folder'].tolist()
-regions = total_stations_Q['Region'].tolist()
-IDs = total_stations_Q['ID'].tolist()
-COMIDs = total_stations_Q['COMID'].tolist()
-Names = total_stations_Q['Station'].tolist()
+stations = total_stations_Q['Station'].tolist()
+rivers = total_stations_Q['River'].tolist()
+watersheds = total_stations_Q['Drainage_b'].tolist()
 latitudes = total_stations_Q['Latitude'].tolist()
 longitudes = total_stations_Q['Longitude'].tolist()
 areas = total_stations_Q['Area_sim_km2'].tolist()
-biass_orig = total_stations_Q['Bias_Original'].tolist()
-biass_corr = total_stations_Q['Bias_Corrected'].tolist()
-vars_orig = total_stations_Q['Variability_Original'].tolist()
-vars_corr = total_stations_Q['Variability_Corrected'].tolist()
-corrs_orig = total_stations_Q['Correlation_Original'].tolist()
-corrs_corr = total_stations_Q['Correlation_Corrected'].tolist()
-kges_orig = total_stations_Q['KGE_Original'].tolist()
-kges_corr = total_stations_Q['KGE_Corrected'].tolist()
+COMIDs = total_stations_Q['COMID'].tolist()
+regions = total_stations_Q['watershed'].tolist()
+countries = total_stations_Q['Country'].tolist()
+climates = total_stations_Q['Climate'].tolist()
+biass_corr = total_stations_Q['Bias'].tolist()
+vars_corr = total_stations_Q['Variability'].tolist()
+corrs_corr = total_stations_Q['R (Pearson)'].tolist()
+kges_corr = total_stations_Q['KGE (2012)'].tolist()
 
 table = []
 
-for source, folder, region, id, comid, name, latitude, longitude, area, bias_orig, bias_corr, var_orig, var_corr, corr_orig, corr_corr, kge_orig, kge_corr in zip(sources, folders, regions, IDs, COMIDs, Names, latitudes, longitudes, areas, biass_orig, biass_corr, vars_orig, vars_corr, corrs_orig, corrs_corr, kges_orig, kges_corr):
+for station, river, watershed, latitude, longitude, area, comid, region, country, climate, bias_corr, var_corr, corr_corr, kge_corr in zip(stations, rivers, watersheds, latitudes, longitudes, areas, COMIDs, regions, countries, climates, biass_corr, vars_corr, corrs_corr, kges_corr):
 
-    print(id, ' - ', comid, ' - ', name)
+    print(comid, ' - ', station, ' - ', river, ' - ', watershed)
 
-    if source == 'USA':
-        if int(id) < 10000000:
-            station_id = '0' + str(id)
-        else:
-            station_id = str(id)
-        id = station_id
-
-    #observed_data = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/{0}/{1}/data/historical/Observed_Data/{2}.csv'.format(folder, source,id), index_col=0)
-    observed_data = pd.read_csv('/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/{0}/{1}/data/historical/Observed_Data/{2}.csv'.format(folder, source, id), index_col=0)
-    observed_data[observed_data < 0] = 0
+    #observed_data = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/Hydroweb/data/historical/Observed_Data/mean/{0}_mean.csv'.format(station), index_col=0)
+    observed_data = pd.read_csv('/Volumes/Macintosh HD/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/Hydroweb/data/Observed_Data/mean/{0}_mean.csv'.format(station), index_col=0)
     observed_data.index = pd.to_datetime(observed_data.index)
     observed_data.index = observed_data.index.to_series().dt.strftime("%Y-%m-%d")
     observed_data.index = pd.to_datetime(observed_data.index)
@@ -111,10 +108,6 @@ for source, folder, region, id, comid, name, latitude, longitude, area, bias_ori
     no_nan_data = len(observed_df.index)
     missing_data = 1 - (no_nan_data/total_data_obs)
 
-    recent_observed_data = observed_data.loc[observed_data.index >= pd.to_datetime('1979-01-01')]
-    recent_observed_data.dropna(inplace=True)
-    no_nan_recent_data = len(recent_observed_data.index)
-
     year_ini = date_ini.year
     year_end = date_end.year
 
@@ -123,12 +116,28 @@ for source, folder, region, id, comid, name, latitude, longitude, area, bias_ori
     total_mean = np.nanmean(observed_data.iloc[:, 0].values)
     total_std = np.nanstd(observed_data.iloc[:, 0].values)
 
+    total_median = np.nanpercentile(observed_data.iloc[:, 0].values, 50)
+
+    total_p25 = np.nanpercentile(observed_data.iloc[:, 0].values, 25)
+    total_p75 = np.nanpercentile(observed_data.iloc[:, 0].values, 75)
+
+    total_min = np.nanmin(observed_data.iloc[:, 0].values)
+    total_max = np.nanmax(observed_data.iloc[:, 0].values)
+
     ##Calculating error metrics on fdc
-    simulated_data = pd.read_csv('/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/{0}/{1}/data/historical/Simulated_Data/{2}.csv'.format(folder, source, comid), index_col=0)
+    simulated_data = pd.read_csv('/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/Hydroweb/data/Simulated_Data/{0}.csv'.format(comid), index_col=0)
     simulated_data[simulated_data < 0] = 0
     simulated_data.index = pd.to_datetime(simulated_data.index)
     simulated_data.index = simulated_data.index.to_series().dt.strftime("%Y-%m-%d")
     simulated_data.index = pd.to_datetime(simulated_data.index)
+    simulated_data = simulated_data.loc[simulated_data.index >= pd.to_datetime('1980-01-01')]
+
+    min_value = np.min(observed_data.min())
+
+    if min_value >= 0:
+        min_value = 0
+
+    observed_data = observed_data - min_value
 
     observed_data.dropna(inplace=True)
 
@@ -137,7 +146,7 @@ for source, folder, region, id, comid, name, latitude, longitude, area, bias_ori
     total_data = max(total_obs_data, total_sim_data)
 
     to_flow_sim = _flow_and_probability_mapper(simulated_data, to_flow=True)
-    to_flow_obs = _flow_and_probability_mapper(observed_data, to_flow=True, extrapolate = True)
+    to_flow_obs = _flow_and_probability_mapper(observed_data, to_flow=True, extrapolate=True)
 
     x_sim = np.arange(0, 1, (1 / total_data))
     x_sim = np.around(x_sim, decimals=10)
@@ -163,7 +172,7 @@ for source, folder, region, id, comid, name, latitude, longitude, area, bias_ori
     nse_total = he.nse(y_sim_adj, y_obs_adj)
     ks_total, p_value = ks_2samp(y_obs, y_sim)
 
-    #monthly fdc
+    # monthly fdc
     unique_simulation_months = sorted(set(simulated_data.index.strftime('%m')))
 
     kge = []
@@ -190,7 +199,7 @@ for source, folder, region, id, comid, name, latitude, longitude, area, bias_ori
 
         x_obs = np.arange(0, 1, (1 / total_data))
         x_obs = np.around(x_obs, decimals=10)
-        #for xs in x_obs:
+        # for xs in x_obs:
         #    print(xs)
         #    print(to_flow_obs(xs))
         y_obs = to_flow_obs(x_obs)  # use interpolation function returned by `interp1d`
@@ -220,20 +229,19 @@ for source, folder, region, id, comid, name, latitude, longitude, area, bias_ori
     nse_mean = np.mean(nse)
     ks_mean = np.mean(ks)
 
-    table.append([source, folder, region, id, comid, name, latitude, longitude, area, bias_orig, bias_corr, var_orig,
-                  var_corr, corr_orig, corr_corr, kge_orig, kge_corr, date_ini, date_end, total_data_obs, no_nan_data,
-                  no_nan_recent_data, missing_data, total_mean, total_std, kge_total, nse_total, ks_total, kge_def,
-                  nse_def, ks_def, kge_mean, nse_mean, ks_mean])
+    table.append([station, river, watershed, latitude, longitude, area, comid, region, country, climate, bias_corr,
+                  var_corr, corr_corr, kge_corr, date_ini, date_end, total_data_obs, no_nan_data, missing_data, total_mean,
+                  total_std, total_median, total_p25, total_p75, total_min, total_max, kge_total, nse_total, ks_total,
+                  kge_def, nse_def, ks_def, kge_mean, nse_mean, ks_mean])
 
-table_df = pd.DataFrame(table, columns=['Data_Source', 'Folder', 'Region', 'ID', 'COMID', 'Station', 'Latitude',
-                                        'Longitude', 'Area_sim_km2', 'Bias_Original', 'Bias_Corrected',
-                                        'Variability_Original', 'Variability_Corrected', 'Correlation_Original',
-                                        'Correlation_Corrected', 'KGE_Original', 'KGE_Corrected', 'Initial Date',
-                                        'Final Date', 'Number Days', 'Total Days Data', 'Total Days Recent Data',
-                                        '% Missing Data', 'Mean', 'STD', 'KGE_total_FDC', 'NSE_total_FDC',
-                                        'Kolmogorov-Smirnov_total_FDC', 'KGE_month_FDC', 'NSE_month_FDC',
+table_df = pd.DataFrame(table, columns=['Station', 'River', 'Drainage_b', 'Latitude', 'Longitude', 'Area_sim_km2', 'COMID',
+                                        'watershed', 'Country', 'Climate', 'Bias', 'Variability', 'Correlation', 'KGE',
+                                        'Initial Date', 'Final Date', 'Number Days', 'Total Days Data', '% Missing Data',
+                                        'Mean', 'STD', 'Median', 'Percentile 25', 'Percentile 75', 'Min', 'Max', 'KGE_total_FDC',
+                                        'NSE_total_FDC', 'Kolmogorov-Smirnov_total_FDC', 'KGE_month_FDC', 'NSE_month_FDC',
                                         'Kolmogorov-Smirnov_month_FDC', 'KGE_month_mean_FDC', 'NSE_month_mean_FDC',
                                         'Kolmogorov-Smirnov_month_mean_FDC'])
 
-#table_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_Q_v1.csv')
-table_df.to_csv('/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_Q_v2.csv')
+#table_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_WL_Sat_v1.csv')
+#table_df.to_csv('/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_WL_Sat_v1.csv')
+table_df.to_csv("/Volumes/Macintosh HD/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13//World_Total_Stations_WL_Sat_v1.csv")
