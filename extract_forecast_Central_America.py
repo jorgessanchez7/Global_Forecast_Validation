@@ -5,8 +5,7 @@ import datetime as dt
 import warnings
 warnings.filterwarnings("ignore")
 
-comids = [9020413, 9021824, 9011627, 9011802, 9012220, 9009660, 9013878, 9015841, 9015333, 9015566, 9005832, 9000400,
-          9000135, 9000639, 9000192, 9005767, 9005832, 9016205]
+comids = [924905]
 
 print(comids)
 
@@ -83,7 +82,7 @@ def get_ecmwf_ensemble(path_data, output_path, forecast_date, river_id):
                                 }, inplace=True)
 
     return_dict = {}
-    return_dict['ensemble_52'.format(i)] = merged_ds.sel(ensemble=i).dropna('time')
+    return_dict['ensemble_52'] = merged_ds.sel(ensemble=52).dropna('time')
 
     high_res_df = pd.DataFrame(return_dict)
     time_array_2 = return_dict['ensemble_52']['time']
@@ -104,60 +103,15 @@ def get_ecmwf_ensemble(path_data, output_path, forecast_date, river_id):
             forecast_date)[6:8] + '_HR.csv')
 
 
-# Function to extract forecast values for a given reach_id
-from glob import glob
-import xarray
-
-
-def get_ecmwf_high_resolution(path_data, output_path, forecast_date, river_id):
-    """
-    Returns the statistics for the 52 member forecast
-    path_data: folder where the forecasts files are stored
-    river_id: river stream which we want to get the forecast values
-    forecast_date: date to be extractd in format YYYYMMDD
-    """
-
-    path_to_files = path_data + '/' + forecast_date + '.00'
-
-    forecast_nc_list = sorted(glob(os.path.join(path_to_files, "*.nc")), reverse=True)
-
-    # print(forecast_nc_list)
-
-    # combine 52 ensembles
-    qout_datasets = []
-    ensemble_index_list = []
-
-    for forecast_nc in forecast_nc_list:
-        ensemble_index_list.append(int(os.path.basename(forecast_nc)[:-3].split("_")[-1]))
-        qout_datasets.append(xarray.open_dataset(forecast_nc, autoclose=True).sel(rivid=river_id).Qout)
-
-    merged_ds = xarray.concat(qout_datasets, pd.Index(ensemble_index_list, name='ensemble'))
-
-    return_dict = {}
-    return_dict['ensemble_52'] = merged_ds.sel(ensemble=52).dropna('time')
-
-    high_res_df = pd.DataFrame(return_dict)
-    time_array_2 = return_dict['ensemble_52']['time']
-    high_res_df['datetime'] = time_array_2
-    high_res_df.set_index('datetime', inplace=True)
-    high_res_df.rename(columns={"ensemble_52": "ensemble_52_m^3/s"}, inplace=True)
-
-    if not os.path.isdir(output_path + '/' + str(river_id) + '/row_data'):
-        os.makedirs(output_path + '/' + str(river_id) + '/row_data', exist_ok=True)
-
-    high_res_df.to_csv(
-        output_path + '/' + str(river_id) + '/row_data/' + str(forecast_date)[0:4] + '-' + str(forecast_date)[
-                                                                                           4:6] + '-' + str(
-            forecast_date)[6:8] + '_HR.csv')
-
-
-fecha_ini = dt.datetime(2014, 1, 1)
-fecha_fin = dt.datetime(2019, 12, 31)
+#fecha_ini = dt.datetime(2014,1,1)
+fecha_ini = dt.datetime(2019,2,19)
+fecha_fin = dt.datetime(2019,2,19)
+#fecha_fin = dt.datetime(2020,12,31)
 fechas = pd.date_range(fecha_ini, fecha_fin, freq='D')
 
-#path_data = '/Volumes/GoogleDrive/My Drive/ECMWF/ECMWF_GEOGloWS_Streamflow/rapid-io/output/south_america-geoglows/'
-path_data = '/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_20140101-20191231/south_america-geoglows/'
-output_path = '/Volumes/GoogleDrive/My Drive/Colab Notebooks/Extract_Forecast_Files/Colombia'
+#path_data = '/Volumes/GoogleDrive/My Drive/ECMWF/ECMWF_GEOGloWS_Streamflow/rapid-io/output/central_america-geoglows/'
+path_data = '/Volumes/storage/ECMWF_Gridded_Runoff_Files/output_20140101-20191231/central_america-geoglows/'
+output_path = '/Volumes/GoogleDrive/My Drive/Colab Notebooks/Extract_Forecast_Files/central_america'
 
 for fecha in fechas:
     anio = str(fecha.year)
@@ -177,5 +131,4 @@ for fecha in fechas:
     print(forecast_date)
 
     for comid in comids:
-        #get_ecmwf_ensemble(path_data, output_path, forecast_date, int(comid))
-        get_ecmwf_high_resolution(path_data, output_path, forecast_date, int(comid))
+        get_ecmwf_ensemble(path_data, output_path, forecast_date, int(comid))

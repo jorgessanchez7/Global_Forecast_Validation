@@ -23,6 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a4e8b0b-64c7-4dd7-ab33-127173db99c7" name="Default" comment="&quot;Including Ecuador&quot;">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/Australia/copy_observed_id_WL.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Ecuador/copy_observed_id.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Ecuador/copy_observed_id_WL.py" afterDir="false" />
@@ -32,6 +33,12 @@
       <change beforePath="$PROJECT_DIR$/Ecuador/historical_validation_Ecuador.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ecuador/historical_validation_Ecuador.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orginizing_total_stations.py" beforeDir="false" afterPath="$PROJECT_DIR$/orginizing_total_stations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orginizing_total_stations_WL.py" beforeDir="false" afterPath="$PROJECT_DIR$/orginizing_total_stations_WL.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/Global_Forecast_Validation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Global_Forecast_Validation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Colombia/extract_forecast_Colombia.py" beforeDir="false" afterPath="$PROJECT_DIR$/Colombia/extract_forecast_Colombia.py" afterDir="false" />
+>>>>>>> b68209f4e2fc930400f9257e33ca0820a1bd8096
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,87 +52,12 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>middle_east</find>
-      <find>41041</find>
-      <find>rio</find>
-      <find>obs_df</find>
-      <find>observed</find>
-      <find>fillna</find>
-      <find>bias</find>
-      <find>initialization_df</find>
-      <find>station</find>
-      <find>print(df)</find>
-      <find>print('El porcentaje de</find>
-      <find>historical_df</find>
-      <find>print(' ')</find>
-      <find>r</find>
-      <find>streamflow_m^3/s</find>
-      <find>Streamflow (m3/s)</find>
-      <find>Initialization (m^3/s)</find>
-      <find>No hay evento de inundación a ser analizado</find>
-      <find>print</find>
-      <find>Colombia</find>
-      <find>obsFiles</find>
-      <find>all_station_table</find>
-      <find>Ecuador</find>
-      <find>id</find>
-      <find>South</find>
-      <find>GRDC</find>
-      <find>Honduras</find>
-      <find>DataFrame</find>
-      <find>volume_list</find>
-      <find>South_America/Peru</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>/Forecasts/Simulated_Data/</replace>
-      <replace>ecolor=('r', 'g')</replace>
-      <replace>_rec1</replace>
-      <replace>_historic</replace>
-      <replace>_rec2</replace>
-      <replace>ERA-5 (hourly)</replace>
-      <replace>ERA-5 (agg)</replace>
-      <replace>Africa/Ivory_Coast</replace>
-      <replace>$USER_HOME$/Dropbox/PhD/2020 Winter/Dissertation_v9/South_America/Colombia/Forecast/Simulated_Data/{0}-{1}/'.format(id, name)</replace>
-      <replace>$USER_HOME$/</replace>
-      <replace>$PROJECT_DIR$/../../../</replace>
-      <replace>South_America</replace>
-      <replace>historical_df</replace>
-      <replace>simulated_df</replace>
-      <replace>name</replace>
-      <replace>streamflow_m^3/s</replace>
-      <replace>#print(df)</replace>
-      <replace>#print(' ')</replace>
-      <replace>#print('El porcentaje de</replace>
-      <replace>Simulated`</replace>
-      <replace>Observed</replace>
-      <replace>Simulated</replace>
-      <replace>Ecuador</replace>
-      <replace>Peru</replace>
-      <replace>North</replace>
-      <replace>USA</replace>
-      <replace>Central</replace>
-      <replace>Honduras</replace>
-      <replace>Panama</replace>
-      <replace>Australia/Australia</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
-    </dirStrings>
-  </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="57" />
-    <option name="y" value="48" />
-    <option name="width" value="1123" />
-    <option name="height" value="924" />
   </component>
   <component name="ProjectId" id="1nOlLrNuUkZDezZOXfW3XSBClsd" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -151,12 +83,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;last_opened_file_path&quot;: &quot;/Users/grad/Github/Global_Forecast_Validation&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
+=======
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+>>>>>>> b68209f4e2fc930400f9257e33ca0820a1bd8096
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -172,9 +111,22 @@
       <recent name="$PROJECT_DIR$/ERA5_ERAI" />
       <recent name="$PROJECT_DIR$/GRDC_Africa" />
     </key>
+<<<<<<< HEAD
   </component>
   <component name="RunManager" selected="Python.orginizing_total_stations_WL_Sat">
     <configuration name="copy_observed_id_WL" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/" />
+      <recent name="$PROJECT_DIR$/Israel" />
+      <recent name="$PROJECT_DIR$/Australia" />
+      <recent name="$PROJECT_DIR$/Hydroweb" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.Reorganizing_Forecast_data_South_America_2014-2019">
+    <configuration name="Reorganizing_Forecast_data_South_America_2014-2019" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> b68209f4e2fc930400f9257e33ca0820a1bd8096
       <module name="Global_Forecast_Validation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -182,11 +134,15 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Australia" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+<<<<<<< HEAD
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Australia/copy_observed_id_WL.py" />
+=======
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Reorganizing_Forecast_data_South_America_2014-2019.py" />
+>>>>>>> b68209f4e2fc930400f9257e33ca0820a1bd8096
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -195,7 +151,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="get_Country_stations_WL_Sat" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="extract_forecast_Central_America" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> b68209f4e2fc930400f9257e33ca0820a1bd8096
       <module name="Global_Forecast_Validation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -207,7 +167,11 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+<<<<<<< HEAD
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/get_Country_stations_WL_Sat.py" />
+=======
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_forecast_Central_America.py" />
+>>>>>>> b68209f4e2fc930400f9257e33ca0820a1bd8096
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -216,7 +180,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="orginizing_total_stations" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="extract_forecast_North_America" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Global_Forecast_Validation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -228,7 +192,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/orginizing_total_stations.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_forecast_North_America.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -237,7 +201,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="orginizing_total_stations_WL" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="get_daily_observed_values" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> b68209f4e2fc930400f9257e33ca0820a1bd8096
       <module name="Global_Forecast_Validation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -245,11 +213,19 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/orginizing_total_stations_WL.py" />
+=======
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Israel" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Israel/get_daily_observed_values.py" />
+>>>>>>> b68209f4e2fc930400f9257e33ca0820a1bd8096
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -258,7 +234,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="orginizing_total_stations_WL_Sat" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="orginizing_total_stations" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> b68209f4e2fc930400f9257e33ca0820a1bd8096
       <module name="Global_Forecast_Validation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -270,7 +250,11 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+<<<<<<< HEAD
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/orginizing_total_stations_WL_Sat.py" />
+=======
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/orginizing_total_stations.py" />
+>>>>>>> b68209f4e2fc930400f9257e33ca0820a1bd8096
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -280,6 +264,7 @@
       <method v="2" />
     </configuration>
     <list>
+<<<<<<< HEAD
       <item itemvalue="Python.orginizing_total_stations_WL_Sat" />
       <item itemvalue="Python.get_Country_stations_WL_Sat" />
       <item itemvalue="Python.copy_observed_id_WL" />
@@ -293,6 +278,21 @@
         <item itemvalue="Python.orginizing_total_stations" />
         <item itemvalue="Python.copy_observed_id_WL" />
         <item itemvalue="Python.get_Country_stations_WL_Sat" />
+=======
+      <item itemvalue="Python.get_daily_observed_values" />
+      <item itemvalue="Python.orginizing_total_stations" />
+      <item itemvalue="Python.extract_forecast_North_America" />
+      <item itemvalue="Python.extract_forecast_Central_America" />
+      <item itemvalue="Python.Reorganizing_Forecast_data_South_America_2014-2019" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Reorganizing_Forecast_data_South_America_2014-2019" />
+        <item itemvalue="Python.extract_forecast_Central_America" />
+        <item itemvalue="Python.extract_forecast_North_America" />
+        <item itemvalue="Python.orginizing_total_stations" />
+        <item itemvalue="Python.get_daily_observed_values" />
+>>>>>>> b68209f4e2fc930400f9257e33ca0820a1bd8096
       </list>
     </recent_temporary>
   </component>
@@ -363,6 +363,28 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;Including Ecuador&quot;" />
     <option name="LAST_COMMIT_MESSAGE" value="&quot;Including Ecuador&quot;" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1377" height="481" key="GridCell.Tab.0.bottom" timestamp="1679453373103">
+      <screen x="0" y="23" width="3440" height="1417" />
+    </state>
+    <state width="1377" height="481" key="GridCell.Tab.0.bottom/0.23.3440.1417@0.23.3440.1417" timestamp="1679453373103" />
+    <state width="1377" height="481" key="GridCell.Tab.0.center" timestamp="1679453373102">
+      <screen x="0" y="23" width="3440" height="1417" />
+    </state>
+    <state width="1377" height="481" key="GridCell.Tab.0.center/0.23.3440.1417@0.23.3440.1417" timestamp="1679453373102" />
+    <state width="1377" height="481" key="GridCell.Tab.0.left" timestamp="1679453373102">
+      <screen x="0" y="23" width="3440" height="1417" />
+    </state>
+    <state width="1377" height="481" key="GridCell.Tab.0.left/0.23.3440.1417@0.23.3440.1417" timestamp="1679453373102" />
+    <state width="1377" height="481" key="GridCell.Tab.0.right" timestamp="1679453373103">
+      <screen x="0" y="23" width="3440" height="1417" />
+    </state>
+    <state width="1377" height="481" key="GridCell.Tab.0.right/0.23.3440.1417@0.23.3440.1417" timestamp="1679453373103" />
+    <state x="1641" y="318" key="SettingsEditor" timestamp="1677227203714">
+      <screen x="0" y="23" width="3440" height="1417" />
+    </state>
+    <state x="1641" y="318" key="SettingsEditor/0.23.3440.1417@0.23.3440.1417" timestamp="1677227203714" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
