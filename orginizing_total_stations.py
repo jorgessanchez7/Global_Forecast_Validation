@@ -162,6 +162,7 @@ for source, folder, region, id, comid, name, latitude, longitude, area, bias_ori
     kge_total = he.kge_2012(y_sim_adj, y_obs_adj)
     nse_total = he.nse(y_sim_adj, y_obs_adj)
     ks_total, p_value = ks_2samp(y_obs, y_sim)
+    r_pearson_total = he.pearson_r(y_sim, y_obs)
 
     #monthly fdc
     unique_simulation_months = sorted(set(simulated_data.index.strftime('%m')))
@@ -169,6 +170,7 @@ for source, folder, region, id, comid, name, latitude, longitude, area, bias_ori
     kge = []
     nse = []
     ks = []
+    r_pearson = []
 
     for mes in unique_simulation_months:
 
@@ -180,8 +182,8 @@ for source, folder, region, id, comid, name, latitude, longitude, area, bias_ori
         monthly_observed = observed_data[observed_data.index.month == int(mes)].dropna()
         to_flow_obs = _flow_and_probability_mapper(monthly_observed, to_flow=True)
 
-        total_sim_data = len(monthly_observed.index)
-        total_data = max(total_sim_data, total_sim_data)
+        total_obs_data = len(monthly_observed.index)
+        total_data = max(total_sim_data, total_obs_data)
 
         x_sim = np.arange(0, 1, (1 / total_data))
         x_sim = np.around(x_sim, decimals=10)
@@ -211,19 +213,22 @@ for source, folder, region, id, comid, name, latitude, longitude, area, bias_ori
         kge.append(he.kge_2012(y_sim_adj, y_obs_adj))
         nse.append(he.nse(y_sim_adj, y_obs_adj))
         ks.append(ks_statistic)
+        r_pearson.append(he.pearson_r(y_sim, y_obs))
 
     kge_def = np.min(kge)
     nse_def = np.min(nse)
     ks_def = np.max(ks)
+    r_pearson_def = np.min(r_pearson)
 
     kge_mean = np.mean(kge)
     nse_mean = np.mean(nse)
     ks_mean = np.mean(ks)
+    r_pearson_mean = np.mean(r_pearson)
 
     table.append([source, folder, region, id, comid, name, latitude, longitude, area, bias_orig, bias_corr, var_orig,
                   var_corr, corr_orig, corr_corr, kge_orig, kge_corr, date_ini, date_end, total_data_obs, no_nan_data,
-                  no_nan_recent_data, missing_data, total_mean, total_std, kge_total, nse_total, ks_total, kge_def,
-                  nse_def, ks_def, kge_mean, nse_mean, ks_mean])
+                  no_nan_recent_data, missing_data, total_mean, total_std, kge_total, nse_total, ks_total, r_pearson_total,
+                  kge_def, nse_def, ks_def, r_pearson_def, kge_mean, nse_mean, ks_mean, r_pearson_mean])
 
 table_df = pd.DataFrame(table, columns=['Data_Source', 'Folder', 'Region', 'ID', 'COMID', 'Station', 'Latitude',
                                         'Longitude', 'Area_sim_km2', 'Bias_Original', 'Bias_Corrected',
@@ -231,9 +236,11 @@ table_df = pd.DataFrame(table, columns=['Data_Source', 'Folder', 'Region', 'ID',
                                         'Correlation_Corrected', 'KGE_Original', 'KGE_Corrected', 'Initial Date',
                                         'Final Date', 'Number Days', 'Total Days Data', 'Total Days Recent Data',
                                         '% Missing Data', 'Mean', 'STD', 'KGE_total_FDC', 'NSE_total_FDC',
-                                        'Kolmogorov-Smirnov_total_FDC', 'KGE_month_FDC', 'NSE_month_FDC',
-                                        'Kolmogorov-Smirnov_month_FDC', 'KGE_month_mean_FDC', 'NSE_month_mean_FDC',
-                                        'Kolmogorov-Smirnov_month_mean_FDC'])
+                                        'Kolmogorov-Smirnov_total_FDC', 'Correlation_Total', 'KGE_month_FDC',
+                                        'NSE_month_FDC', 'Kolmogorov-Smirnov_month_FDC', 'Correlation_month_FDC',
+                                        'KGE_month_mean_FDC', 'NSE_month_mean_FDC', 'Kolmogorov-Smirnov_month_mean_FDC',
+                                        'Correlation_mean_FDC'])
 
 #table_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_Q_v1.csv')
-table_df.to_csv('/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_Q_v2.csv')
+#table_df.to_csv('/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_Q_v2.csv')
+table_df.to_csv('/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_Q_v3.csv')

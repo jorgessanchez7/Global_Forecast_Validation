@@ -171,6 +171,7 @@ for station, river, watershed, latitude, longitude, area, comid, region, country
     kge_total = he.kge_2012(y_sim_adj, y_obs_adj)
     nse_total = he.nse(y_sim_adj, y_obs_adj)
     ks_total, p_value = ks_2samp(y_obs, y_sim)
+    r_pearson_total = he.pearson_r(y_sim, y_obs)
 
     # monthly fdc
     unique_simulation_months = sorted(set(simulated_data.index.strftime('%m')))
@@ -178,6 +179,7 @@ for station, river, watershed, latitude, longitude, area, comid, region, country
     kge = []
     nse = []
     ks = []
+    r_pearson = []
 
     for mes in unique_simulation_months:
 
@@ -189,8 +191,8 @@ for station, river, watershed, latitude, longitude, area, comid, region, country
         monthly_observed = observed_data[observed_data.index.month == int(mes)].dropna()
         to_flow_obs = _flow_and_probability_mapper(monthly_observed, to_flow=True)
 
-        total_sim_data = len(monthly_observed.index)
-        total_data = max(total_sim_data, total_sim_data)
+        total_obs_data = len(monthly_observed.index)
+        total_data = max(total_sim_data, total_obs_data)
 
         x_sim = np.arange(0, 1, (1 / total_data))
         x_sim = np.around(x_sim, decimals=10)
@@ -220,28 +222,33 @@ for station, river, watershed, latitude, longitude, area, comid, region, country
         kge.append(he.kge_2012(y_sim_adj, y_obs_adj))
         nse.append(he.nse(y_sim_adj, y_obs_adj))
         ks.append(ks_statistic)
+        r_pearson.append(he.pearson_r(y_sim, y_obs))
 
     kge_def = np.min(kge)
     nse_def = np.min(nse)
     ks_def = np.max(ks)
+    r_pearson_def = np.min(r_pearson)
 
     kge_mean = np.mean(kge)
     nse_mean = np.mean(nse)
     ks_mean = np.mean(ks)
+    r_pearson_mean = np.mean(r_pearson)
 
     table.append([station, river, watershed, latitude, longitude, area, comid, region, country, climate, bias_corr,
                   var_corr, corr_corr, kge_corr, date_ini, date_end, total_data_obs, no_nan_data, missing_data, total_mean,
                   total_std, total_median, total_p25, total_p75, total_min, total_max, kge_total, nse_total, ks_total,
-                  kge_def, nse_def, ks_def, kge_mean, nse_mean, ks_mean])
+                  r_pearson_total, kge_def, nse_def, ks_def, r_pearson_def, kge_mean, nse_mean, ks_mean, r_pearson_mean])
 
 table_df = pd.DataFrame(table, columns=['Station', 'River', 'Drainage_b', 'Latitude', 'Longitude', 'Area_sim_km2', 'COMID',
                                         'watershed', 'Country', 'Climate', 'Bias', 'Variability', 'Correlation', 'KGE',
                                         'Initial Date', 'Final Date', 'Number Days', 'Total Days Data', '% Missing Data',
                                         'Mean', 'STD', 'Median', 'Percentile 25', 'Percentile 75', 'Min', 'Max', 'KGE_total_FDC',
                                         'NSE_total_FDC', 'Kolmogorov-Smirnov_total_FDC', 'KGE_month_FDC', 'NSE_month_FDC',
-                                        'Kolmogorov-Smirnov_month_FDC', 'KGE_month_mean_FDC', 'NSE_month_mean_FDC',
-                                        'Kolmogorov-Smirnov_month_mean_FDC'])
+                                        'Kolmogorov-Smirnov_month_FDC', 'Correlation_Total', 'Correlation_month_FDC',
+                                        'KGE_month_mean_FDC', 'NSE_month_mean_FDC', 'Kolmogorov-Smirnov_month_mean_FDC',
+                                        'Correlation_mean_FDC'])
 
 #table_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_WL_Sat_v1.csv')
 #table_df.to_csv('/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13/World_Total_Stations_WL_Sat_v1.csv')
-table_df.to_csv("/Volumes/Macintosh HD/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13//World_Total_Stations_WL_Sat_v1.csv")
+#table_df.to_csv("/Volumes/Macintosh HD/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13//World_Total_Stations_WL_Sat_v1.csv")
+table_df.to_csv("/Volumes/Macintosh HD/Users/grad/Google Drive/My Drive/PhD/2022_Winter/Dissertation_v13//World_Total_Stations_WL_Sat_v2.csv")
