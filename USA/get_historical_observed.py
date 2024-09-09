@@ -3,12 +3,16 @@ import pandas as pd
 import numpy as np
 import datetime as dt
 
-stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/USA/Total_Stations_USA_Q_v1.csv')
+#stations_pd = pd.read_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/USA/Total_Stations_USA_Q_v1.csv')
+stations_pd = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/PhD/2022_Winter/Dissertation_v13/North_America/USA/Station_USA_test.csv')
 
-IDs = stations_pd['STAID'].tolist()
-COMIDs = stations_pd['new_COMID'].tolist()
-Names = stations_pd['STANAME'].tolist()
+#IDs = stations_pd['STAID'].tolist()
+#COMIDs = stations_pd['new_COMID'].tolist()
+#Names = stations_pd['STANAME'].tolist()
 
+IDs = stations_pd['samplingFeatureCode'].tolist()
+COMIDs = stations_pd['description'].tolist()
+Names = stations_pd['name'].tolist()
 
 for id, name, comid in zip(IDs, Names, COMIDs):
 
@@ -54,4 +58,5 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	observed_df.index = observed_df.index.to_series().dt.strftime("%Y-%m-%d")
 	observed_df.index = pd.to_datetime(observed_df.index)
 
-	observed_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/USA/data/historical/Observed_Data/{}.csv'.format(station_id))
+	#observed_df.to_csv('/Volumes/GoogleDrive/My Drive/PhD/2022_Winter/Dissertation_v13/North_America/USA/data/historical/Observed_Data/{}.csv'.format(station_id))
+	observed_df.to_csv('/Users/grad/Library/CloudStorage/Box-Box/PhD/2022_Winter/Dissertation_v13/North_America/USA/data/historical/Observed_Data/{}_test.csv'.format(station_id))
