@@ -82,5 +82,9 @@ plot_kge_map(axs[1], stations_v2_df, 'KGE Values - Bias Corrected GEOGloWS v2')
 
 # Añadir leyenda y guardar la imagen
 plt.legend(title=r'$\textbf{KGE Categories}$', loc='lower left', fontsize=8)
-plt.savefig('Metrics_GEOGLOWS_v1_vs_v2_bc.png', dpi=400, pad_inches=0)
+plt.savefig('Z.png', dpi=400, pad_inches=0)
+
+
+    
+
 #plt.show()

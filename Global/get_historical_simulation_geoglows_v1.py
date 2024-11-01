@@ -8,6 +8,8 @@ warnings.filterwarnings('ignore')
 
 stations_pd = pd.read_csv('/Users/grad/Github/Global_Forecast_Validation/Global/World_Stations.csv')
 
+#stations_pd = stations_pd[stations_pd['Data_Source'] == 'Togo']
+
 IDs = stations_pd['samplingFeatureCode'].tolist()
 COMIDs = stations_pd['samplingFeatureType'].tolist()
 Names = stations_pd['name'].tolist()

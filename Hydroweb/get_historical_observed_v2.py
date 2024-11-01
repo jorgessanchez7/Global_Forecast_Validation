@@ -25,7 +25,8 @@ def fetch_water_level_data(api_key, latitude, longitude, satellite_station, prod
     dag = EODataAccessGateway()
 
     # Configure download path
-    path_out = os.getcwd()
+    #path_out = os.getcwd()
+    path_out = '/tmp'
     if not os.path.isdir(path_out):
         raise RuntimeError(f"Path {path_out} does not exist")
 
@@ -126,7 +127,7 @@ def fetch_water_level_data(api_key, latitude, longitude, satellite_station, prod
     else:
         return None
 
-stations_pd = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Hydroweb/Total_Rivers_Stations_Hydroweb_v2.csv')
+stations_pd = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Hydroweb/Total_Rivers_Stations_Hydroweb.csv')
 
 names = stations_pd['Station'].tolist()
 latitudes = stations_pd['Latitude'].tolist()
