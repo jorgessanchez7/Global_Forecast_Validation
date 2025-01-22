@@ -10,6 +10,9 @@ import matplotlib.patches as mpatches
 
 stations_df = pd.read_csv('Metrics_GEOGloWS_v1_WL.csv')
 
+selected_countries = ["Colombia", "Ecuador", "Brazil", "Peru"]
+stations_df = stations_df[stations_df['Country'].isin(selected_countries)]
+
 # Example station data (longitudes, latitudes, and KGE values)
 lons = stations_df['Longitude'].to_list()
 lats = stations_df['Latitude'].to_list()
@@ -28,12 +31,12 @@ plt.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 time.sleep(1)
 
 # Initialize the plot with OpenStreetMap tiles
-fig, ax = plt.subplots(figsize=(15, 8), subplot_kw={'projection': OSM().crs})
-ax.add_image(OSM(), 7)  # The second argument is the zoom level
+fig, ax = plt.subplots(figsize=(8, 15), subplot_kw={'projection': OSM().crs})
+ax.add_image(OSM(), 9)  # The second argument is the zoom level
 
 # Add country borders
 borders = cfeature.NaturalEarthFeature('cultural', 'admin_0_countries', '10m', edgecolor='black', facecolor='none')
-ax.add_feature(borders, linewidth=0.25)
+ax.add_feature(borders, linewidth=0.3)
 
 # Plotting
 for lon, lat, kge in zip(lons, lats, kge_values):
@@ -48,7 +51,7 @@ for lon, lat, kge in zip(lons, lats, kge_values):
     else:
         color = 'green'  # 0.75 to 1.00
 
-    ax.plot(lon, lat, marker='o', color=color, markersize=3.5, markeredgewidth=0.5, markeredgecolor='black', transform=ccrs.Geodetic())
+    ax.plot(lon, lat, marker='o', color=color, markersize=3.0, markeredgewidth=0.5, markeredgecolor='black', transform=ccrs.Geodetic())
 
 # Custom legend
 #legend_labels = ['< -0.41', '-0.41 — 0.00', '0.00 — 0.50', '0.50 — 0.75', '0.75 — 1.00']
@@ -66,7 +69,7 @@ text_latex = (rf'n: {number_of_points}\\'
               rf'\text{{Median KGE}}: {median_kge}\\'
               rf'\text{{IQR KGE}}: ({p25}, {p75})')
 
-ax.text(-35, -35, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+ax.text(-48, -30, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
 #ax.text(0.5, 0.5, f'${text_latex}$', fontsize=12, color='black', verticalalignment='center')
 
 def draw_scale_bar(ax, location, length_km, projection):
@@ -92,56 +95,10 @@ min_lat, max_lat = min(lats), max(lats)
 buffer = 1  # buffer in degrees, adjust as necessary
 map_extent = [min_lon - buffer, max_lon + buffer, min_lat - buffer, max_lat + buffer]
 
-draw_scale_bar(ax, [-150, 0], 5000, ccrs.PlateCarree())
-
-
-def add_north_arrow(ax, location, arrow_length=10, arrow_color='black', text_color='blue'):
-    """
-    Add a north arrow to the map using FancyArrowPatch for better control.
-
-    Args:
-    ax (matplotlib.axes): The axes to which the north arrow will be added.
-    location (tuple): The (x, y) coordinates of the arrow base.
-    arrow_length (float): The length of the arrow in degrees (ensure your map's units).
-    arrow_color (str): Color of the arrow.
-    text_color (str): Color of the 'N' text.
-    """
-    # Create the arrow
-    arrow = mpatches.FancyArrowPatch((location[0], location[1]),
-                                     (location[0], location[1] + arrow_length),
-                                     transform=ccrs.PlateCarree(),  # ensure correct transform
-                                     arrowstyle='-|>',
-                                     mutation_scale=40,  # controls the size of the arrow head
-                                     color=arrow_color,
-                                     linewidth=5)  # set the line width
-
-    ax.add_patch(arrow)
-
-    # Add 'N' label to the arrow
-    ax.text(location[0], location[1] + arrow_length + 0.02, r'$\textbf{N}$',  # slight offset for text
-            horizontalalignment='center',
-            verticalalignment='bottom',
-            fontsize=20,
-            fontweight='bold',
-            color=text_color,
-            transform=ccrs.PlateCarree())
-
-def find_north_arrow_location(ax):
-    """Determine a good location for the north arrow based on current view limits."""
-    xmin, xmax, ymin, ymax = ax.get_extent(ccrs.PlateCarree())
-    # Place the north arrow at 50% of the height and 40% from the left of the map extent
-    x_location = xmin + (xmax - xmin) * 0.35
-    y_location = ymin + (ymax - ymin) * 0.55
-    return (x_location, y_location)
-
-# Example usage of the north arrow function
-north_arrow_location = find_north_arrow_location(ax)
-#add_north_arrow(ax, location=north_arrow_location, arrow_length=10)
-
+draw_scale_bar(ax, [-50, 5], 1500, ccrs.PlateCarree())
 
 #plt.legend(title=r'KGE Categories', loc='lower left', fontsize=8)
 plt.legend(title=r'$\textbf{KGE Categories}$', loc='lower left', fontsize=8)
 #plt.title('Global Distribution of KGE Values for Hydrological Stations', fontsize=15)
-#plt.savefig('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots_v2/Metrics_GEOGLOWS_v1_bc_WL.png', dpi=400, bbox_inches='tight', pad_inches=0)
-plt.savefig('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots_v2/Metrics_GEOGLOWS_v1_bc_WL.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
+plt.savefig('/Users/grad/Library/CloudStorage/OneDrive-BrighamYoungUniversity/National_Water_Level_Forecast/Plots/Metrics_GEOGLOWS_v1_bc_WL_Amazonia.png', dpi=400, bbox_inches='tight', pad_inches=0)
 #plt.show()
