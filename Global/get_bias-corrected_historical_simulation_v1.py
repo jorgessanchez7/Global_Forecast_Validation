@@ -7,7 +7,9 @@ from scipy import interpolate
 import warnings
 warnings.filterwarnings('ignore')
 
-stations_pd = pd.read_csv('/Users/grad/Github/Global_Forecast_Validation/Global/World_Stations.csv')
+#stations_pd = pd.read_csv('/Users/grad/Github/Global_Forecast_Validation/Global/World_Stations.csv')
+stations_pd = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/World_Stations.csv')
+stations_pd = stations_pd[stations_pd['samplingFeatureType'] != 0]
 stations_pd = stations_pd[stations_pd['Q'] == 'YES']
 
 Folders = stations_pd['Folder'].tolist()
@@ -43,7 +45,9 @@ for id, name, comid, folder, source in zip(IDs, Names, COMIDs, Folders, Sources)
 	except Exception as e:
 		print(e)
 
-stations_pd = pd.read_csv('/Users/grad/Github/Global_Forecast_Validation/Global/World_Stations.csv')
+#stations_pd = pd.read_csv('/Users/grad/Github/Global_Forecast_Validation/Global/World_Stations.csv')
+stations_pd = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/World_Stations.csv')
+stations_pd = stations_pd[stations_pd['samplingFeatureType'] != 0]
 stations_pd = stations_pd[stations_pd['WL'] == 'YES']
 
 Folders = stations_pd['Folder'].tolist()

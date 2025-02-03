@@ -15,9 +15,22 @@ for uid, code, name, folder, data_source, country in zip(UIDS, CODEs, Names, Fol
 
 	print(uid, ' - ', code, ' - ', name, ' - ', country)
 
+	file_path = '/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/Observed_Data/{0}/{1}/{2}_WL.csv'.format(folder, data_source, code)
 	df1 = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/Observed_Data/{0}/{1}/{2}_WL.csv'.format(folder, data_source, code), na_values=-9999, index_col=0)
+	#file_path = '/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Hydroserver/Observed_Data/{0}/{1}/{2}_WL.csv'.format(folder, data_source, code)
+	#df1 = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Hydroserver/Observed_Data/{0}/{1}/{2}_WL.csv'.format(folder, data_source, code), index_col=0)
+
 	df1.index = pd.to_datetime(df1.index)
 	df1.index = df1.index.to_series().dt.strftime("%Y-%m-%d")
 	df1.index = pd.to_datetime(df1.index)
 
-	print(df1)
+	# Check if any NaN values exist after reading with na_values
+	if df1.isnull().values.any():
+		# If NaN values are present, it means the file originally had empty spaces
+		# Replace NaN with -9999
+		df1 = df1.fillna(-9999)
+
+		# Rewrite the CSV file with -9999 for missing values
+		df1.to_csv(file_path, na_rep='-9999')  # na_rep ensures -9999 is used for NaN in the output
+
+	#print(df1)
