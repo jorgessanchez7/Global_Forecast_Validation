@@ -1,6 +1,15 @@
 import numpy as np
 import pandas as pd
 
+import h5py
+import xarray as xr
+
+ds1 = xr.open_dataset("/Users/grad/Downloads/era_5_1979_01_01.nc", 'r')
+ds2 = xr.open_dataset("/Users/grad/Downloads/era5_Ro1_19790101.nc", engine="netcdf4")
+
+
+
+
 stations_pd = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/World_Stations.csv')
 stations_pd = stations_pd[stations_pd['samplingFeatureType'] != 0]
 
@@ -26,4 +35,4 @@ for uid, code, comid, name, folder, data_source, country in zip(UIDS, CODEs, COM
 	df1.index = df1.index.to_series().dt.strftime("%Y-%m-%d")
 	df1.index = pd.to_datetime(df1.index)
 
-	print(df1)
+	#print(df1)

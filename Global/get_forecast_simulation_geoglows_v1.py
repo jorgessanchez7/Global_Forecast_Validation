@@ -8,7 +8,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 #stations_pd = pd.read_csv('/Users/grad/Github/Global_Forecast_Validation/Global/World_Stations.csv')
-stations_pd = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/World_Stations.csv')
+stations_pd = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/World_Stations_missing.csv')
 #stations_pd = stations_pd[stations_pd['Data_Source'] == 'Togo']
 
 stations_pd = stations_pd[stations_pd['samplingFeatureType'] != 0]
@@ -23,16 +23,17 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 
 	print(id, ' - ', name, ' - ', comid)
 
-	file_path_1 = f"{output_folder}/2025-02-02/{comid}.csv"
-	#file_path_2 = f"{output_folder}/2025-02-02/{comid}_HR.csv"
+	file_path_1 = f"{output_folder}/2025-02-03/{comid}.csv"
+	#file_path_2 = f"{output_folder}/2025-02-03/{comid}_HR.csv"
 
 	# Check if the file exists before downloading
-	if os.path.exists(file_path_1):
-		#print(f"File already exists: {file_path}. Skipping download.")
-		continue  # Skip to the next station
+	#if os.path.exists(file_path_1):
+	#	#print(f"File already exists: {file_path}. Skipping download.")
+	#	continue  # Skip to the next station
 
 	''''Using REST API'''
-	ensembles = requests.get('https://geoglows.ecmwf.int/api/ForecastEnsembles/?reach_id={0}&date=20250202&ensemble=1-51&return_format=csv'.format(comid), verify=False).content
+	ensembles = requests.get('https://geoglows.ecmwf.int/api/ForecastEnsembles/?reach_id={0}&date=20250204&ensemble=1-51&return_format=csv'.format(comid), verify=False).content
+	#ensembles = requests.get('https://geoglows.ecmwf.int/api/ForecastEnsembles/?reach_id={0}&ensemble=1-51&return_format=csv'.format(comid), verify=False).content
 	ensembles_df = pd.read_csv(io.StringIO(ensembles.decode('utf-8')), index_col=0)
 	ensembles_df[ensembles_df < 0] = 0
 	ensembles_df.index = pd.to_datetime(ensembles_df.index)
@@ -53,7 +54,8 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 								 "ensemble_45_m^3/s": "ensemble_45", "ensemble_46_m^3/s": "ensemble_46", "ensemble_47_m^3/s": "ensemble_47", "ensemble_48_m^3/s": "ensemble_48",
 								 "ensemble_49_m^3/s": "ensemble_49", "ensemble_50_m^3/s": "ensemble_50", "ensemble_51_m^3/s": "ensemble_51"}, inplace=True)
 
-	high_res = requests.get('https://geoglows.ecmwf.int/api/ForecastEnsembles/?reach_id={0}&date=20250202&ensemble=52&return_format=csv'.format(comid), verify=False).content
+	high_res = requests.get('https://geoglows.ecmwf.int/api/ForecastEnsembles/?reach_id={0}&date=20250204&ensemble=52&return_format=csv'.format(comid), verify=False).content
+	#high_res = requests.get('https://geoglows.ecmwf.int/api/ForecastEnsembles/?reach_id={0}&ensemble=52&return_format=csv'.format(comid), verify=False).content
 	high_res_df = pd.read_csv(io.StringIO(high_res.decode('utf-8')), index_col=0)
 	high_res_df.dropna(inplace=True)
 	high_res_df[high_res_df < 0] = 0
