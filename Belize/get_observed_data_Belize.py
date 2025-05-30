@@ -125,8 +125,8 @@ def procesar_hoja(ruta_archivo, nombre_hoja):
 
 # Ejemplo de uso
 
-code = '8901'
-carpeta = r'/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Central_America/Belize/Time_Series/8901 Double Run/Stage'
+#code = '8901'
+#carpeta = r'/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Central_America/Belize/Time_Series/8901 Double Run/Stage'
 #code = '8906'
 #carpeta = r'/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Central_America/Belize/Time_Series/8906 Benque Viejo/Stage'
 #code = '8907'
@@ -159,8 +159,8 @@ carpeta = r'/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My
 #carpeta = r'/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Central_America/Belize/Time_Series/8985 San Antonio/Stage'
 #code = '8987'
 #carpeta = r'/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Central_America/Belize/Time_Series/8987 Santa Cruz/Stage'
-#code = '8990'
-#carpeta = r'/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Central_America/Belize/Time_Series/8990 Crique Sarco/Stage'
+code = '8990'
+carpeta = r'/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Central_America/Belize/Time_Series/8990 Crique Sarco/Stage'
 
 archivos = listar_archivos_excel(carpeta)
 archivos = sorted(archivos)
@@ -198,7 +198,7 @@ faltantes = fechas_necesarias_idx.difference(df_serie_total.index)
 nuevo_indice = df_serie_total.index.union(faltantes)
 df_serie_total = df_serie_total.reindex(nuevo_indice).sort_index()
 
-df_serie_total.to_csv("/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/GEOGLOWS_Applications/Central_America/Belize/Datos_Temporales/Observed_Data/Water_Level/{}_WL_RT.csv".format(code))
+df_serie_total.to_csv("/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/GEOGLOWS_Applications/Central_America/Belize/Datos_Temporales/Observed_Data/Water_Level/{}_WL_RT.csv".format(code))
 
 df_diario = df_serie_total.resample('D').mean()
 rango_completo = pd.date_range(start=df_diario.index.min(), end=df_diario.index.max(), freq='D')
@@ -206,9 +206,9 @@ df_diario = df_diario.reindex(rango_completo)
 df_diario.index.name = 'Datetime'
 
 df_serie_total = df_serie_total.fillna(-9999)
-df_serie_total.to_csv("/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/GEOGLOWS_Applications/Central_America/Belize/Datos_Temporales/Data/{}_WL_RT.csv".format(code))
+df_serie_total.to_csv("/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/GEOGLOWS_Applications/Central_America/Belize/Datos_Temporales/Data/{}_WL_RT.csv".format(code))
 
-df_diario.to_csv("/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/GEOGLOWS_Applications/Central_America/Belize/Datos_Temporales/Observed_Data/Water_Level/{}_WL.csv".format(code))
+df_diario.to_csv("/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/GEOGLOWS_Applications/Central_America/Belize/Datos_Temporales/Observed_Data/Water_Level/{}_WL.csv".format(code))
 
 df_diario = df_diario.fillna(-9999)
-df_diario.to_csv("/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/GEOGLOWS_Applications/Central_America/Belize/Datos_Temporales/Data/{}_WL.csv".format(code))
+df_diario.to_csv("/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/GEOGLOWS_Applications/Central_America/Belize/Datos_Temporales/Data/{}_WL.csv".format(code))

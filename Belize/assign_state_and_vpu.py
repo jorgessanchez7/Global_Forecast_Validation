@@ -4,7 +4,7 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
 
-stations = pd.read_csv("/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/GEOGLOWS_Applications/Central_America/Belize_new_Stations.csv")
+stations = pd.read_csv("/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/GEOGLOWS_Applications/Central_America/Belize/Datos_Temporales/Belize_new_Stations.csv")
 
 countries = stations['country_name'].to_list()
 countries = list(set(countries))
@@ -26,14 +26,14 @@ for country in countries:
     Elevations = stations_country['elevation_m'].to_list()
     Institutions = stations_country['county'].to_list()
 
-    folder_location = '/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/GEOGLOWS_Applications/Central_America/Countries/{}'.format(country)
+    folder_location = '/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/GEOGLOWS_Applications/Central_America/Countries/{}'.format(country)
     files = os.listdir(folder_location)
     shp_file_1 = [file for file in files if '_1.shp' in file]
     shp_file_1 = shp_file_1[0]
-    shape_file_1_path = '/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/GEOGLOWS_Applications/Central_America/Countries/{0}/{1}'.format(country, shp_file_1)
+    shape_file_1_path = '/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/GEOGLOWS_Applications/Central_America/Countries/{0}/{1}'.format(country, shp_file_1)
     gdf_1 = gpd.read_file(shape_file_1_path)
 
-    shape_file_2_path = '/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/GEOGLOWS_Applications/Central_America/VPUs/central_america_vpu_boundaries.shp'
+    shape_file_2_path = '/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/GEOGLOWS_Applications/Central_America/VPUs/central_america_vpu_boundaries.shp'
     gdf_2 = gpd.read_file(shape_file_2_path)
 
     for id, code, name, latitude, longitude, elevation, institution in zip(IDs, Codes, Names, Latitudes, Longitudes, Elevations, Institutions):
@@ -63,7 +63,7 @@ for country in countries:
         station_data.append([id, code, name, latitude, longitude, elevation, country, state, vpu])
 
 station_data_df = pd.DataFrame(station_data, columns=['id', 'samplingFeatureCode', 'name', 'latitude', 'longitude', 'elevation_m', 'country', 'state', 'vpu'])
-station_data_df.to_csv("/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/GEOGLOWS_Applications/Central_America/Belize_new_Stations_State_VPU.csv")
+station_data_df.to_csv("/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/GEOGLOWS_Applications/Central_America/Belize/Datos_Temporales/Belize_new_Stations_State_VPU.csv")
 
 
 
