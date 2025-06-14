@@ -119,16 +119,11 @@ simulated_august_2["plot_index"] = plot_index
 corrected_august_2 = corrected_august_2.copy()
 corrected_august_2["plot_index"] = plot_index
 
-###Station 1###
-observed_august_2 = observed_august_2.head(310)
-simulated_august_2 = simulated_august_2.head(310)
-corrected_august_2 = corrected_august_2.head(310)
-
 observed_august_3 = observed_august_2.dropna()
 
 # Plotting the first graph (top-left)
 axs[0, 0].plot(simulated_august_2["plot_index"], simulated_august_2[retro_input], label='Simulated Streamflow', color='#EF553B')
-axs[0, 0].set_title('Simulated Hydrograph for August (2008-2017)', fontweight='bold') #Station 1
+axs[0, 0].set_title('Simulated Hydrograph for August (2008-2024)', fontweight='bold') #Station 1
 axs[0, 0].set_ylabel('Streamflow (m³/s)')
 axs[0, 0].set_xlabel('Time')  # Adding x-label
 axs[0, 0].legend()
@@ -147,7 +142,7 @@ axs[0, 1].set_ylim(0, 2500)  #Station 1  # Set y-limit for the upper left plot
 # Plotting the third graph (bottom-left)
 axs[1, 0].plot(observed_august_3["plot_index"], observed_august_3['Water Level (m)'], label='Observed Water Level', color='#ff7f0e', linestyle='--', marker='o')
 axs[1, 0].plot(corrected_august_2["plot_index"], corrected_august_2['Transformed Water Level (m)'], label='Transformed Water Level', color='#1f77b4')
-axs[1, 0].set_title('Observed and Transformed Water Level values for August (2008-2017)', fontweight='bold') #Station 1
+axs[1, 0].set_title('Observed and Transformed Water Level values for August (2008-2024)', fontweight='bold') #Station 1
 axs[1, 0].set_ylabel('Water Level (m)')
 axs[1, 0].set_xlabel('Time')  # Adding x-label
 axs[1, 0].legend()

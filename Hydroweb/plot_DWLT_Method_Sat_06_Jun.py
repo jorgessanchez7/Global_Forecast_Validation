@@ -8,43 +8,49 @@ import matplotlib.pyplot as plt
 
 '''Input Data'''
 ###Station 1###
-obs_input = '714-0763-121-044'
-retro_input = '760583077'
-name = 'Mississippi_mississippi_km2378'
+#obs_input = '604-0031-659-037'
+#retro_input = '621109666'
+#name = 'Amazonas_xingu_km1020'
 
 ###Station 2###
-#obs_input = '605-0031-223-014'
-#retro_input = '620953148'
-#name = 'Amazonas_guapore_km3139'
+#obs_input = '412-0492-015-022'
+#retro_input = '441292437'
+#name = 'Indus_indus_km0949'
+
+###Station 3###
+obs_input = '605-0031-223-014'
+retro_input = '620953148'
+name = 'Amazonas_guapore_km3139'
+
 
 # Get Observed Data
 #observed_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Observed_Hydroweb/{0}.csv'.format(obs_input), index_col=0)
 observed_values = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Observed_Hydroweb\\{0}.csv'.format(obs_input), index_col=0)
 observed_values.index = pd.to_datetime(observed_values.index)
-observed_july = observed_values[observed_values.index.month == 7]
+observed_june = observed_values[observed_values.index.month == 6]
 
-dayavg_obs_july = hydrostats.data.daily_average(observed_july, rolling=True)
+dayavg_obs_june = hydrostats.data.daily_average(observed_june, rolling=True)
 
 # Get Simulated Data
 #simulated_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Simulated_Data/GEOGLOWS_v2/{0}.csv'.format(retro_input), index_col=0)
 simulated_values = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Simulated_Data\\GEOGLOWS_v2\\{0}.csv'.format(retro_input), index_col=0)
 simulated_values.index = pd.to_datetime(simulated_values.index)
-simulated_july = simulated_values[simulated_values.index.month == 7]
-simulated_july_2 = simulated_july.loc[simulated_july.index >= pd.to_datetime(dt.datetime(observed_july.index[0].year, observed_july.index[0].month, 1))]
+simulated_june = simulated_values[simulated_values.index.month == 6]
+simulated_june_2 = simulated_june.loc[simulated_june.index >= pd.to_datetime(dt.datetime(observed_june.index[0].year, observed_june.index[0].month, 1))]
 
-dayavg_sim_july = hydrostats.data.daily_average(simulated_july_2, rolling=True)
+dayavg_sim_june = hydrostats.data.daily_average(simulated_june_2, rolling=True)
 
 # Get Corrected Data
 #corrected_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/DWLT/GEOGLOWS_v2/{0}-{1}_WL.csv'.format(obs_input, retro_input), index_col=0)
 corrected_values = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\DWLT\\GEOGLOWS_v2\\{0}-{1}_WL.csv'.format(obs_input, retro_input), index_col=0)
 corrected_values.index = pd.to_datetime(corrected_values.index)
-corrected_july = corrected_values[corrected_values.index.month == 7]
-corrected_july_2 = corrected_july.loc[corrected_july.index >= pd.to_datetime(dt.datetime(observed_july.index[0].year, observed_july.index[0].month, 1))]
+corrected_june = corrected_values[corrected_values.index.month == 6]
+corrected_june_2 = corrected_june.loc[corrected_june.index >= pd.to_datetime(dt.datetime(observed_june.index[0].year, observed_june.index[0].month, 1))]
 
-dayavg_corr_july = hydrostats.data.daily_average(corrected_july_2, rolling=True)
+dayavg_corr_june = hydrostats.data.daily_average(corrected_june_2, rolling=True)
 
 # Get Observed FDC
-monObs = observed_july.dropna()
+monObs = observed_june.dropna()
 obs_tempMax = np.max(monObs.max())
 obs_tempMin = np.min(monObs.min())
 obs_maxVal = math.ceil(obs_tempMax)
@@ -63,7 +69,7 @@ obs_counts = obs_counts.astype(float) / monObs.size
 obscdf = np.cumsum(obs_counts)
 
 # Get Simulated FDC
-monSim = simulated_july.dropna()
+monSim = simulated_june.dropna()
 sim_tempMax = np.max(monSim.max())
 sim_tempMin = np.min(monSim.min())
 sim_maxVal = math.ceil(sim_tempMax)
@@ -82,7 +88,7 @@ sim_counts = sim_counts.astype(float) / monSim.size
 simcdf = np.cumsum(sim_counts)
 
 # Get Corrected FDC
-monCor = corrected_july.dropna()
+monCor = corrected_june.dropna()
 cor_tempMax = np.max(monCor.max())
 cor_tempMin = np.min(monCor.min())
 cor_maxVal = math.ceil(cor_tempMax)
@@ -104,79 +110,76 @@ corcdf = np.cumsum(cor_counts)
 fig, axs = plt.subplots(2, 2, figsize=(15, 10))
 
 #Reindexing observed data
-date_range = pd.date_range(start=simulated_july_2.index.min(), end=simulated_july_2.index.max(), freq='D')
-observed_july_2 = observed_july.reindex(date_range)
-observed_july_2.index.name = 'Datetime'
-observed_july_2 = observed_july_2[observed_july_2.index.month == 7]
+date_range = pd.date_range(start=simulated_june_2.index.min(), end=simulated_june_2.index.max(), freq='D')
+observed_june_2 = observed_june.reindex(date_range)
+observed_june_2.index.name = 'Datetime'
+observed_june_2 = observed_june_2[observed_june_2.index.month == 6]
 
 # Usamos directamente el índice actual del dataframe, sin importar qué fechas son
-plot_index = range(1, len(observed_july_2) + 1)
+plot_index = range(1, len(observed_june_2) + 1)
 
 # Asignar índice artificial a cada DataFrame (todos tienen igual longitud tras reindexado)
 
-observed_july_2 = observed_july_2.copy()
-observed_july_2["plot_index"] = plot_index
+observed_june_2 = observed_june_2.copy()
+observed_june_2["plot_index"] = plot_index
 
-simulated_july_2 = simulated_july_2.copy()
-simulated_july_2["plot_index"] = plot_index
+simulated_june_2 = simulated_june_2.copy()
+simulated_june_2["plot_index"] = plot_index
 
-corrected_july_2 = corrected_july_2.copy()
-corrected_july_2["plot_index"] = plot_index
+corrected_june_2 = corrected_june_2.copy()
+corrected_june_2["plot_index"] = plot_index
 
-###Station 1###
-#observed_july_2 = observed_july_2.head(217)
-#simulated_july_2 = simulated_july_2.head(217)
-#corrected_july_2 = corrected_july_2.head(217)
-#observed_july_2 = observed_july_2.iloc[93:]
-#simulated_july_2 = simulated_july_2.iloc[93:]
-#corrected_july_2 = corrected_july_2.iloc[93:]
-
-
-observed_july_3 = observed_july_2.dropna()
+observed_june_3 = observed_june_2.dropna()
 
 # Plotting the first graph (top-left)
-axs[0, 0].plot(simulated_july_2["plot_index"], simulated_july_2[retro_input], label='Simulated Streamflow', color='#EF553B')
-#axs[0, 0].set_title('Simulated Hydrograph for July (2011-2014)', fontweight='bold') #Station 1
-axs[0, 0].set_title('Simulated Hydrograph for July (2008-2024)', fontweight='bold') #Station 2
+axs[0, 0].plot(simulated_june_2["plot_index"], simulated_june_2[retro_input], label='Simulated Streamflow', color='#EF553B')
+axs[0, 0].set_title('Simulated Hydrograph for June (2009-2024)', fontweight='bold') #Station 1
 axs[0, 0].set_ylabel('Streamflow (m³/s)')
 axs[0, 0].set_xlabel('Time')  # Adding x-label
 axs[0, 0].legend()
 axs[0, 0].grid(True)  # Add grid
-axs[0, 0].set_ylim(0, 8000)  #Station 1  # Set y-limit for the upper left plot
-#axs[0, 0].set_ylim(0, 2000)  #Station 2  # Set y-limit for the upper left plot
+#axs[0, 0].set_ylim(0, 12000)  #Station 1  # Set y-limit for the upper left plot
+#axs[0, 0].set_ylim(0, 32000)  #Station 2  # Set y-limit for the upper left plot
+axs[0, 0].set_ylim(0, 12000)  #Station 3  # Set y-limit for the upper left plot
+
 
 # Plotting the second graph (top-right)
 axs[0, 1].plot(simcdf, sim_bin_edges, label='Sim. FDC', color='#EF553B')
-axs[0, 1].set_title('Flow Duration Curve For The Month of July', fontweight='bold')
+axs[0, 1].set_title('Flow Duration Curve For The Month of June', fontweight='bold')
 axs[0, 1].set_ylabel('Streamflow (m³/s)')
 axs[0, 1].set_xlabel('Nonexceedance Probability')  # Adding x-label
 axs[0, 1].legend()
 axs[0, 1].grid(True)  # Add grid
-axs[0, 1].set_ylim(0, 8000)  #Station 1  # Set y-limit for the upper left plot
-#axs[0, 1].set_ylim(0, 2000)  #Station 2  # Set y-limit for the upper left plot
+#axs[0, 1].set_ylim(0, 12000)  #Station 1  # Set y-limit for the upper left plot
+#axs[0, 1].set_ylim(0, 32000)  #Station 2  # Set y-limit for the upper left plot
+axs[0, 1].set_ylim(0, 12000)  #Station 3  # Set y-limit for the upper left plot
+
 
 # Plotting the third graph (bottom-left)
-axs[1, 0].plot(observed_july_3["plot_index"], observed_july_3['Water Level (m)'], label='Observed Water Level', color='#ff7f0e', linestyle='--', marker='o')
-axs[1, 0].plot(corrected_july_2["plot_index"], corrected_july_2['Transformed Water Level (m)'], label='Transformed Water Level', color='#1f77b4')
-#axs[1, 0].set_title('Observed and Transformed Water Level values for July (2011-2014)', fontweight='bold') #Station 1
-axs[1, 0].set_title('Observed and Transformed Water Level values for July (2008-2024)', fontweight='bold') #Station 2
+axs[1, 0].plot(observed_june_3["plot_index"], observed_june_3['Water Level (m)'], label='Observed Water Level', color='#ff7f0e', linestyle='--', marker='o')
+axs[1, 0].plot(corrected_june_2["plot_index"], corrected_june_2['Transformed Water Level (m)'], label='Transformed Water Level', color='#1f77b4')
+axs[1, 0].set_title('Observed and Transformed Water Level values for June (2009-2024)', fontweight='bold') #Station 1
 axs[1, 0].set_ylabel('Water Level (m)')
 axs[1, 0].set_xlabel('Time')  # Adding x-label
 axs[1, 0].legend()
 axs[1, 0].grid(True)  # Add grid
-axs[1, 0].set_ylim(172, 178)  #Station 1  # Set y-limit for the upper left plot
-#axs[1, 0].set_ylim(131, 138) #Station 2  # Set y-limit for the upper left plot
+#axs[1, 0].set_ylim(168, 173)  #Station 1  # Set y-limit for the upper left plot
+#axs[1, 0].set_ylim(80, 85)  #Station 2  # Set y-limit for the upper left plot
+axs[1, 0].set_ylim(132, 138)  #Station 3  # Set y-limit for the upper left plot
+
 
 # Plotting the fourth graph (bottom-right)
 axs[1, 1].plot(obscdf, obs_bin_edges, label='Obs. WLDC', color='#ff7f0e', linestyle='--')
 #axs[1, 1].plot(corcdf, cor_bin_edges, label='Sim. WLDC', color='#1f77b4')
-axs[1, 1].set_title('Water Level Duration Curve For The Month of July', fontweight='bold')
+axs[1, 1].set_title('Water Level Duration Curve For The Month of June', fontweight='bold')
 axs[1, 1].set_ylabel('Water Level (m)')
 axs[1, 1].set_xlabel('Nonexceedance Probability')  # Adding x-label
 axs[1, 1].legend()
 axs[1, 1].grid(True)  # Add grid
-axs[1, 1].set_ylim(172, 178)  #Station 1  # Set y-limit for the upper left plot
-#axs[1, 1].set_ylim(131, 138) #Station 2  # Set y-limit for the upper left plot
+#axs[1, 1].set_ylim(168, 173)  #Station 1  # Set y-limit for the upper left plot
+#axs[1, 1].set_ylim(80, 85)  #Station 2  # Set y-limit for the upper left plot
+axs[1, 1].set_ylim(132, 138)  #Station 3  # Set y-limit for the upper left plot
+
 
 # Adjusting x-axis dates for upper-left and lower-left plots
 for ax in axs.flat[[0, 2]]:
@@ -196,24 +199,34 @@ f_cor_inv = interpolate.interp1d(corcdf, cor_bin_edges)
 
 # Plotting horizontal lines connecting upper-left and upper-right plots
 #Station 1
-point1_x = simulated_july_2["plot_index"][157]  #point in upper left plot
-point1_y = simulated_july_2['{}'.format(retro_input)][157]  #point in upper left plot
-point2_x = f_sim(point1_y)  #point in upper right plot
-point2_y = simulated_july_2['{}'.format(retro_input)][157]  #point in upper right plot
-point3_x = point2_x  #point in lower right plot
-point3_y = ((f_obs_inv(point2_x))+(corrected_july_2['Transformed Water Level (m)'][157])) / 2
-point4_x = simulated_july_2["plot_index"][157]  #point in lower left plot
-point4_y = point3_y  #point in lower left plot
+#point1_x = simulated_june_2["plot_index"][240]  #point in upper left plot
+#point1_y = simulated_june_2['{}'.format(retro_input)][240]  #point in upper left plot
+#point2_x = f_sim(point1_y)  #point in upper right plot
+#point2_y = simulated_june_2['{}'.format(retro_input)][240]  #point in upper right plot
+#point3_x = point2_x  #point in lower right plot
+#point3_y = ((f_obs_inv(point2_x))+(corrected_june_2['Transformed Water Level (m)'][240])) / 2
+#point4_x = simulated_june_2["plot_index"][240]  #point in lower left plot
+#point4_y = point3_y  #point in lower left plot
 
 #Station 2
-#point1_x = simulated_july_2["plot_index"][280]  #point in upper left plot
-#point1_y = simulated_july_2['{}'.format(retro_input)][280]  #point in upper left plot
+#point1_x = simulated_june_2["plot_index"][148]  #point in upper left plot
+#point1_y = simulated_june_2['{}'.format(retro_input)][148]  #point in upper left plot
 #point2_x = f_sim(point1_y)  #point in upper right plot
-#point2_y = simulated_july_2['{}'.format(retro_input)][280]  #point in upper right plot
+#point2_y = simulated_june_2['{}'.format(retro_input)][148]  #point in upper right plot
 #point3_x = point2_x  #point in lower right plot
-#point3_y = ((f_obs_inv(point2_x))+(corrected_july_2['Transformed Water Level (m)'][280])) / 2
-#point4_x = simulated_july_2["plot_index"][280]  #point in lower left plot
+#point3_y = ((f_obs_inv(point2_x))+(corrected_june_2['Transformed Water Level (m)'][148])) / 2
+#point4_x = simulated_june_2["plot_index"][148]  #point in lower left plot
 #point4_y = point3_y  #point in lower left plot
+
+#Station 3
+point1_x = simulated_june_2["plot_index"][95]  #point in upper left plot
+point1_y = simulated_june_2['{}'.format(retro_input)][95]  #point in upper left plot
+point2_x = f_sim(point1_y)  #point in upper right plot
+point2_y = simulated_june_2['{}'.format(retro_input)][95]  #point in upper right plot
+point3_x = point2_x  #point in lower right plot
+point3_y = ((f_obs_inv(point2_x))+(corrected_june_2['Transformed Water Level (m)'][95])) / 2
+point4_x = simulated_june_2["plot_index"][95]  #point in lower left plot
+point4_y = point3_y  #point in lower left plot
 
 # Plotting horizontal line with markers
 #axs[0, 0].text(point1_x, point1_y+50, '1', color='black', ha='center', va='bottom') #Station 1
@@ -231,8 +244,15 @@ axs[0, 1].scatter(point2_x, point2_y, color='black', s=10)
 axs[1, 1].scatter(point3_x, point3_y, color='black', s=10)
 axs[1, 0].scatter(point4_x, point4_y, color='black', s=10)
 
-#plt.savefig('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Plots/DWLT Method {}.png'.format(name), dpi=700)
-plt.savefig('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Plots\\DWLT Method {}.png'.format(name), dpi=700)
+if name == 'Amazonas_xingu_km1020':
+    #plt.savefig('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Plots/DWLT Method {}.png'.format(name), dpi=700)
+    plt.savefig('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Plots\\DWLT Method {}_v2.png'.format(name), dpi=700)
+elif name == 'Amazonas_guapore_km3139':
+    #plt.savefig('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Plots/DWLT Method {}.png'.format(name), dpi=700)
+    plt.savefig('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Plots\\DWLT Method {}_v2.png'.format(name), dpi=700)
+else:
+    # plt.savefig('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Plots/DWLT Method {}.png'.format(name), dpi=700)
+    plt.savefig('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Plots\\DWLT Method {}.png'.format(name), dpi=700)
 
 # Show the plots
 plt.show()

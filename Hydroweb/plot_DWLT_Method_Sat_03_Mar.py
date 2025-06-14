@@ -234,7 +234,6 @@ point3_y = ((f_obs_inv(point2_x))+(corrected_march_2['Transformed Water Level (m
 point4_x = simulated_march_2["plot_index"][309]  #point in lower left plot
 point4_y = point3_y  #point in lower left plot
 
-
 # Plotting horizontal line with markers
 #axs[0, 0].text(point1_x, point1_y+50, '1', color='black', ha='center', va='bottom') #Station 1
 #axs[0, 1].text(point2_x, point2_y+250, '2', color='black', ha='left', va='bottom') #Station 1

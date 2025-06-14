@@ -34,14 +34,16 @@ name = 'Sao-Francisco_sao-Francisco_km1577'
 
 
 # Get Observed Data
-observed_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Observed_Hydroweb/{0}.csv'.format(obs_input), index_col=0)
+#observed_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Observed_Hydroweb/{0}.csv'.format(obs_input), index_col=0)
+observed_values = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Observed_Hydroweb\\{0}.csv'.format(obs_input), index_col=0)
 observed_values.index = pd.to_datetime(observed_values.index)
 observed_april = observed_values[observed_values.index.month == 4]
 
 dayavg_obs_april = hydrostats.data.daily_average(observed_april, rolling=True)
 
 # Get Simulated Data
-simulated_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Simulated_Data/GEOGLOWS_v2/{0}.csv'.format(retro_input), index_col=0)
+#simulated_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Simulated_Data/GEOGLOWS_v2/{0}.csv'.format(retro_input), index_col=0)
+simulated_values = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Simulated_Data\\GEOGLOWS_v2\\{0}.csv'.format(retro_input), index_col=0)
 simulated_values.index = pd.to_datetime(simulated_values.index)
 simulated_april = simulated_values[simulated_values.index.month == 4]
 simulated_april_2 = simulated_april.loc[simulated_april.index >= pd.to_datetime(dt.datetime(observed_april.index[0].year, observed_april.index[0].month, 1))]
@@ -49,7 +51,8 @@ simulated_april_2 = simulated_april.loc[simulated_april.index >= pd.to_datetime(
 dayavg_sim_april = hydrostats.data.daily_average(simulated_april_2, rolling=True)
 
 # Get Corrected Data
-corrected_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/DWLT/GEOGLOWS_v2/{0}-{1}_WL.csv'.format(obs_input, retro_input), index_col=0)
+#corrected_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/DWLT/GEOGLOWS_v2/{0}-{1}_WL.csv'.format(obs_input, retro_input), index_col=0)
+corrected_values = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\DWLT\\GEOGLOWS_v2\\{0}-{1}_WL.csv'.format(obs_input, retro_input), index_col=0)
 corrected_values.index = pd.to_datetime(corrected_values.index)
 corrected_april = corrected_values[corrected_values.index.month == 4]
 corrected_april_2 = corrected_april.loc[corrected_april.index >= pd.to_datetime(dt.datetime(observed_april.index[0].year, observed_april.index[0].month, 1))]
@@ -163,19 +166,15 @@ corrected_april_2["plot_index"] = plot_index
 #corrected_april_2 = corrected_april_2.iloc[330:]
 
 ###Station 5###
-observed_april_2 = observed_april_2.head(180)
-simulated_april_2 = simulated_april_2.head(180)
-corrected_april_2 = corrected_april_2.head(180)
+#observed_april_2 = observed_april_2.head(180)
+#simulated_april_2 = simulated_april_2.head(180)
+#corrected_april_2 = corrected_april_2.head(180)
 
 observed_april_3 = observed_april_2.dropna()
 
 # Plotting the first graph (top-left)
 axs[0, 0].plot(simulated_april_2["plot_index"], simulated_april_2[retro_input], label='Simulated Streamflow', color='#EF553B')
-#axs[0, 0].set_title('Simulated Hydrograph for April (2009-2015)', fontweight='bold') #Station 1
-#axs[0, 0].set_title('Simulated Hydrograph for April (2011-2014)', fontweight='bold') #Station 2
-#axs[0, 0].set_title('Simulated Hydrograph for April (2009-2014)', fontweight='bold') #Station 3
-#axs[0, 0].set_title('Simulated Hydrograph for April (2020-2023)', fontweight='bold') #Station 4
-axs[0, 0].set_title('Simulated Hydrograph for April (2009-2014)', fontweight='bold') #Station 5
+axs[0, 0].set_title('Simulated Hydrograph for April (2009-2025)', fontweight='bold') #Station 1
 axs[0, 0].set_ylabel('Streamflow (m³/s)')
 axs[0, 0].set_xlabel('Time')  # Adding x-label
 axs[0, 0].legend()
@@ -202,11 +201,7 @@ axs[0, 1].set_ylim(0, 31000)  #Station 4  # Set y-limit for the upper left plot
 # Plotting the third graph (bottom-left)
 axs[1, 0].plot(observed_april_3["plot_index"], observed_april_3['Water Level (m)'], label='Observed Water Level', color='#ff7f0e', linestyle='--', marker='o')
 axs[1, 0].plot(corrected_april_2["plot_index"], corrected_april_2['Transformed Water Level (m)'], label='Transformed Water Level', color='#1f77b4')
-#axs[1, 0].set_title('Observed and Transformed Water Level values for April (2009-2015)', fontweight='bold') #Station 1
-#axs[1, 0].set_title('Observed and Transformed Water Level values for April (2011-2014)', fontweight='bold') #Station 2
-#axs[1, 0].set_title('Observed and Transformed Water Level values for April (2009-2014)', fontweight='bold') #Station 3
-#axs[1, 0].set_title('Observed and Transformed Water Level values for April (2020-2023)', fontweight='bold') #Station 4
-axs[1, 0].set_title('Observed and Transformed Water Level values for April (2009-2014)', fontweight='bold') #Station 5
+axs[1, 0].set_title('Observed and Transformed Water Level values for April (2009-2025)', fontweight='bold') #Station 1
 axs[1, 0].set_ylabel('Water Level (m)')
 axs[1, 0].set_xlabel('Time')  # Adding x-label
 axs[1, 0].legend()
@@ -249,23 +244,23 @@ f_cor_inv = interpolate.interp1d(corcdf, cor_bin_edges)
 
 # Plotting horizontal lines connecting upper-left and upper-right plots
 #Station 1
-#point1_x = simulated_april_2["plot_index"][119]  #point in upper left plot
-#point1_y = simulated_april_2['{}'.format(retro_input)][119]  #point in upper left plot
+#point1_x = simulated_april_2["plot_index"][239]  #point in upper left plot
+#point1_y = simulated_april_2['{}'.format(retro_input)][239]  #point in upper left plot
 #point2_x = f_sim(point1_y)  #point in upper right plot
-#point2_y = simulated_april_2['{}'.format(retro_input)][119]  #point in upper right plot
+#point2_y = simulated_april_2['{}'.format(retro_input)][239]  #point in upper right plot
 #point3_x = point2_x  #point in lower right plot
-#point3_y = ((f_obs_inv(point2_x))+(corrected_april_2['Transformed Water Level (m)'][119])) / 2
-#point4_x = simulated_april_2["plot_index"][119]  #point in lower left plot
+#point3_y = ((f_obs_inv(point2_x))+(corrected_april_2['Transformed Water Level (m)'][239])) / 2
+#point4_x = simulated_april_2["plot_index"][239]  #point in lower left plot
 #point4_y = point3_y  #point in lower left plot
 
 #Station 2
-#point1_x = simulated_april_2["plot_index"][86]  #point in upper left plot
-#point1_y = simulated_april_2['{}'.format(retro_input)][86]  #point in upper left plot
+#point1_x = simulated_april_2["plot_index"][146]  #point in upper left plot
+#point1_y = simulated_april_2['{}'.format(retro_input)][146]  #point in upper left plot
 #point2_x = f_sim(point1_y)  #point in upper right plot
-#point2_y = simulated_april_2['{}'.format(retro_input)][86]  #point in upper right plot
+#point2_y = simulated_april_2['{}'.format(retro_input)][146]  #point in upper right plot
 #point3_x = point2_x  #point in lower right plot
-#point3_y = ((f_obs_inv(point2_x))+(corrected_april_2['Transformed Water Level (m)'][86])) / 2
-#point4_x = simulated_april_2["plot_index"][86]  #point in lower left plot
+#point3_y = ((f_obs_inv(point2_x))+(corrected_april_2['Transformed Water Level (m)'][146])) / 2
+#point4_x = simulated_april_2["plot_index"][146]  #point in lower left plot
 #point4_y = point3_y  #point in lower left plot
 
 #Station 3
@@ -279,13 +274,13 @@ f_cor_inv = interpolate.interp1d(corcdf, cor_bin_edges)
 #point4_y = point3_y  #point in lower left plot
 
 #Station 4
-#point1_x = simulated_april_2["plot_index"][58]  #point in upper left plot
-#point1_y = simulated_april_2['{}'.format(retro_input)][58]  #point in upper left plot
+#point1_x = simulated_april_2["plot_index"][388]  #point in upper left plot
+#point1_y = simulated_april_2['{}'.format(retro_input)][388]  #point in upper left plot
 #point2_x = f_sim(point1_y)  #point in upper right plot
-#point2_y = simulated_april_2['{}'.format(retro_input)][58]  #point in upper right plot
+#point2_y = simulated_april_2['{}'.format(retro_input)][388]  #point in upper right plot
 #point3_x = point2_x  #point in lower right plot
-#point3_y = ((f_obs_inv(point2_x))+(corrected_april_2['Transformed Water Level (m)'][58])) / 2
-#point4_x = simulated_april_2["plot_index"][58]  #point in lower left plot
+#point3_y = ((f_obs_inv(point2_x))+(corrected_april_2['Transformed Water Level (m)'][388])) / 2
+#point4_x = simulated_april_2["plot_index"][388]  #point in lower left plot
 #point4_y = point3_y  #point in lower left plot
 
 #Station 5
@@ -314,7 +309,8 @@ axs[0, 1].scatter(point2_x, point2_y, color='black', s=10)
 axs[1, 1].scatter(point3_x, point3_y, color='black', s=10)
 axs[1, 0].scatter(point4_x, point4_y, color='black', s=10)
 
-plt.savefig('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Plots/DWLT Method {}.png'.format(name), dpi=700)
+#plt.savefig('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Plots/DWLT Method {}.png'.format(name), dpi=700)
+plt.savefig('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Plots\\DWLT Method {}.png'.format(name), dpi=700)
 
 # Show the plots
 plt.show()
