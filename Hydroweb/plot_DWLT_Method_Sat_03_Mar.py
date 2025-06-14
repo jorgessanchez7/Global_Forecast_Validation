@@ -18,9 +18,14 @@ import matplotlib.pyplot as plt
 #name = 'Terek_terek_km0150'
 
 ###Station 3###
-obs_input = '605-0031-625-001'
-retro_input = '621030902'
-name = 'Amazonas_uaupes_km2380'
+#obs_input = '605-0031-625-001'
+#retro_input = '621030902'
+#name = 'Amazonas_uaupes_km2380'
+
+###Station 4###
+obs_input = '605-0031-447-025'
+retro_input = '621010321'
+name = 'Amazonas_negro_km1739'
 
 # Get Observed Data
 #observed_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Observed_Hydroweb/{0}.csv'.format(obs_input), index_col=0)
@@ -149,7 +154,8 @@ axs[0, 0].legend()
 axs[0, 0].grid(True)  # Add grid
 #axs[0, 0].set_ylim(0, 25000)  #Station 1  # Set y-limit for the upper left plot
 #axs[0, 0].set_ylim(0, 2100)  #Station 2  # Set y-limit for the upper left plot
-axs[0, 0].set_ylim(0, 30500)  #Station 2  # Set y-limit for the upper left plot
+#axs[0, 0].set_ylim(0, 30500)  #Station 3  # Set y-limit for the upper left plot
+axs[0, 0].set_ylim(0, 45000)  #Station 4  # Set y-limit for the upper left plot
 
 # Plotting the second graph (top-right)
 axs[0, 1].plot(simcdf, sim_bin_edges, label='Sim. FDC', color='#EF553B')
@@ -160,7 +166,8 @@ axs[0, 1].legend()
 axs[0, 1].grid(True)  # Add grid
 #axs[0, 1].set_ylim(0, 25000)  #Station 1  # Set y-limit for the upper left plot
 #axs[0, 1].set_ylim(0, 2100)  #Station 2  # Set y-limit for the upper left plot
-axs[0, 1].set_ylim(0, 30500)  #Station 3  # Set y-limit for the upper left plot
+#axs[0, 1].set_ylim(0, 30500)  #Station 3  # Set y-limit for the upper left plot
+axs[0, 1].set_ylim(0, 45000)  #Station 4  # Set y-limit for the upper left plot
 
 # Plotting the third graph (bottom-left)
 axs[1, 0].plot(observed_march_3["plot_index"], observed_march_3['Water Level (m)'], label='Observed Water Level', color='#ff7f0e', linestyle='--', marker='o')
@@ -173,7 +180,8 @@ axs[1, 0].legend()
 axs[1, 0].grid(True)  # Add grid
 #axs[1, 0].set_ylim(2, 6)  #Station 1  # Set y-limit for the upper left plot
 #axs[1, 0].set_ylim(14, 17) #Station 2  # Set y-limit for the upper left plot
-axs[1, 0].set_ylim(60, 70) #Station 3  # Set y-limit for the upper left plot
+#axs[1, 0].set_ylim(60, 70) #Station 3  # Set y-limit for the upper left plot
+axs[1, 0].set_ylim(15, 25) #Station 4  # Set y-limit for the upper left plot
 
 # Plotting the fourth graph (bottom-right)
 axs[1, 1].plot(obscdf, obs_bin_edges, label='Obs. WLDC', color='#ff7f0e', linestyle='--')
@@ -185,7 +193,8 @@ axs[1, 1].legend()
 axs[1, 1].grid(True)  # Add grid
 #axs[1, 1].set_ylim(2, 6)  #Station 1  # Set y-limit for the upper left plot
 #axs[1, 1].set_ylim(14, 17) #Station 2  # Set y-limit for the upper left plot
-axs[1, 1].set_ylim(60, 70) #Station 3  # Set y-limit for the upper left plot
+#axs[1, 1].set_ylim(60, 70) #Station 3  # Set y-limit for the upper left plot
+axs[1, 1].set_ylim(15, 25) #Station 4  # Set y-limit for the upper left plot
 
 # Adjusting x-axis dates for upper-left and lower-left plots
 for ax in axs.flat[[0, 2]]:
@@ -225,13 +234,23 @@ f_cor_inv = interpolate.interp1d(corcdf, cor_bin_edges)
 #point4_y = point3_y  #point in lower left plot
 
 #Station 3
-point1_x = simulated_march_2["plot_index"][309]  #point in upper left plot
-point1_y = simulated_march_2['{}'.format(retro_input)][309]  #point in upper left plot
+#point1_x = simulated_march_2["plot_index"][309]  #point in upper left plot
+#point1_y = simulated_march_2['{}'.format(retro_input)][309]  #point in upper left plot
+#point2_x = f_sim(point1_y)  #point in upper right plot
+#point2_y = simulated_march_2['{}'.format(retro_input)][309]  #point in upper right plot
+#point3_x = point2_x  #point in lower right plot
+#point3_y = ((f_obs_inv(point2_x))+(corrected_march_2['Transformed Water Level (m)'][309])) / 2
+#point4_x = simulated_march_2["plot_index"][309]  #point in lower left plot
+#point4_y = point3_y  #point in lower left plot
+
+#Station 4
+point1_x = simulated_march_2["plot_index"][310]  #point in upper left plot
+point1_y = simulated_march_2['{}'.format(retro_input)][310]  #point in upper left plot
 point2_x = f_sim(point1_y)  #point in upper right plot
-point2_y = simulated_march_2['{}'.format(retro_input)][309]  #point in upper right plot
+point2_y = simulated_march_2['{}'.format(retro_input)][310]  #point in upper right plot
 point3_x = point2_x  #point in lower right plot
-point3_y = ((f_obs_inv(point2_x))+(corrected_march_2['Transformed Water Level (m)'][309])) / 2
-point4_x = simulated_march_2["plot_index"][309]  #point in lower left plot
+point3_y = ((f_obs_inv(point2_x))+(corrected_march_2['Transformed Water Level (m)'][310])) / 2
+point4_x = simulated_march_2["plot_index"][310]  #point in lower left plot
 point4_y = point3_y  #point in lower left plot
 
 # Plotting horizontal line with markers

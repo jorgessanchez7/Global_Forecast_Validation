@@ -140,7 +140,7 @@ axs[0, 0].legend()
 axs[0, 0].grid(True)  # Add grid
 #axs[0, 0].set_ylim(0, 12000)  #Station 1  # Set y-limit for the upper left plot
 #axs[0, 0].set_ylim(0, 32000)  #Station 2  # Set y-limit for the upper left plot
-axs[0, 0].set_ylim(0, 12000)  #Station 3  # Set y-limit for the upper left plot
+axs[0, 0].set_ylim(0, 12500)  #Station 3  # Set y-limit for the upper left plot
 
 
 # Plotting the second graph (top-right)
@@ -152,7 +152,7 @@ axs[0, 1].legend()
 axs[0, 1].grid(True)  # Add grid
 #axs[0, 1].set_ylim(0, 12000)  #Station 1  # Set y-limit for the upper left plot
 #axs[0, 1].set_ylim(0, 32000)  #Station 2  # Set y-limit for the upper left plot
-axs[0, 1].set_ylim(0, 12000)  #Station 3  # Set y-limit for the upper left plot
+axs[0, 1].set_ylim(0, 12500)  #Station 3  # Set y-limit for the upper left plot
 
 
 # Plotting the third graph (bottom-left)

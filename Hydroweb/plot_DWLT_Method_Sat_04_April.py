@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 
 '''Input Data'''
 ###Station 1###
-#obs_input = '409-0388-020-021'
-#retro_input = '441167304'
-#name = 'Ganges-Brahmaputra_brahmaputra_km0809'
+obs_input = '409-0388-020-021'
+retro_input = '441167304'
+name = 'Ganges-Brahmaputra_brahmaputra_km0809'
 
 ###Station 2###
 #obs_input = '203-0314-005-011'
@@ -28,9 +28,9 @@ import matplotlib.pyplot as plt
 #name = 'Kuban_kuban_km0397'
 
 ###Station 5###
-obs_input = '607-1087-026-035'
-retro_input = '630202025'
-name = 'Sao-Francisco_sao-Francisco_km1577'
+#obs_input = '607-1087-026-035'
+#retro_input = '630202025'
+#name = 'Sao-Francisco_sao-Francisco_km1577'
 
 
 # Get Observed Data
@@ -179,11 +179,11 @@ axs[0, 0].set_ylabel('Streamflow (m³/s)')
 axs[0, 0].set_xlabel('Time')  # Adding x-label
 axs[0, 0].legend()
 axs[0, 0].grid(True)  # Add grid
-#axs[0, 0].set_ylim(2000, 50000)  #Station 1  # Set y-limit for the upper left plot
+axs[0, 0].set_ylim(0, 51000)  #Station 1  # Set y-limit for the upper left plot
 #axs[0, 0].set_ylim(0, 1300)  #Station 2  # Set y-limit for the upper left plot
 #axs[0, 0].set_ylim(0, 3500)  #Station 3  # Set y-limit for the upper left plot
 #axs[0, 0].set_ylim(0, 1600)  #Station 4  # Set y-limit for the upper left plot
-axs[0, 0].set_ylim(0, 31000)  #Station 5  # Set y-limit for the upper left plot
+#axs[0, 0].set_ylim(0, 31000)  #Station 5  # Set y-limit for the upper left plot
 
 # Plotting the second graph (top-right)
 axs[0, 1].plot(simcdf, sim_bin_edges, label='Sim. FDC', color='#EF553B')
@@ -192,11 +192,11 @@ axs[0, 1].set_ylabel('Streamflow (m³/s)')
 axs[0, 1].set_xlabel('Nonexceedance Probability')  # Adding x-label
 axs[0, 1].legend()
 axs[0, 1].grid(True)  # Add grid
-#axs[0, 1].set_ylim(2000, 50000)  #Station 1  # Set y-limit for the upper left plot
+axs[0, 1].set_ylim(0, 51000)  #Station 1  # Set y-limit for the upper left plot
 #axs[0, 1].set_ylim(0, 1300)  #Station 2  # Set y-limit for the upper left plot
 #axs[0, 1].set_ylim(0, 3500)  #Station 3  # Set y-limit for the upper left plot
 #axs[0, 1].set_ylim(0, 1600)  #Station 4  # Set y-limit for the upper left plot
-axs[0, 1].set_ylim(0, 31000)  #Station 4  # Set y-limit for the upper left plot
+#axs[0, 1].set_ylim(0, 31000)  #Station 4  # Set y-limit for the upper left plot
 
 # Plotting the third graph (bottom-left)
 axs[1, 0].plot(observed_april_3["plot_index"], observed_april_3['Water Level (m)'], label='Observed Water Level', color='#ff7f0e', linestyle='--', marker='o')
@@ -206,11 +206,11 @@ axs[1, 0].set_ylabel('Water Level (m)')
 axs[1, 0].set_xlabel('Time')  # Adding x-label
 axs[1, 0].legend()
 axs[1, 0].grid(True)  # Add grid
-#axs[1, 0].set_ylim(67, 77)  #Station 1  # Set y-limit for the upper left plot
+axs[1, 0].set_ylim(67, 76)  #Station 1  # Set y-limit for the upper left plot
 #axs[1, 0].set_ylim(129, 136)  #Station 2  # Set y-limit for the upper left plot
 #axs[1, 0].set_ylim(127, 135)  #Station 3  # Set y-limit for the upper left plot
 #axs[1, 0].set_ylim(48, 53)  #Station 4  # Set y-limit for the upper left plot
-axs[1, 0].set_ylim(429, 438)  #Station 5  # Set y-limit for the upper left plot
+#axs[1, 0].set_ylim(429, 438)  #Station 5  # Set y-limit for the upper left plot
 
 # Plotting the fourth graph (bottom-right)
 axs[1, 1].plot(obscdf, obs_bin_edges, label='Obs. WLDC', color='#ff7f0e', linestyle='--')
@@ -220,11 +220,11 @@ axs[1, 1].set_ylabel('Water Level (m)')
 axs[1, 1].set_xlabel('Nonexceedance Probability')  # Adding x-label
 axs[1, 1].legend()
 axs[1, 1].grid(True)  # Add grid
-#axs[1, 1].set_ylim(67, 77)  #Station 1  # Set y-limit for the upper left plot
+axs[1, 1].set_ylim(67, 76)  #Station 1  # Set y-limit for the upper left plot
 #axs[1, 1].set_ylim(129, 136)  #Station 2  # Set y-limit for the upper left plot
 #axs[1, 1].set_ylim(127, 135)  #Station 3  # Set y-limit for the upper left plot
 #axs[1, 1].set_ylim(48, 53)  #Station 3  # Set y-limit for the upper left plot
-axs[1, 1].set_ylim(429, 438)  #Station 3  # Set y-limit for the upper left plot
+#axs[1, 1].set_ylim(429, 438)  #Station 3  # Set y-limit for the upper left plot
 
 # Adjusting x-axis dates for upper-left and lower-left plots
 for ax in axs.flat[[0, 2]]:
@@ -244,14 +244,14 @@ f_cor_inv = interpolate.interp1d(corcdf, cor_bin_edges)
 
 # Plotting horizontal lines connecting upper-left and upper-right plots
 #Station 1
-#point1_x = simulated_april_2["plot_index"][239]  #point in upper left plot
-#point1_y = simulated_april_2['{}'.format(retro_input)][239]  #point in upper left plot
-#point2_x = f_sim(point1_y)  #point in upper right plot
-#point2_y = simulated_april_2['{}'.format(retro_input)][239]  #point in upper right plot
-#point3_x = point2_x  #point in lower right plot
-#point3_y = ((f_obs_inv(point2_x))+(corrected_april_2['Transformed Water Level (m)'][239])) / 2
-#point4_x = simulated_april_2["plot_index"][239]  #point in lower left plot
-#point4_y = point3_y  #point in lower left plot
+point1_x = simulated_april_2["plot_index"][239]  #point in upper left plot
+point1_y = simulated_april_2['{}'.format(retro_input)][239]  #point in upper left plot
+point2_x = f_sim(point1_y)  #point in upper right plot
+point2_y = simulated_april_2['{}'.format(retro_input)][239]  #point in upper right plot
+point3_x = point2_x  #point in lower right plot
+point3_y = ((f_obs_inv(point2_x))+(corrected_april_2['Transformed Water Level (m)'][239])) / 2
+point4_x = simulated_april_2["plot_index"][239]  #point in lower left plot
+point4_y = point3_y  #point in lower left plot
 
 #Station 2
 #point1_x = simulated_april_2["plot_index"][146]  #point in upper left plot
@@ -284,14 +284,14 @@ f_cor_inv = interpolate.interp1d(corcdf, cor_bin_edges)
 #point4_y = point3_y  #point in lower left plot
 
 #Station 5
-point1_x = simulated_april_2["plot_index"][60]  #point in upper left plot
-point1_y = simulated_april_2['{}'.format(retro_input)][60]  #point in upper left plot
-point2_x = f_sim(point1_y)  #point in upper right plot
-point2_y = simulated_april_2['{}'.format(retro_input)][60]  #point in upper right plot
-point3_x = point2_x  #point in lower right plot
-point3_y = ((f_obs_inv(point2_x))+(corrected_april_2['Transformed Water Level (m)'][60])) / 2
-point4_x = simulated_april_2["plot_index"][60]  #point in lower left plot
-point4_y = point3_y  #point in lower left plot
+#point1_x = simulated_april_2["plot_index"][60]  #point in upper left plot
+#point1_y = simulated_april_2['{}'.format(retro_input)][60]  #point in upper left plot
+#point2_x = f_sim(point1_y)  #point in upper right plot
+#point2_y = simulated_april_2['{}'.format(retro_input)][60]  #point in upper right plot
+#point3_x = point2_x  #point in lower right plot
+#point3_y = ((f_obs_inv(point2_x))+(corrected_april_2['Transformed Water Level (m)'][60])) / 2
+#point4_x = simulated_april_2["plot_index"][60]  #point in lower left plot
+#point4_y = point3_y  #point in lower left plot
 
 # Plotting horizontal line with markers
 #axs[0, 0].text(point1_x, point1_y+50, '1', color='black', ha='center', va='bottom') #Station 1

@@ -8,14 +8,14 @@ import matplotlib.pyplot as plt
 
 '''Input Data'''
 ###Station 1###
-#obs_input = '122-0837-018-008'
-#retro_input = '160521695'
-#name = 'Nile_baro_km4616'
+obs_input = '122-0837-018-008'
+retro_input = '160521695'
+name = 'Nile_baro_km4616'
 
 ###Station 2###
-obs_input = '503-1100-006-005'
-retro_input = '530187786'
-name = 'Sepik_sepik_km0150'
+#obs_input = '503-1100-006-005'
+#retro_input = '530187786'
+#name = 'Sepik_sepik_km0150'
 
 ###Station 3###
 #obs_input = '409-0388-040-053'
@@ -138,9 +138,9 @@ corrected_october_2["plot_index"] = plot_index
 #corrected_october_2 = corrected_october_2.iloc[62:]
 
 ###Station 2###
-observed_october_2 = observed_october_2.head(124)
-simulated_october_2 = simulated_october_2.head(124)
-corrected_october_2 = corrected_october_2.head(124)
+#observed_october_2 = observed_october_2.head(124)
+#simulated_october_2 = simulated_october_2.head(124)
+#corrected_october_2 = corrected_october_2.head(124)
 
 ###Station 3###
 #observed_october_2 = observed_october_2.head(341)
@@ -154,15 +154,15 @@ observed_october_3 = observed_october_2.dropna()
 
 # Plotting the first graph (top-left)
 axs[0, 0].plot(simulated_october_2["plot_index"], simulated_october_2[retro_input], label='Simulated Streamflow', color='#EF553B')
-#axs[0, 0].set_title('Simulated Hydrograph for October (2010-2014)', fontweight='bold') #Station 1
-axs[0, 0].set_title('Simulated Hydrograph for October (2008-2011)', fontweight='bold') #Station 2
+axs[0, 0].set_title('Simulated Hydrograph for October (2008-2024)', fontweight='bold') #Station 1
+#axs[0, 0].set_title('Simulated Hydrograph for October (2008-2024)', fontweight='bold') #Station 2
 #axs[0, 0].set_title('Simulated Hydrograph for October (2008-2024)', fontweight='bold') #Station 3
 axs[0, 0].set_ylabel('Streamflow (m³/s)')
 axs[0, 0].set_xlabel('Time')  # Adding x-label
 axs[0, 0].legend()
 axs[0, 0].grid(True)  # Add grid
-#axs[0, 0].set_ylim(0, 6000)  #Station 1  # Set y-limit for the upper left plot
-axs[0, 0].set_ylim(0, 15000)  #Station 2  # Set y-limit for the upper left plot
+axs[0, 0].set_ylim(0, 6000)  #Station 1  # Set y-limit for the upper left plot
+#axs[0, 0].set_ylim(0, 15000)  #Station 2  # Set y-limit for the upper left plot
 #axs[0, 0].set_ylim(0, 30000)  #Station 3  # Set y-limit for the upper left plot
 
 # Plotting the second graph (top-right)
@@ -172,22 +172,22 @@ axs[0, 1].set_ylabel('Streamflow (m³/s)')
 axs[0, 1].set_xlabel('Nonexceedance Probability')  # Adding x-label
 axs[0, 1].legend()
 axs[0, 1].grid(True)  # Add grid
-#axs[0, 1].set_ylim(0, 6000)  #Station 1  # Set y-limit for the upper left plot
-axs[0, 1].set_ylim(0, 15000)  #Station 2  # Set y-limit for the upper left plot
+axs[0, 1].set_ylim(0, 6000)  #Station 1  # Set y-limit for the upper left plot
+#axs[0, 1].set_ylim(0, 15000)  #Station 2  # Set y-limit for the upper left plot
 #axs[0, 1].set_ylim(0, 30000)  #Station 3  # Set y-limit for the upper left plot
 
 # Plotting the third graph (bottom-left)
 axs[1, 0].plot(observed_october_3["plot_index"], observed_october_3['Water Level (m)'], label='Observed Water Level', color='#ff7f0e', linestyle='--', marker='o')
 axs[1, 0].plot(corrected_october_2["plot_index"], corrected_october_2['Transformed Water Level (m)'], label='Transformed Water Level', color='#1f77b4')
-#axs[1, 0].set_title('Observed and Transformed Water Level values for October (2010-2014)', fontweight='bold') #Station 1
-axs[1, 0].set_title('Observed and Transformed Water Level values for October (2008-2011)', fontweight='bold') #Station 2
+axs[1, 0].set_title('Observed and Transformed Water Level values for October (2008-2024)', fontweight='bold') #Station 1
+#axs[1, 0].set_title('Observed and Transformed Water Level values for October (2008-2024)', fontweight='bold') #Station 2
 #axs[1, 0].set_title('Observed and Transformed Water Level values for October (2008-2024)', fontweight='bold') #Station 3
 axs[1, 0].set_ylabel('Water Level (m)')
 axs[1, 0].set_xlabel('Time')  # Adding x-label
 axs[1, 0].legend()
 axs[1, 0].grid(True)  # Add grid
-#axs[1, 0].set_ylim(466, 471)  #Station 1  # Set y-limit for the upper left plot
-axs[1, 0].set_ylim(2, 7)  #Station 2  # Set y-limit for the upper left plot
+axs[1, 0].set_ylim(466, 471)  #Station 1  # Set y-limit for the upper left plot
+#axs[1, 0].set_ylim(2, 7)  #Station 2  # Set y-limit for the upper left plot
 #axs[1, 0].set_ylim(82, 90)  #Station 3  # Set y-limit for the upper left plot
 
 # Plotting the fourth graph (bottom-right)
@@ -198,8 +198,8 @@ axs[1, 1].set_ylabel('Water Level (m)')
 axs[1, 1].set_xlabel('Nonexceedance Probability')  # Adding x-label
 axs[1, 1].legend()
 axs[1, 1].grid(True)  # Add grid
-#axs[1, 1].set_ylim(466, 471)  #Station 1  # Set y-limit for the upper left plot
-axs[1, 1].set_ylim(2, 7)  #Station 2  # Set y-limit for the upper left plot
+axs[1, 1].set_ylim(466, 471)  #Station 1  # Set y-limit for the upper left plot
+#axs[1, 1].set_ylim(2, 7)  #Station 2  # Set y-limit for the upper left plot
 #axs[1, 1].set_ylim(82, 90)  #Station 3  # Set y-limit for the upper left plot
 
 # Adjusting x-axis dates for upper-left and lower-left plots
@@ -220,24 +220,24 @@ f_cor_inv = interpolate.interp1d(corcdf, cor_bin_edges)
 
 # Plotting horizontal lines connecting upper-left and upper-right plots
 #Station 1
-#point1_x = simulated_october_2["plot_index"][62]  #point in upper left plot
-#point1_y = simulated_october_2['{}'.format(retro_input)][62]  #point in upper left plot
-#point2_x = f_sim(point1_y)  #point in upper right plot
-#point2_y = simulated_october_2['{}'.format(retro_input)][62]  #point in upper right plot
-#point3_x = point2_x  #point in lower right plot
-#point3_y = ((f_obs_inv(point2_x))+(corrected_october_2['Transformed Water Level (m)'][62])) / 2
-#point4_x = simulated_october_2["plot_index"][62]  #point in lower left plot
-#point4_y = point3_y  #point in lower left plot
+point1_x = simulated_october_2["plot_index"][124]  #point in upper left plot
+point1_y = simulated_october_2['{}'.format(retro_input)][124]  #point in upper left plot
+point2_x = f_sim(point1_y)  #point in upper right plot
+point2_y = simulated_october_2['{}'.format(retro_input)][124]  #point in upper right plot
+point3_x = point2_x  #point in lower right plot
+point3_y = ((f_obs_inv(point2_x))+(corrected_october_2['Transformed Water Level (m)'][124])) / 2
+point4_x = simulated_october_2["plot_index"][124]  #point in lower left plot
+point4_y = point3_y  #point in lower left plot
 
 #Station 2
-point1_x = simulated_october_2["plot_index"][55]  #point in upper left plot
-point1_y = simulated_october_2['{}'.format(retro_input)][55]  #point in upper left plot
-point2_x = f_sim(point1_y)  #point in upper right plot
-point2_y = simulated_october_2['{}'.format(retro_input)][55]  #point in upper right plot
-point3_x = point2_x  #point in lower right plot
-point3_y = ((f_obs_inv(point2_x))+(corrected_october_2['Transformed Water Level (m)'][55])) / 2
-point4_x = simulated_october_2["plot_index"][55]  #point in lower left plot
-point4_y = point3_y  #point in lower left plot
+#point1_x = simulated_october_2["plot_index"][55]  #point in upper left plot
+#point1_y = simulated_october_2['{}'.format(retro_input)][55]  #point in upper left plot
+#point2_x = f_sim(point1_y)  #point in upper right plot
+#point2_y = simulated_october_2['{}'.format(retro_input)][55]  #point in upper right plot
+#point3_x = point2_x  #point in lower right plot
+#point3_y = ((f_obs_inv(point2_x))+(corrected_october_2['Transformed Water Level (m)'][55])) / 2
+#point4_x = simulated_october_2["plot_index"][55]  #point in lower left plot
+#point4_y = point3_y  #point in lower left plot
 
 #Station 3
 #point1_x = simulated_october_2["plot_index"][318]  #point in upper left plot

@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 
 '''Input Data'''
 ###Station 1###
-#obs_input = '109-0267-045-012'
-#retro_input = '130721536'
-#name = 'Congo_kasai_km0868'
+obs_input = '109-0267-045-012'
+retro_input = '130721536'
+name = 'Congo_kasai_km0868'
 
 ###Station 2###
 #obs_input = '205-0297-081-004'
@@ -18,9 +18,9 @@ import matplotlib.pyplot as plt
 #name = 'Danube_sava_km1327'
 
 ###Station 3###
-obs_input = '605-0031-586-022'
-retro_input = '621073787'
-name = 'Amazonas_tapajos_km0810'
+#obs_input = '605-0031-586-022'
+#retro_input = '621073787'
+#name = 'Amazonas_tapajos_km0810'
 
 
 # Get Observed Data
@@ -146,27 +146,27 @@ corrected_december_2["plot_index"] = plot_index
 #corrected_december_2 = corrected_december_2.iloc[279:]
 
 ###Station 3###
-observed_december_2 = observed_december_2.head(341)
-simulated_december_2 = simulated_december_2.head(341)
-corrected_december_2 = corrected_december_2.head(341)
-observed_december_2 = observed_december_2.iloc[186:]
-simulated_december_2 = simulated_december_2.iloc[186:]
-corrected_december_2 = corrected_december_2.iloc[186:]
+#observed_december_2 = observed_december_2.head(341)
+#simulated_december_2 = simulated_december_2.head(341)
+#corrected_december_2 = corrected_december_2.head(341)
+#observed_december_2 = observed_december_2.iloc[186:]
+#simulated_december_2 = simulated_december_2.iloc[186:]
+#corrected_december_2 = corrected_december_2.iloc[186:]
 
 observed_december_3 = observed_december_2.dropna()
 
 # Plotting the first graph (top-left)
 axs[0, 0].plot(simulated_december_2["plot_index"], simulated_december_2[retro_input], label='Simulated Streamflow', color='#EF553B')
-#axs[0, 0].set_title('Simulated Hydrograph for December (2018-2023)', fontweight='bold') #Station 1
+axs[0, 0].set_title('Simulated Hydrograph for December (2008-2024)', fontweight='bold') #Station 1
 #axs[0, 0].set_title('Simulated Hydrograph for December (2017-2020)', fontweight='bold') #Station 2
-axs[0, 0].set_title('Simulated Hydrograph for December (2014-2018)', fontweight='bold') #Station 3
+#axs[0, 0].set_title('Simulated Hydrograph for December (2014-2018)', fontweight='bold') #Station 3
 axs[0, 0].set_ylabel('Streamflow (m³/s)')
 axs[0, 0].set_xlabel('Time')  # Adding x-label
 axs[0, 0].legend()
 axs[0, 0].grid(True)  # Add grid
-#axs[0, 0].set_ylim(0, 25000)  #Station 1  # Set y-limit for the upper left plot
+axs[0, 0].set_ylim(0, 25500)  #Station 1  # Set y-limit for the upper left plot
 #axs[0, 0].set_ylim(0, 4000)  #Station 2  # Set y-limit for the upper left plot
-axs[0, 0].set_ylim(0, 35000)  #Station 3  # Set y-limit for the upper left plot
+#axs[0, 0].set_ylim(0, 35000)  #Station 3  # Set y-limit for the upper left plot
 
 # Plotting the second graph (top-right)
 axs[0, 1].plot(simcdf, sim_bin_edges, label='Sim. FDC', color='#EF553B')
@@ -175,23 +175,23 @@ axs[0, 1].set_ylabel('Streamflow (m³/s)')
 axs[0, 1].set_xlabel('Nonexceedance Probability')  # Adding x-label
 axs[0, 1].legend()
 axs[0, 1].grid(True)  # Add grid
-#axs[0, 1].set_ylim(0, 25000)  #Station 1  # Set y-limit for the upper left plot
+axs[0, 1].set_ylim(0, 25500)  #Station 1  # Set y-limit for the upper left plot
 #axs[0, 1].set_ylim(0, 4000)  #Station 2  # Set y-limit for the upper left plot
-axs[0, 1].set_ylim(0, 35000)  #Station 3  # Set y-limit for the upper left plot
+#axs[0, 1].set_ylim(0, 35000)  #Station 3  # Set y-limit for the upper left plot
 
 # Plotting the third graph (bottom-left)
 axs[1, 0].plot(observed_december_3["plot_index"], observed_december_3['Water Level (m)'], label='Observed Water Level', color='#ff7f0e', linestyle='--', marker='o')
 axs[1, 0].plot(corrected_december_2["plot_index"], corrected_december_2['Transformed Water Level (m)'], label='Transformed Water Level', color='#1f77b4')
-#axs[1, 0].set_title('Observed and Transformed Water Level values for December (2018-2023)', fontweight='bold') #Station 1
+axs[1, 0].set_title('Observed and Transformed Water Level values for December (2008-2024)', fontweight='bold') #Station 1
 #axs[1, 0].set_title('Observed and Transformed Water Level values for December (2017-2020)', fontweight='bold') #Station 2
-axs[1, 0].set_title('Observed and Transformed Water Level values for December (2014-2018)', fontweight='bold') #Station 3
+#xs[1, 0].set_title('Observed and Transformed Water Level values for December (2008-2024)', fontweight='bold') #Station 3
 axs[1, 0].set_ylabel('Water Level (m)')
 axs[1, 0].set_xlabel('Time')  # Adding x-label
 axs[1, 0].legend()
 axs[1, 0].grid(True)  # Add grid
-#axs[1, 0].set_ylim(295, 298)  #Station 1  # Set y-limit for the upper left plot
+axs[1, 0].set_ylim(295, 298)  #Station 1  # Set y-limit for the upper left plot
 #axs[1, 0].set_ylim(70, 79)  #Station 2  # Set y-limit for the upper left plot
-axs[1, 0].set_ylim(4, 11)  #Station 3  # Set y-limit for the upper left plot
+#axs[1, 0].set_ylim(4, 11)  #Station 3  # Set y-limit for the upper left plot
 
 # Plotting the fourth graph (bottom-right)
 axs[1, 1].plot(obscdf, obs_bin_edges, label='Obs. WLDC', color='#ff7f0e', linestyle='--')
@@ -201,9 +201,9 @@ axs[1, 1].set_ylabel('Water Level (m)')
 axs[1, 1].set_xlabel('Nonexceedance Probability')  # Adding x-label
 axs[1, 1].legend()
 axs[1, 1].grid(True)  # Add grid
-#axs[1, 1].set_ylim(295, 298)  #Station 1  # Set y-limit for the upper left plot
+axs[1, 1].set_ylim(295, 298)  #Station 1  # Set y-limit for the upper left plot
 #axs[1, 1].set_ylim(70, 79)  #Station 2  # Set y-limit for the upper left plot
-axs[1, 1].set_ylim(4, 11)  #Station 3  # Set y-limit for the upper left plot
+#axs[1, 1].set_ylim(4, 11)  #Station 3  # Set y-limit for the upper left plot
 
 # Adjusting x-axis dates for upper-left and lower-left plots
 for ax in axs.flat[[0, 2]]:
@@ -223,34 +223,34 @@ f_cor_inv = interpolate.interp1d(corcdf, cor_bin_edges)
 
 # Plotting horizontal lines connecting upper-left and upper-right plots
 #Station 1
-#point1_x = simulated_december_2["plot_index"][60]  #point in upper left plot
-#point1_y = simulated_december_2['{}'.format(retro_input)][60]  #point in upper left plot
-#point2_x = f_sim(point1_y)  #point in upper right plot
-#point2_y = simulated_december_2['{}'.format(retro_input)][60]  #point in upper right plot
-#point3_x = point2_x  #point in lower right plot
-#point3_y = ((f_obs_inv(point2_x))+(corrected_december_2['Transformed Water Level (m)'][60])) / 2
-#point4_x = simulated_december_2["plot_index"][60]  #point in lower left plot
-#point4_y = point3_y  #point in lower left plot
+point1_x = simulated_december_2["plot_index"][370]  #point in upper left plot
+point1_y = simulated_december_2['{}'.format(retro_input)][370]  #point in upper left plot
+point2_x = f_sim(point1_y)  #point in upper right plot
+point2_y = simulated_december_2['{}'.format(retro_input)][370]  #point in upper right plot
+point3_x = point2_x  #point in lower right plot
+point3_y = ((f_obs_inv(point2_x))+(corrected_december_2['Transformed Water Level (m)'][370])) / 2
+point4_x = simulated_december_2["plot_index"][370]  #point in lower left plot
+point4_y = point3_y  #point in lower left plot
 
 #Station 2
-#point1_x = simulated_december_2["plot_index"][23]  #point in upper left plot
-#point1_y = simulated_december_2['{}'.format(retro_input)][23]  #point in upper left plot
+#point1_x = simulated_december_2["plot_index"][302]  #point in upper left plot
+#point1_y = simulated_december_2['{}'.format(retro_input)][302]  #point in upper left plot
 #point2_x = f_sim(point1_y)  #point in upper right plot
-#point2_y = simulated_december_2['{}'.format(retro_input)][23]  #point in upper right plot
+#point2_y = simulated_december_2['{}'.format(retro_input)][302]  #point in upper right plot
 #point3_x = point2_x  #point in lower right plot
-#point3_y = ((f_obs_inv(point2_x))+(corrected_december_2['Transformed Water Level (m)'][23])) / 2
-#point4_x = simulated_december_2["plot_index"][23]  #point in lower left plot
+#point3_y = ((f_obs_inv(point2_x))+(corrected_december_2['Transformed Water Level (m)'][302])) / 2
+#point4_x = simulated_december_2["plot_index"][302]  #point in lower left plot
 #point4_y = point3_y  #point in lower left plot
 
 #Station 3
-point1_x = simulated_december_2["plot_index"][91]  #point in upper left plot
-point1_y = simulated_december_2['{}'.format(retro_input)][91]  #point in upper left plot
-point2_x = f_sim(point1_y)  #point in upper right plot
-point2_y = simulated_december_2['{}'.format(retro_input)][91]  #point in upper right plot
-point3_x = point2_x  #point in lower right plot
-point3_y = ((f_obs_inv(point2_x))+(corrected_december_2['Transformed Water Level (m)'][91])) / 2
-point4_x = simulated_december_2["plot_index"][91]  #point in lower left plot
-point4_y = point3_y  #point in lower left plot
+#point1_x = simulated_december_2["plot_index"][277]  #point in upper left plot
+#point1_y = simulated_december_2['{}'.format(retro_input)][277]  #point in upper left plot
+#point2_x = f_sim(point1_y)  #point in upper right plot
+#point2_y = simulated_december_2['{}'.format(retro_input)][277]  #point in upper right plot
+#point3_x = point2_x  #point in lower right plot
+#point3_y = ((f_obs_inv(point2_x))+(corrected_december_2['Transformed Water Level (m)'][277])) / 2
+#point4_x = simulated_december_2["plot_index"][277]  #point in lower left plot
+#point4_y = point3_y  #point in lower left plot
 
 
 # Plotting horizontal line with markers
