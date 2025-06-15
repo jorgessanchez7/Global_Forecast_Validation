@@ -8,10 +8,16 @@ import matplotlib.pyplot as plt
 '''Input Data'''
 
 ###Station 1###
+#Amazonas_casiquiare_km2764
+obs_input = '605-0031-128-005'
+retro_input = '620569841'
+name = 'Amazonas_casiquiare_km2764'
+
+###Station 2###
 #Congo_sankuru_km1310
-obs_input = '109-0267-150-002'
-retro_input = '130778089'
-name = 'Congo_sankuru_km1310'
+#obs_input = '109-0267-150-002'
+#retro_input = '130778089'
+#name = 'Congo_sankuru_km1310'
 
 # Get Observed Data
 observed_values = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Observed_Hydroweb\\{0}.csv'.format(obs_input), index_col=0)

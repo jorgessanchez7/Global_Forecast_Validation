@@ -162,6 +162,36 @@ def fix_forecast(sim_hist, fore_nofix, obs):
 
 	return corrected_ensembles
 
+def forecast_stats(ensembles_df):
+	ensemble = ensembles_df.copy()
+	high_res_df = ensemble['ensemble_52'].to_frame()
+	ensemble.drop(columns=['ensemble_52'], inplace=True)
+	ensemble.dropna(inplace=True)
+	high_res_df.dropna(inplace=True)
+
+	max_df = ensemble.quantile(1.0, axis=1).to_frame()
+	max_df.rename(columns={1.0: 'flow_max'}, inplace=True)
+
+	p75_df = ensemble.quantile(0.75, axis=1).to_frame()
+	p75_df.rename(columns={0.75: 'flow_75p'}, inplace=True)
+
+	p50_df = ensemble.quantile(0.50, axis=1).to_frame()
+	p50_df.rename(columns={0.50: 'flow_med'}, inplace=True)
+
+	p25_df = ensemble.quantile(0.25, axis=1).to_frame()
+	p25_df.rename(columns={0.25: 'flow_25p'}, inplace=True)
+
+	min_df = ensemble.quantile(0, axis=1).to_frame()
+	min_df.rename(columns={0.0: 'flow_min'}, inplace=True)
+
+	mean_df = ensemble.mean(axis=1).to_frame()
+	mean_df.rename(columns={0: 'flow_avg'}, inplace=True)
+
+	high_res_df.rename(columns={'ensemble_52': 'high_res'}, inplace=True)
+
+	forecast_stats_df = pd.concat([max_df, p75_df, mean_df, p50_df, p25_df, min_df, high_res_df], axis=1)
+
+	return forecast_stats_df
 
 stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Selected_GEOGloWS_v2_sat_WL.csv')
 stations_pd = stations_pd.sort_values(by="Station", ascending=True)
@@ -178,7 +208,7 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	''''Using REST API'''
 	#era_res = requests.get('https://geoglows.ecmwf.int/api/v2/forecastrecords/{0}?start_date=20250502'.format(comid), verify=False).content
 	#simulated_df = pd.read_csv(io.StringIO(era_res.decode('utf-8')), index_col=0)
-	simulated_df = get_forecast_records(comid, "20250101")
+	simulated_df = get_forecast_records(comid, "20250401")
 	simulated_df[simulated_df < 0] = 0
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -244,7 +274,13 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	forecast_df.index = pd.to_datetime(forecast_df.index)
 	forecast_df.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}.csv".format(comid))
 
+	forecast_stats_df = forecast_stats(forecast_df)
+	forecast_df.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}.csv".format(comid))
+
 	corrected_ensembles_sbwl = fix_forecast(sim_hist=simulated_streamflow, fore_nofix=forecast_df, obs=observed_adjusted)
 	corrected_ensembles_sbwl = corrected_ensembles_sbwl + min_value
 	corrected_ensembles_sbwl.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}_WL.csv".format(comid))
+	forecast_stats_wl = forecast_stats(corrected_ensembles_sbwl)
+	forecast_stats_wl.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}_WL.csv".format(comid))
+
 
