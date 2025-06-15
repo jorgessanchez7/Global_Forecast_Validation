@@ -231,7 +231,7 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	simulated_streamflow.index = simulated_streamflow.index.to_series().dt.strftime("%Y-%m-%d")
 	simulated_streamflow.index = pd.to_datetime(simulated_streamflow.index)
 
-	rperiods_q = return_period_values(simulated_streamflow)
+	rperiods_q = return_period_values(simulated_streamflow, comid)
 	rperiods_q.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Return_Periods\\{}.csv".format(comid))
 
 	corrected_values = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\DWLT\\GEOGLOWS_v2\\{0}-{1}_WL.csv'.format(id, comid), index_col=0)
@@ -240,7 +240,7 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	corrected_values.index = corrected_values.index.to_series().dt.strftime("%Y-%m-%d")
 	corrected_values.index = pd.to_datetime(corrected_values.index)
 
-	rperiods_wl = return_period_values(corrected_values)
+	rperiods_wl = return_period_values(corrected_values, comid)
 	rperiods_wl.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Return_Periods\\{}_WL.csv".format(comid))
 
 	#Forecast DWLT
