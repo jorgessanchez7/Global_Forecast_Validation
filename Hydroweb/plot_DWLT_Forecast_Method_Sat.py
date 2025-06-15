@@ -6,40 +6,41 @@ from scipy import interpolate
 import matplotlib.pyplot as plt
 
 '''Input Data'''
-#Station 1
-#Ganges-Brahmaputra_brahmaputra_km0809
-obs_input = '409-0388-020-021'
-retro_input = '441167304'
+
+###Station 1###
+#Congo_sankuru_km1310
+obs_input = '109-0267-150-002'
+retro_input = '130778089'
+name = 'Congo_sankuru_km1310'
 
 # Get Observed Data
-observed_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Observed_Hydroweb/{0}.csv'.format(obs_input), index_col=0)
+observed_values = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Observed_Hydroweb\\{0}.csv'.format(obs_input), index_col=0)
 observed_values.index = pd.to_datetime(observed_values.index)
 observed_values.index = observed_values.index.to_series().dt.strftime("%Y-%m-%d")
 observed_values.index = pd.to_datetime(observed_values.index)
 
 #Get Retrospective Data
-retrospective_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/Simulated_Data/GEOGLOWS_v2/{0}.csv'.format(retro_input), index_col=0)
+retrospective_values = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Simulated_Data\\GEOGLOWS_v2\\{0}.csv'.format(retro_input), index_col=0)
 retrospective_values.index = pd.to_datetime(retrospective_values.index)
 retrospective_values.index = retrospective_values.index.to_series().dt.strftime("%Y-%m-%d")
 retrospective_values.index = pd.to_datetime(retrospective_values.index)
 
 # Get Simulated Data
-simulated_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/DWLT/GEOGLOWS_v2/{0}-{1}_WL.csv'.format(obs_input, retro_input), index_col=0)
+simulated_values = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}.csv".format(retro_input), index_col=0)
 simulated_values.index = pd.to_datetime(simulated_values.index)
 simulated_values[simulated_values < 0] = 0
 simulated_values.index = simulated_values.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
 simulated_values.index = pd.to_datetime(simulated_values.index)
 
 # Get Corrected Data
-corrected_values = pd.read_csv('/Users/grad/Library/CloudStorage/GoogleDrive-jsanchez@aquaveo.com/My Drive/Personal_Files/Post_Doc/Hydroweb/DWLT/GEOGLOWS_v2/{0}-{1}_WL.csv'.format(obs_input, retro_input), index_col=0)
+corrected_values = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}_WL.csv".format(retro_input), index_col=0)
 corrected_values.index = pd.to_datetime(corrected_values.index)
 corrected_values[corrected_values < 0] = 0
 corrected_values.index = corrected_values.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
 corrected_values.index = pd.to_datetime(corrected_values.index)
 
 #Get Forecast Record
-#forecast_record = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots/Bias_Correct_Forecast/forecast_record_streamflow.csv', index_col=0)
-forecast_record = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots/Bias_Correct_Forecast/9009027_forecast_record.csv', index_col=0)
+forecast_record = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Record\\{0}.csv".format(retro_input), index_col=0)
 forecast_record.index = pd.to_datetime(forecast_record.index)
 forecast_record[forecast_record < 0] = 0
 forecast_record.index = forecast_record.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -49,9 +50,7 @@ records_df = forecast_record.loc[forecast_record.index >= pd.to_datetime(simulat
 records_df = records_df.loc[records_df.index <= pd.to_datetime(simulated_values.index[0])]
 
 #Get Forecast Record Corrected
-#corrected_forecast_record = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots/Bias_Correct_Forecast/corrected_forecast_record_streamflow.csv', index_col=0)
-#corrected_forecast_record = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots/Bias_Correct_Forecast/9009027_corrected_forecast_record.csv', index_col=0)
-corrected_forecast_record = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots/Bias_Correct_Forecast/9009027_corrected_forecast_record_wl.csv', index_col=0)
+corrected_forecast_record = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Record\\{0}_WL.csv".format(retro_input), index_col=0)
 corrected_forecast_record.index = pd.to_datetime(corrected_forecast_record.index)
 corrected_forecast_record[corrected_forecast_record < 0] = 0
 corrected_forecast_record.index = corrected_forecast_record.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -61,19 +60,14 @@ corrected_records_df = corrected_forecast_record.loc[corrected_forecast_record.i
 corrected_records_df = corrected_records_df.loc[corrected_records_df.index <= pd.to_datetime(simulated_values.index[0])]
 
 #Get Return Periods
-rperiods_df = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots/Bias_Correct_Forecast/9009027_rperiods_df.csv', index_col=0)
+rperiods_df = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Return_Periods\\{}.csv".format(retro_input), index_col=0)
 
 #Get Corrected Return Periods
-#corrected_rperiods_df = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots/Bias_Correct_Forecast/9009027_corrected_rperiods_df.csv', index_col=0)
-corrected_rperiods_df = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots/Bias_Correct_Forecast/9009027_corrected_rperiods_df_wl.csv', index_col=0)
+corrected_rperiods_df = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Return_Periods\\{}_WL.csv".format(retro_input), index_col=0)
 
 # Get Observed FDC
-#observed_september = observed_values[observed_values.index.month == 9]
-#monObs = observed_september.dropna()
-#observed_october = observed_values[observed_values.index.month == 10]
-#monObs = observed_october.dropna()
-observed_november = observed_values[observed_values.index.month == 11]
-monObs = observed_november.dropna()
+observed_june = observed_values[observed_values.index.month == 6]
+monObs = observed_june.dropna()
 obs_tempMax = np.max(monObs.max())
 obs_tempMin = np.min(monObs.min())
 obs_maxVal = math.ceil(obs_tempMax)
@@ -92,12 +86,8 @@ obs_counts = obs_counts.astype(float) / monObs.size
 obscdf = np.cumsum(obs_counts)
 
 # Get Simulated FDC
-#simulated_september = retrospective_values[retrospective_values.index.month == 9]
-#monSim = simulated_september.dropna()
-#simulated_october = retrospective_values[retrospective_values.index.month == 10]
-#monSim = simulated_october.dropna()
-simulated_november = retrospective_values[retrospective_values.index.month == 11]
-monSim = simulated_november.dropna()
+simulated_june = retrospective_values[retrospective_values.index.month == 6]
+monSim = simulated_june.dropna()
 sim_tempMax = np.max(monSim.max())
 sim_tempMin = np.min(monSim.min())
 sim_maxVal = math.ceil(sim_tempMax)
@@ -438,7 +428,7 @@ axs[0, 1].scatter(point2_x, point2_y, color='black', s=10)
 axs[1, 1].scatter(point3_x, point3_y, color='black', s=10)
 axs[1, 0].scatter(point4_x, point4_y, color='black', s=10)
 
-plt.savefig('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots/Bias_Correct_Forecast/Forecast Bias Correction Method_WL.png', dpi=700)
+plt.savefig('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Plots\\Forecast DWLT Method {}.png'.format(name), dpi=700)
 
 # Show the plots
 plt.show()
