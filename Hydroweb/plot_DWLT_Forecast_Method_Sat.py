@@ -9,15 +9,207 @@ import matplotlib.pyplot as plt
 
 ###Station 1###
 #Amazonas_casiquiare_km2764
-obs_input = '605-0031-128-005'
-retro_input = '620569841'
-name = 'Amazonas_casiquiare_km2764'
+#obs_input = '605-0031-128-005'
+#retro_input = '620569841'
+#name = 'Amazonas_casiquiare_km2764'
 
 ###Station 2###
+#Amazonas_guapore_km3139
+#obs_input = '605-0031-223-014'
+#retro_input = '620953148'
+#name = 'Amazonas_guapore_km3139'
+
+###Station 3###
+#Amazonas_negro_km1739
+#obs_input = '605-0031-447-025'
+#retro_input = '621010321'
+#name = 'Amazonas_negro_km1739'
+
+###Station 4###
+#Amazonas_negro_km2523
+#obs_input = '605-0031-447-083'
+#retro_input = '620803818'
+#name = 'Amazonas_negro_km2523'
+
+###Station 5###
+#Amazonas_tapajos_km0810
+#obs_input = '605-0031-586-022'
+#retro_input = '621073787'
+#name = 'Amazonas_tapajos_km0810'
+
+###Station 6###
+#Amazonas_uaupes_km2380
+#obs_input = '605-0031-625-001'
+#retro_input = '621030902'
+#name = 'Amazonas_uaupes_km2380'
+
+###Station 7###
+#Amazonas_xingu_km1020
+obs_input = '604-0031-659-037'
+retro_input = '621109666'
+name = 'Amazonas_xingu_km1020'
+
+###Station 8###
+#Balkhash_ili_km0392
+#obs_input = '416-0098-003-012'
+#retro_input = '470499982'
+#name = 'Balkhash_ili_km0392'
+
+###Station 9###
+#Congo_kasai_km0868
+#obs_input = '109-0267-045-012'
+#retro_input = '130721536'
+#name = 'Congo_kasai_km0868'
+
+###Station 10###
 #Congo_sankuru_km1310
 #obs_input = '109-0267-150-002'
 #retro_input = '130778089'
 #name = 'Congo_sankuru_km1310'
+
+###Station 11###
+#Danube_sava_km1327
+#obs_input = '205-0297-081-004'
+#retro_input = '220372327'
+#name = 'Danube_sava_km1327'
+
+###Station 12###
+#Danube_tisza_km1617
+#obs_input = '205-0297-098-001'
+#retro_input = '220720275'
+#name = 'Danube_tisza_km1617'
+
+###Station 13###
+#Dniepr_dnepr_km1390
+#obs_input = '203-0314-005-011'
+#retro_input = '220276772'
+#name = 'Dniepr_dnepr_km1390'
+
+###Station 13###
+#Ganges-Brahmaputra_brahmaputra_km0809
+#obs_input = '409-0388-020-021'
+#retro_input = '441167304'
+#name = 'Ganges-Brahmaputra_brahmaputra_km0809'
+
+###Station 14###
+#Ganges-Brahmaputra_ganges_km1381
+#obs_input = '409-0388-040-053'
+#retro_input = '441185243'
+#name = 'Ganges-Brahmaputra_ganges_km1381'
+
+###Station 15###
+#Indus_indus_km0949
+#obs_input = '412-0492-015-022'
+#retro_input = '441292437'
+#name = 'Indus_indus_km0949'
+
+###Station 16###
+#Indus_indus_km0949
+#obs_input = '412-0492-015-022'
+#retro_input = '441292437'
+#name = 'Indus_indus_km0949'
+
+###Station 17###
+#Kuban_kuban_km0397
+#obs_input = '204-0604-005-009'
+#retro_input = '220527770'
+#name = 'Kuban_kuban_km0397'
+
+###Station 18###
+#Lake-Chad_logone_km0500
+#obs_input = '126-0621-025-003'
+#retro_input = '180234968'
+#name = 'Lake-Chad_logone_km0500'
+
+###Station 19###
+#Mississippi_mississippi_km2378
+#obs_input = '714-0763-121-044'
+#retro_input = '760583077'
+#name = 'Mississippi_mississippi_km2378'
+
+###Station 20###
+#Murray_murray_km0651
+#obs_input = '508-0795-016-013'
+#retro_input = '540893378'
+#name = 'Murray_murray_km0651'
+
+###Station 21###
+#Nass_nass_km0058
+#obs_input = '705-0811-003-004'
+#retro_input = '720111586'
+#name = 'Nass_nass_km0058'
+
+###Station 22###
+#Niger_benue_km1000
+#obs_input = '111-0835-008-018'
+#retro_input = '140759702'
+#name = 'Niger_benue_km1000'
+
+###Station 23###
+#Nile_baro_km4616
+#obs_input = '122-0837-018-008'
+#retro_input = '160521695'
+#name = 'Nile_baro_km4616'
+
+###Station 24###
+#Papaloapan_san-Juan_km0134
+#obs_input = '716-0925-004-002'
+#retro_input = '770368864'
+#name = 'Papaloapan_san-Juan_km0134'
+
+###Station 25###
+#Parana_paraguai_km2622
+#obs_input = '609-0934-117-034'
+#retro_input = '640458755'
+#name = 'Parana_paraguai_km2622'
+
+###Station 26###
+#Parana_paraguai_km3506
+#obs_input = '609-0934-117-049'
+#retro_input = '640101447'
+#name = 'Parana_paraguai_km3506'
+
+###Station 27###
+#Sao-Francisco_sao-Francisco_km1577
+#obs_input = '607-1087-026-035'
+#retro_input = '630202025'
+#name = 'Sao-Francisco_sao-Francisco_km1577'
+
+###Station 28###
+#Sepik_sepik_km0150
+#obs_input = '503-1100-006-005'
+#retro_input = '530187786'
+#name = 'Sepik_sepik_km0150'
+
+###Station 29###
+#Sungai-Kapuas_sungai-Kapuas_km0157
+#obs_input = '502-1196-006-002'
+#retro_input = '520320854'
+#name = 'Sungai-Kapuas_sungai-Kapuas_km0157'
+
+###Station 30###
+#Sungai-Ketapang_sungai-Ketapang_km0121
+#obs_input = '502-1200-001-005'
+#retro_input = '520337491'
+#name = 'Sungai-Ketapang_sungai-Ketapang_km0121'
+
+###Station 31###
+#Terek_terek_km0150
+#obs_input = '214-1283-001-001'
+#retro_input = '280354418'
+#name = 'Terek_terek_km0150'
+
+###Station 32###
+#Volga_kliaz-Ma_km2504
+#obs_input = '214-1369-065-005'
+#retro_input = '280758239'
+#name = 'Volga_kliaz-Ma_km2504'
+
+###Station 33###
+#Yangtze_chang-Jiang_km1426
+#obs_input = '406-1412-008-015'
+#retro_input = '420746965'
+#name = 'Yangtze_chang-Jiang_km1426'
 
 # Get Observed Data
 observed_values = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Observed_Hydroweb\\{0}.csv'.format(obs_input), index_col=0)
@@ -32,14 +224,14 @@ retrospective_values.index = retrospective_values.index.to_series().dt.strftime(
 retrospective_values.index = pd.to_datetime(retrospective_values.index)
 
 # Get Simulated Data
-simulated_values = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}.csv".format(retro_input), index_col=0)
+simulated_values = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}.csv".format(retro_input), index_col=0)
 simulated_values.index = pd.to_datetime(simulated_values.index)
 simulated_values[simulated_values < 0] = 0
 simulated_values.index = simulated_values.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
 simulated_values.index = pd.to_datetime(simulated_values.index)
 
 # Get Corrected Data
-corrected_values = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}_WL.csv".format(retro_input), index_col=0)
+corrected_values = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}_WL.csv".format(retro_input), index_col=0)
 corrected_values.index = pd.to_datetime(corrected_values.index)
 corrected_values[corrected_values < 0] = 0
 corrected_values.index = corrected_values.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -390,12 +582,12 @@ for ax in axs.flat[[0, 2]]:
     ax.xaxis.set_major_locator(plt.MaxNLocator(7))  # Adjust the number of ticks as needed
 
 # Setting y-axis range between 0 and 8000 for top plots
-axs[0, 0].set_ylim(0, 8000)
-axs[0, 1].set_ylim(0, 8000)
+axs[0, 0].set_ylim(0, 12000)
+axs[0, 1].set_ylim(0, 12000)
 
 # Setting y-axis range between 0 and 7000 for bottom plots
-axs[1, 0].set_ylim(0, 700)
-axs[1, 1].set_ylim(0, 700)
+axs[1, 0].set_ylim(168, 173)
+axs[1, 1].set_ylim(168, 173)
 
 # Automatically adjust space between plots
 plt.tight_layout()

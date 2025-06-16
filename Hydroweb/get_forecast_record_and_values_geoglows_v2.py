@@ -275,7 +275,7 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	forecast_df.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}.csv".format(comid))
 
 	forecast_stats_df = forecast_stats(forecast_df)
-	forecast_df.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}.csv".format(comid))
+	forecast_stats_df*-.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}.csv".format(comid))
 
 	corrected_ensembles_sbwl = fix_forecast(sim_hist=simulated_streamflow, fore_nofix=forecast_df, obs=observed_adjusted)
 	corrected_ensembles_sbwl = corrected_ensembles_sbwl + min_value
