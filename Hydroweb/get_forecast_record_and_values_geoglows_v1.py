@@ -330,7 +330,7 @@ for id, name, comid, comid_1 in zip(IDs, Names, COMIDs, COMIDs_1):
 	''''Using REST API'''
 	#era_res = requests.get('https://geoglows.ecmwf.int/api/v2/forecastrecords/{0}?start_date=20250502'.format(comid), verify=False).content
 	#simulated_df = pd.read_csv(io.StringIO(era_res.decode('utf-8')), index_col=0)
-	simulated_df = get_forecast_records(comid_1, "20250502")
+	simulated_df = get_forecast_records(comid_1, "20250503")
 	simulated_df[simulated_df < 0] = 0
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")

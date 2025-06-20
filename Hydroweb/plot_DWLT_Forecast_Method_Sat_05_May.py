@@ -9,14 +9,16 @@ import matplotlib.pyplot as plt
 
 ###Station 1###
 #Amazonas_casiquiare_km2764
-#obs_input = '605-0031-128-005'
-#retro_input = '620569841'
-#name = 'Amazonas_casiquiare_km2764'
+obs_input = '605-0031-128-005'
+retro_input = '620569841'
+comid_1 = '9017966'
+name = 'Amazonas_casiquiare_km2764'
 
 ###Station 2###
 #Amazonas_guapore_km3139
 #obs_input = '605-0031-223-014'
 #retro_input = '620953148'
+#comid_1 = '9075530'
 #name = 'Amazonas_guapore_km3139'
 
 ###Station 3###
@@ -45,9 +47,9 @@ import matplotlib.pyplot as plt
 
 ###Station 7###
 #Amazonas_xingu_km1020
-obs_input = '604-0031-659-037'
-retro_input = '621109666'
-name = 'Amazonas_xingu_km1020'
+#obs_input = '604-0031-659-037'
+#retro_input = '621109666'
+#name = 'Amazonas_xingu_km1020'
 
 ###Station 8###
 #Balkhash_ili_km0392
@@ -224,14 +226,14 @@ retrospective_values.index = retrospective_values.index.to_series().dt.strftime(
 retrospective_values.index = pd.to_datetime(retrospective_values.index)
 
 # Get Simulated Data
-simulated_values = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}.csv".format(retro_input), index_col=0)
+simulated_values = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\2025-05-15\\{0}.csv".format(retro_input), index_col=0)
 simulated_values.index = pd.to_datetime(simulated_values.index)
 simulated_values[simulated_values < 0] = 0
 simulated_values.index = simulated_values.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
 simulated_values.index = pd.to_datetime(simulated_values.index)
 
 # Get Corrected Data
-corrected_values = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}_WL.csv".format(retro_input), index_col=0)
+corrected_values = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\2025-05-15\\{0}_WL.csv".format(retro_input), index_col=0)
 corrected_values.index = pd.to_datetime(corrected_values.index)
 corrected_values[corrected_values < 0] = 0
 corrected_values.index = corrected_values.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -264,8 +266,8 @@ rperiods_df = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEO
 corrected_rperiods_df = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Return_Periods\\{}_WL.csv".format(retro_input), index_col=0)
 
 # Get Observed FDC
-observed_june = observed_values[observed_values.index.month == 6]
-monObs = observed_june.dropna()
+observed_may = observed_values[observed_values.index.month == 5]
+monObs = observed_may.dropna()
 obs_tempMax = np.max(monObs.max())
 obs_tempMin = np.min(monObs.min())
 obs_maxVal = math.ceil(obs_tempMax)
@@ -284,8 +286,8 @@ obs_counts = obs_counts.astype(float) / monObs.size
 obscdf = np.cumsum(obs_counts)
 
 # Get Simulated FDC
-simulated_june = retrospective_values[retrospective_values.index.month == 6]
-monSim = simulated_june.dropna()
+simulated_may = retrospective_values[retrospective_values.index.month == 5]
+monSim = simulated_may.dropna()
 sim_tempMax = np.max(monSim.max())
 sim_tempMin = np.min(monSim.min())
 sim_maxVal = math.ceil(sim_tempMax)
@@ -582,12 +584,12 @@ for ax in axs.flat[[0, 2]]:
     ax.xaxis.set_major_locator(plt.MaxNLocator(7))  # Adjust the number of ticks as needed
 
 # Setting y-axis range between 0 and 8000 for top plots
-axs[0, 0].set_ylim(0, 12000)
-axs[0, 1].set_ylim(0, 12000)
+#axs[0, 0].set_ylim(0, 12000)
+#axs[0, 1].set_ylim(0, 12000)
 
 # Setting y-axis range between 0 and 7000 for bottom plots
-axs[1, 0].set_ylim(168, 173)
-axs[1, 1].set_ylim(168, 173)
+#axs[1, 0].set_ylim(168, 173)
+#axs[1, 1].set_ylim(168, 173)
 
 # Automatically adjust space between plots
 plt.tight_layout()
@@ -626,7 +628,7 @@ axs[0, 1].scatter(point2_x, point2_y, color='black', s=10)
 axs[1, 1].scatter(point3_x, point3_y, color='black', s=10)
 axs[1, 0].scatter(point4_x, point4_y, color='black', s=10)
 
-plt.savefig('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Plots\\Forecast DWLT Method {}.png'.format(name), dpi=700)
+plt.savefig('G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\Plots\\Forecast DWLT Method {} May_v2.png'.format(name), dpi=700)
 
 # Show the plots
 plt.show()

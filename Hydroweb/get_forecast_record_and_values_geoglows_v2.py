@@ -51,7 +51,9 @@ def get_forecast_records(river_id, start_date):
 
 		# Fetch forecast data for the current date
 		try:
-			forecast_data = geoglows.data.forecast_ensembles(river_id, date='{0}{1}{2}'.format(yyyy,mm,dd))
+			url_1 = 'https://geoglows.ecmwf.int/api/v2/forecastensemble/{0}?date={1}{2}{3}&format=csv'.format(river_id, yyyy,mm,dd)
+			s = requests.get(url_1, verify=False).content
+			forecast_data = pd.read_csv(io.StringIO(s.decode('utf-8')), index_col=0)
 			forecast_data.index = pd.to_datetime(forecast_data.index)
 			forecast_data[forecast_data < 0] = 0
 			forecast_data.index = forecast_data.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -75,6 +77,110 @@ def get_forecast_records(river_id, start_date):
 		current_date += dt.timedelta(days=1)
 
 	return forecast_records_df
+
+def get_forecast_files(river_id, start_date, end_date):
+	"""
+	Fetches forecast data from a given start date to today, calculates the mean of the first 8 time steps,
+	and appends results for consecutive forecast dates.
+
+    Args:
+    	get_forecast_records (function): A function that retrieves forecast records for a given date and river ID.
+    	river_id (int): The ID of the river for which forecast data will be retrieved.
+    	start_date (str): The starting date in YYYYMMDD format.
+    Returns:
+    	pd.DataFrame: A DataFrame with the forecast records.
+    """
+
+	# Initialize an empty DataFrame to hold mean values
+	forecast_records_df = pd.DataFrame()
+
+	# Convert start date to a datetime object
+	start_date = dt.datetime.strptime(start_date, '%Y%m%d')
+
+	# Iterate over each day from the start date to today
+	current_date = start_date
+	end_date = dt.datetime.strptime(end_date, '%Y%m%d')
+	while current_date <= end_date:
+
+		YYYY = str(current_date.year)
+		MM = current_date.month
+		if MM < 10:
+			MM ='0{0}'.format(MM)
+		else:
+			MM = str(MM)
+		DD = current_date.day
+		if DD < 10:
+			DD ='0{0}'.format(DD)
+		else:
+			DD = str(DD)
+
+		print(YYYY, ' - ', MM, ' - ', DD)
+
+		# Fetch forecast data for the current date
+		try:
+			url_1 = 'https://geoglows.ecmwf.int/api/v2/forecastensemble/{0}?date={1}{2}{3}&format=csv'.format(river_id,YYYY,MM,DD)
+			s = requests.get(url_1, verify=False).content
+			df1 = pd.read_csv(io.StringIO(s.decode('utf-8')), index_col=0)
+			df1[df1 < 0] = 0
+			df1.index = pd.to_datetime(df1.index)
+			df1.index = df1.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
+			df1.index = pd.to_datetime(df1.index)
+
+			if not os.path.isdir("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}-{1}-{2}\\".format(YYYY, MM, DD)):
+				os.makedirs("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}-{1}-{2}\\".format(YYYY, MM, DD))
+
+			df1.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}-{1}-{2}\\{3}.csv".format(YYYY, MM, DD, river_id))
+
+			if not os.path.isdir("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}-{1}-{2}\\".format(YYYY, MM, DD)):
+				os.makedirs("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}-{1}-{2}\\".format(YYYY, MM, DD))
+
+			forecast_stats_df = forecast_stats(df1)
+			forecast_stats_df.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}-{1}-{2}\\{3}.csv".format(YYYY, MM, DD, river_id))
+
+		except Exception as e:
+			print(e)
+
+		# Move to the next day
+		current_date += dt.timedelta(days=1)
+
+def get_dwlt_forecast_files(river_id, start_date, end_date, retrospective_simulation, observed_adjusted, min_value):
+	# Convert start date to a datetime object
+	start_date = dt.datetime.strptime(start_date, '%Y%m%d')
+
+	# Iterate over each day from the start date to today
+	current_date = start_date
+	end_date = dt.datetime.strptime(end_date, '%Y%m%d')
+
+	while current_date <= end_date:
+
+		YYYY = str(current_date.year)
+		MM = current_date.month
+		if MM < 10:
+			MM = '0{0}'.format(MM)
+		else:
+			MM = str(MM)
+		DD = current_date.day
+		if DD < 10:
+			DD = '0{0}'.format(DD)
+		else:
+			DD = str(DD)
+
+		try:
+			forecast_df = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}-{1}-{2}\\{3}.csv".format(YYYY, MM, DD, river_id), index_col=0)
+			forecast_df[forecast_df < 0] = 0
+			forecast_df.index = pd.to_datetime(forecast_df.index)
+			forecast_df.index = forecast_df.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
+			forecast_df.index = pd.to_datetime(forecast_df.index)
+
+			corrected_ensembles_sbwl = fix_forecast(sim_hist=retrospective_simulation, fore_nofix=forecast_df, obs=observed_adjusted)
+			corrected_ensembles_sbwl = corrected_ensembles_sbwl + min_value
+			corrected_ensembles_sbwl.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}-{1}-{2}\\{3}_WL.csv".format(YYYY, MM, DD, river_id))
+			forecast_stats_wl = forecast_stats(corrected_ensembles_sbwl)
+			forecast_stats_wl.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}-{1}-{2}\\{3}_WL.csv".format(YYYY, MM, DD, river_id))
+		except Exception as e:
+			print(e)
+
+		current_date += dt.timedelta(days=1)
 
 def gumbel_1(std: float, xbar: float, rp: int or float) -> float:
   """
@@ -206,9 +312,7 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	print(id, ' - ', name, ' - ', comid)
 
 	''''Using REST API'''
-	#era_res = requests.get('https://geoglows.ecmwf.int/api/v2/forecastrecords/{0}?start_date=20250502'.format(comid), verify=False).content
-	#simulated_df = pd.read_csv(io.StringIO(era_res.decode('utf-8')), index_col=0)
-	simulated_df = get_forecast_records(comid, "20250401")
+	simulated_df = get_forecast_records(comid, "20250503")
 	simulated_df[simulated_df < 0] = 0
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -267,20 +371,5 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 
 	fixed_records_sbwl.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Record\\{0}_WL.csv".format(comid))
 
-	era_res = requests.get('https://geoglows.ecmwf.int/api/v2/forecastensemble/{0}?format=csv'.format(comid), verify=False).content
-	forecast_df = pd.read_csv(io.StringIO(era_res.decode('utf-8')), index_col=0)
-	forecast_df.index = pd.to_datetime(forecast_df.index)
-	forecast_df.index = forecast_df.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
-	forecast_df.index = pd.to_datetime(forecast_df.index)
-	forecast_df.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}.csv".format(comid))
-
-	forecast_stats_df = forecast_stats(forecast_df)
-	forecast_stats_df*-.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}.csv".format(comid))
-
-	corrected_ensembles_sbwl = fix_forecast(sim_hist=simulated_streamflow, fore_nofix=forecast_df, obs=observed_adjusted)
-	corrected_ensembles_sbwl = corrected_ensembles_sbwl + min_value
-	corrected_ensembles_sbwl.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast\\{0}_WL.csv".format(comid))
-	forecast_stats_wl = forecast_stats(corrected_ensembles_sbwl)
-	forecast_stats_wl.to_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Hydroweb\\GEOGLOWS_v2\\Forecast_Stats\\{0}_WL.csv".format(comid))
-
-
+	get_forecast_files(comid, "20250503", "20250617")
+	get_dwlt_forecast_files(comid, "20250503", "20250617", simulated_streamflow, observed_adjusted, min_value)
