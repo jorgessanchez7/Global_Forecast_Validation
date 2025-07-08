@@ -339,15 +339,17 @@ def forecast_stats(ensembles_df):
     return forecast_stats_df
 
 fechas = ['20250610', '20250611', '20250612', '20250613', '20250614', '20250615', '20250616', '20250617', '20250618', '20250619',
-          '20250620', '20250621', '20250622', '20250623', '20250624', '20250625', '20250626', '20250627', '20250628']
+          '20250620', '20250621', '20250622', '20250623', '20250624', '20250625', '20250626', '20250627', '20250628', '20250629',
+          '20250630', '20250701', '20250702', '20250703','20250704', '20250705', '20250706', '20250707', '20250708']
 
 #Stations
 comid_1s = [9015333, 9021481, 9031188, 9025707, 9017966, 9075530, 9020865, 9039185, 9023382, 9047884, 8017519, 12061937, 12050781,
            12014938, 5025920, 5031640, 5018188, 600366, 7050298, 13061982, 258721, 13009292, 7054410, 7055650, 947104, 9096566,
-           9085273, 9080933, 1018826, 1012389, 10049455, 10009772, 4061319]
+           9085273, 9080933, 1018826, 1012389, 10049455, 10009772, 4061319, 13061705, 13059392, 13063849]
 comid_2s = [610353609, 670086330, 670081320, 670089457, 620569841, 620953148, 620803818, 621073787, 621030902, 621109666, 470499982,
            220372327, 220720275, 220276772, 441167304, 441185243, 441292437, 220527770, 180234968, 760583077, 540893378, 720111586,
-           140759702, 160521695, 770368864, 640458755, 640101447, 630202025, 530187786, 520337491, 280354418, 280758239, 420746965]
+           140759702, 160521695, 770368864, 640458755, 640101447, 630202025, 530187786, 520337491, 280354418, 280758239, 420746965,
+           760644642, 760556389, 760541527]
 names = ['Guaviare River at Mapiripan (Colombia)', 'Esmeraldas River at Esmeraldas (Ecuador)', 'Guayas River at Duran (Ecuador)',
         'Chone River after joint with Tosagua River (Ecuador)', 'Amazonas_casiquiare_km2764', 'Amazonas_guapore_km3139',
         'Amazonas_negro_km2523', 'Amazonas_tapajos_km0810', 'Amazonas_uaupes_km2380', 'Amazonas_xingu_km1020', 'Balkhash_ili_km0392',
@@ -356,12 +358,18 @@ names = ['Guaviare River at Mapiripan (Colombia)', 'Esmeraldas River at Esmerald
         'Mississippi_mississippi_km2378', 'Murray_murray_km0651', 'Nass_nass_km0058', 'Niger_benue_km1000', 'Nile_baro_km4616',
         'Papaloapan_san-Juan_km0134', 'Parana_paraguai_km2622', 'Parana_paraguai_km3506', 'Sao-Francisco_sao-Francisco_km1577',
         'Sepik_sepik_km0150', 'Sungai-Ketapang_sungai-Ketapang_km0121', 'Terek_terek_km0150', 'Volga_kliaz-Ma_km2504',
-        'Yangtze_chang-Jiang_km1426']
+        'Yangtze_chang-Jiang_km1426', 'North Platte River at Carbon County Wyoming', 'North Platte River at Platte County Wyoming',
+         'Big Creek at Carbon County Wyoming']
 
 #Station test
-fechas = ['20250629']
+#fechas = ['20250708']
+comid_1s = [13061705, 13059392, 13063849]
+comid_2s = [760644642, 760556389, 760541527]
+names = ['North Platte River at Carbon County Wyoming', 'North Platte River at Platte County Wyoming', 'Big Creek at Carbon County Wyoming']
 
 for fecha in fechas:
+
+    print(fecha[0:4], '-', fecha[4:6], '-',  fecha[6:8])
 
     for comid_1, comid_2, name in zip(comid_1s, comid_2s, names):
 
@@ -391,6 +399,7 @@ for fecha in fechas:
         #Version 2
         rperiods_v2 = return_period_values(simulated_v2, comid_2)
         rperiods_v2 = rperiods_v2.T
+
 
         """
         #Getting Forecast Record
@@ -448,7 +457,7 @@ for fecha in fechas:
                                "ensemble_45_m^3/s": "ensemble_45", "ensemble_46_m^3/s": "ensemble_46", "ensemble_47_m^3/s": "ensemble_47", "ensemble_48_m^3/s": "ensemble_48",
                                "ensemble_49_m^3/s": "ensemble_49", "ensemble_50_m^3/s": "ensemble_50", "ensemble_51_m^3/s": "ensemble_51", "ensemble_52_m^3/s": "ensemble_52"},
                       inplace=True)
-
+        df1_v1.to_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Values\\{0}-{1}-{2}\\{3}.csv".format(fecha[0:4], fecha[4:6], fecha[6:8], comid_1))
         forecast_stats_1_v1 = forecast_stats(df1_v1)
 
         #Version 2
@@ -459,7 +468,7 @@ for fecha in fechas:
         df1_v2.index = pd.to_datetime(df1_v2.index)
         df1_v2.index = df1_v2.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
         df1_v2.index = pd.to_datetime(df1_v2.index)
-
+        df1_v2.to_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Values\\{0}-{1}-{2}\\{3}.csv".format(fecha[0:4], fecha[4:6], fecha[6:8], comid_2))
         forecast_stats_1_v2 = forecast_stats(df1_v2)
 
         #forecast_record_1_v1 = forecast_record_v1.loc[forecast_record_v1.index >= pd.to_datetime(forecast_stats_1_v1.index[0] - dt.timedelta(days=9))]
@@ -486,7 +495,8 @@ for fecha in fechas:
         #axs[0].set_xlim(forecast_record_1_v1.index[0], forecast_stats_1_v1.index[-1])
         #axs[1].set_xlim(forecast_record_1_v1.index[0], forecast_stats_1_v1.index[-1])
 
-        plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Plots_JimN\\Forecast Comparison {0} {1}.png'.format(name, fecha), dpi=700)
+        plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Plots_JimN\\{0}\\Forecast Comparison {0} {1}.png'.format(name, fecha), dpi=700)
+        #plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Plots_JimN_NoReturnPeriods\\{0}\\Forecast Comparison {0} {1}.png'.format(name, fecha), dpi=700)
 
         # Show the plots
         #plt.show()
