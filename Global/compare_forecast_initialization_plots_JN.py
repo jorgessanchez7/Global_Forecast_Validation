@@ -53,7 +53,7 @@ def get_forecast_records_v1(river_id, start_date):
         print(f'{yyyy}-{mm}-{dd} v1')
 
         try:
-            forecast_data = pd.read_csv("G:\My Drive\GEOGLOWS\Forecast_Comparison\Forecast_Values\{0}-{1}-{2}\{3}.csv".format(yyyy,mm,dd,river_id), index_col=0)
+            forecast_data = pd.read_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Values\\{0}-{1}-{2}\\{3}.csv".format(yyyy,mm,dd,river_id), index_col=0)
             forecast_data.index = pd.to_datetime(forecast_data.index)
             forecast_data[forecast_data < 0] = 0
             forecast_data.index = forecast_data.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -120,7 +120,7 @@ def get_forecast_records_v2(river_id, start_date):
         print(f'{yyyy}-{mm}-{dd} v2')
 
         try:
-            forecast_data = pd.read_csv("G:\My Drive\GEOGLOWS\Forecast_Comparison\Forecast_Values\{0}-{1}-{2}\{3}.csv".format(yyyy, mm, dd, river_id), index_col=0)
+            forecast_data = pd.read_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Values\\{0}-{1}-{2}\\{3}.csv".format(yyyy, mm, dd, river_id), index_col=0)
             forecast_data.index = pd.to_datetime(forecast_data.index)
             forecast_data[forecast_data < 0] = 0
             forecast_data.index = forecast_data.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -209,19 +209,21 @@ names = ['Guaviare River at Mapiripan (Colombia)', 'Esmeraldas River at Esmerald
 
 for comid_1, comid_2, name in zip(comid_1s, comid_2s, names):
 
+    print(name, ' - ', comid_1, ' - ', comid_2)
 
     #Getting Historical (Retrospective Simulation)
     #Version 1
-    era_res_v1 =  requests.get('https://geoglows.ecmwf.int/api/HistoricSimulation/?reach_id=' + str(comid_1) + '&return_format=csv', verify=False).content
-    simulated_v1 = pd.read_csv(io.StringIO(era_res_v1.decode('utf-8')), index_col=0)
-    simulated_v1[simulated_v1 < 0] = 0
-    simulated_v1.index = pd.to_datetime(simulated_v1.index)
-    simulated_v1.index = simulated_v1.index.to_series().dt.strftime("%Y-%m-%d")
-    simulated_v1.index = pd.to_datetime(simulated_v1.index)
-    simulated_v1 = simulated_v1.loc[simulated_v1.index <= pd.to_datetime("2022-05-31")]
+    #era_res_v1 =  requests.get('https://geoglows.ecmwf.int/api/HistoricSimulation/?reach_id=' + str(comid_1) + '&return_format=csv', verify=False).content
+    #simulated_v1 = pd.read_csv(io.StringIO(era_res_v1.decode('utf-8')), index_col=0)
+    #simulated_v1[simulated_v1 < 0] = 0
+    #simulated_v1.index = pd.to_datetime(simulated_v1.index)
+    #simulated_v1.index = simulated_v1.index.to_series().dt.strftime("%Y-%m-%d")
+    #simulated_v1.index = pd.to_datetime(simulated_v1.index)
+    #simulated_v1 = simulated_v1.loc[simulated_v1.index <= pd.to_datetime("2022-05-31")]
 
     #Version 2
-    era_res_v2 =  requests.get('https://geoglows.ecmwf.int/api/v2/retrospectivedaily/' + str(comid_2) + '?format=csv', verify=False).content
+    era_res_v2 = requests.get('https://geoglows.ecmwf.int/api/v2/retrospectivedaily/' + str(comid_2) + '?format=csv', verify=False).content
+    #era_res_v2 = requests.get('https://geoglows.ecmwf.int/api/v2/retrospectivehourly/' + str(comid_2) + '?format=csv', verify=False).content
     simulated_v2 = pd.read_csv(io.StringIO(era_res_v2.decode('utf-8')), index_col=0)
     simulated_v2[simulated_v2 < 0] = 0
     simulated_v2.index = pd.to_datetime(simulated_v2.index)
@@ -230,12 +232,12 @@ for comid_1, comid_2, name in zip(comid_1s, comid_2s, names):
 
     #Calculating the Return Period
     #Version 1
-    rperiods_v1 = return_period_values(simulated_v1, comid_1)
-    rperiods_v1 = rperiods_v1.T
+    #rperiods_v1 = return_period_values(simulated_v1, comid_1)
+    #rperiods_v1 = rperiods_v1.T
 
     #Version 2
-    rperiods_v2 = return_period_values(simulated_v2, comid_2)
-    rperiods_v2 = rperiods_v2.T
+    #rperiods_v2 = return_period_values(simulated_v2, comid_2)
+    #rperiods_v2 = rperiods_v2.T
 
     #Getting Forecast Record
     #Version 1
@@ -247,80 +249,51 @@ for comid_1, comid_2, name in zip(comid_1s, comid_2s, names):
     #forecast_record_v1.to_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Record\\{0}.csv".format(comid_1))
 
     #Version 2
-    forecast_record_v2 = get_forecast_records_v2(comid_2, "20250504")
+    forecast_record_v2 = get_forecast_records_v2(comid_2, "20250610")
     forecast_record_v2[forecast_record_v2 < 0] = 0
     forecast_record_v2.index = pd.to_datetime(forecast_record_v2.index)
     forecast_record_v2.index = forecast_record_v2.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
     forecast_record_v2.index = pd.to_datetime(forecast_record_v2.index)
-    forecast_record_v2.to_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Record\\{0}.csv".format(comid_2))
-    
+    #forecast_record_v2.to_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Record\\{0}.csv".format(comid_2))
 
-    #Get Forecast Data
-    #Version 1
-    url_1_v1 = 'https://geoglows.ecmwf.int/api/ForecastEnsembles/?reach_id={0}&date={1}&ensemble=1-52&return_format=csv'.format(comid_1, fecha)
-    s = requests.get(url_1_v1, verify=False).content
-    df1_v1 = pd.read_csv(io.StringIO(s.decode('utf-8')), index_col=0)
-    df1_v1[df1_v1 < 0] = 0
-    df1_v1.index = pd.to_datetime(df1_v1.index)
-    df1_v1.index = df1_v1.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
-    df1_v1.index = pd.to_datetime(df1_v1.index)
-    df1_v1.rename(columns={"ensemble_01_m^3/s": "ensemble_01", "ensemble_02_m^3/s": "ensemble_02", "ensemble_03_m^3/s": "ensemble_03", "ensemble_04_m^3/s": "ensemble_04",
-                           "ensemble_05_m^3/s": "ensemble_05", "ensemble_06_m^3/s": "ensemble_06", "ensemble_07_m^3/s": "ensemble_07", "ensemble_08_m^3/s": "ensemble_08",
-                           "ensemble_09_m^3/s": "ensemble_09", "ensemble_10_m^3/s": "ensemble_10", "ensemble_11_m^3/s": "ensemble_11", "ensemble_12_m^3/s": "ensemble_12",
-                           "ensemble_13_m^3/s": "ensemble_13", "ensemble_14_m^3/s": "ensemble_14", "ensemble_15_m^3/s": "ensemble_15", "ensemble_16_m^3/s": "ensemble_16",
-                           "ensemble_17_m^3/s": "ensemble_17", "ensemble_18_m^3/s": "ensemble_18", "ensemble_19_m^3/s": "ensemble_19", "ensemble_20_m^3/s": "ensemble_20",
-                           "ensemble_21_m^3/s": "ensemble_21", "ensemble_22_m^3/s": "ensemble_22", "ensemble_23_m^3/s": "ensemble_23", "ensemble_24_m^3/s": "ensemble_24",
-                           "ensemble_25_m^3/s": "ensemble_25", "ensemble_26_m^3/s": "ensemble_26", "ensemble_27_m^3/s": "ensemble_27", "ensemble_28_m^3/s": "ensemble_28",
-                           "ensemble_29_m^3/s": "ensemble_29", "ensemble_30_m^3/s": "ensemble_30", "ensemble_31_m^3/s": "ensemble_31", "ensemble_32_m^3/s": "ensemble_32",
-                           "ensemble_33_m^3/s": "ensemble_33", "ensemble_34_m^3/s": "ensemble_34", "ensemble_35_m^3/s": "ensemble_35", "ensemble_36_m^3/s": "ensemble_36",
-                           "ensemble_37_m^3/s": "ensemble_37", "ensemble_38_m^3/s": "ensemble_38", "ensemble_39_m^3/s": "ensemble_39", "ensemble_40_m^3/s": "ensemble_40",
-                           "ensemble_41_m^3/s": "ensemble_41", "ensemble_42_m^3/s": "ensemble_42", "ensemble_43_m^3/s": "ensemble_43", "ensemble_44_m^3/s": "ensemble_44",
-                           "ensemble_45_m^3/s": "ensemble_45", "ensemble_46_m^3/s": "ensemble_46", "ensemble_47_m^3/s": "ensemble_47", "ensemble_48_m^3/s": "ensemble_48",
-                           "ensemble_49_m^3/s": "ensemble_49", "ensemble_50_m^3/s": "ensemble_50", "ensemble_51_m^3/s": "ensemble_51", "ensemble_52_m^3/s": "ensemble_52"},
-                  inplace=True)
-    df1_v1.to_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Values\\{0}-{1}-{2}\\{3}.csv".format(fecha[0:4], fecha[4:6], fecha[6:8], comid_1))
-    forecast_stats_1_v1 = forecast_stats(df1_v1)
+    #simulated_v1_plot = simulated_v1.loc[simulated_v1.index >= pd.to_datetime(forecast_record_v1.index[0])]
+    simulated_v2_plot = simulated_v2.loc[simulated_v2.index >= pd.to_datetime(forecast_record_v2.index[0])]
 
-    #Version 2
-    url_1_v2 = 'https://geoglows.ecmwf.int/api/v2/forecastensemble/{0}?date={1}&format=csv'.format(comid_2, fecha)
-    s = requests.get(url_1_v2, verify=False).content
-    df1_v2 = pd.read_csv(io.StringIO(s.decode('utf-8')), index_col=0)
-    df1_v2[df1_v2 < 0] = 0
-    df1_v2.index = pd.to_datetime(df1_v2.index)
-    df1_v2.index = df1_v2.index.to_series().dt.strftime("%Y-%m-%d %H:%M:%S")
-    df1_v2.index = pd.to_datetime(df1_v2.index)
-    df1_v2.to_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Values\\{0}-{1}-{2}\\{3}.csv".format(fecha[0:4], fecha[4:6], fecha[6:8], comid_2))
-    forecast_stats_1_v2 = forecast_stats(df1_v2)
+    # Creating the plot
+    plt.figure(figsize=(15, 6))
 
-    #forecast_record_1_v1 = forecast_record_v1.loc[forecast_record_v1.index >= pd.to_datetime(forecast_stats_1_v1.index[0] - dt.timedelta(days=9))]
-    #forecast_record_1_v1 = forecast_record_1_v1.loc[forecast_record_1_v1.index <= pd.to_datetime(forecast_stats_1_v1.index[0])]
+    # Retrospective Simulations
+    #if not simulated_v1_plot.empty:
+    #    plt.plot(simulated_v1_plot.index, simulated_v1_plot.iloc[:, 0], 'b--', label='Retrospective Simulation v1')
+    #else:
+    #    print("simulated_v1_plot está vacío, no se graficará.")
 
-    #forecast_record_2_v1 = forecast_record_v1.loc[forecast_record_v1.index >= pd.to_datetime(forecast_stats_2_v1.index[0] - dt.timedelta(days=5))]
-    #forecast_record_2_v1 = forecast_record_2_v1.loc[forecast_record_2_v1.index <= pd.to_datetime(forecast_stats_2_v1.index[0])]
+    if not simulated_v2_plot.empty:
+        plt.plot(simulated_v2_plot.index, simulated_v2_plot.iloc[:, 0], 'b-', label='Retrospective Simulation v2')
+    else:
+        print("simulated_v2_plot está vacío, no se graficará.")
 
-    # Creating a 2x2 grid of subplots
-    fig, axs = plt.subplots(2, 1, figsize=(15, 10))
+    # Forecast Records
+    if not forecast_record_v1.empty:
+        plt.plot(forecast_record_v1.index, forecast_record_v1['average_flow'], linestyle='--', color='#FFA15A',
+                 label='Forecast Record v1')
+    else:
+        print("forecast_record_v1 está vacío, no se graficará.")
 
-    #forecast_stats_records_matplotlib(ax=axs[0], df=forecast_stats_1_v1, rp_df = rperiods_v1, records_df=forecast_record_1_v1)
-    #forecast_stats_records_matplotlib(ax=axs[0], df=forecast_stats_1_v1, records_df=forecast_record_1_v1)
-    forecast_stats_records_matplotlib(ax=axs[0], df=forecast_stats_1_v1, rp_df = rperiods_v1)
-    #forecast_stats_records_matplotlib(ax=axs[0], df=forecast_stats_1_v1)
+    if not forecast_record_v2.empty:
+        plt.plot(forecast_record_v2.index, forecast_record_v2['average_flow'], linestyle='-', color='#FFA15A',
+                 label='Forecast Record v2')
+    else:
+        print("forecast_record_v2 está vacío, no se graficará.")
 
-    #forecast_stats_records_matplotlib(ax=axs[1], df=forecast_stats_1_v2, rp_df = rperiods_v2, records_df=forecast_record_1_v2)
-    #forecast_stats_records_matplotlib(ax=axs[1], df=forecast_stats_1_v2, records_df=forecast_record_1_v2)
-    forecast_stats_records_matplotlib(ax=axs[1], df=forecast_stats_1_v2, rp_df = rperiods_v2)
-    #forecast_stats_records_matplotlib(ax=axs[1], df=forecast_stats_1_v2)
-
-
-    # Setting x-axis range
-    #axs[0].set_xlim(forecast_record_1_v1.index[0], forecast_stats_1_v1.index[-1])
-    #axs[1].set_xlim(forecast_record_1_v1.index[0], forecast_stats_1_v1.index[-1])
-
-    plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Plots_JimN\\{0}\\Forecast Comparison {0} {1}.png'.format(name, fecha), dpi=700)
-    #plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Plots_JimN_NoReturnPeriods\\{0}\\Forecast Comparison {0} {1}.png'.format(name, fecha), dpi=700)
-
-    # Show the plots
+    # Formatting
+    plt.title('Forecast Initialization Comparison {0}'.format(name))
+    plt.xlabel('Date')
+    plt.ylabel('Streamflow (m³/s)')
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
     #plt.show()
 
-    #print(rperiods_v1)
-    #print(rperiods_v2)
+    plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Initialization_Plots\\Forecast Initialization Comparison {0}.png'.format(name), dpi=700)
+    #plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Initialization_Plots_h\\Forecast Initialization Comparison {0} h.png'.format(name), dpi=700)

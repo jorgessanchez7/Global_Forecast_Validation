@@ -175,6 +175,7 @@ for id, name, comid, folder, source in zip(IDs, Names, COMIDs, Folders, Sources)
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
 	simulated_df.index = pd.to_datetime(simulated_df.index)
+	simulated_df = simulated_df.loc[simulated_df.index >= pd.to_datetime("1941-01-01")]
 
 	#Getting the Bias Corrected Simulation
 	try:

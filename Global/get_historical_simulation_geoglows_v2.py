@@ -18,7 +18,7 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	print(id, ' - ', name, ' - ', comid)
 
 	''''Using REST API'''
-	era_res = requests.get('https://geoglows.ecmwf.int/api/v2/retro_daily/{0}?format=csv'.format(comid), verify=False).content
+	era_res = requests.get('https://geoglows.ecmwf.int/api/v2/retrospectivedaily/{0}?format=csv'.format(comid), verify=False).content
 	simulated_df = pd.read_csv(io.StringIO(era_res.decode('utf-8')), index_col=0)
 	simulated_df[simulated_df < 0] = 0
 	simulated_df.index = pd.to_datetime(simulated_df.index)
