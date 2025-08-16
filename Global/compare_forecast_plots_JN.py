@@ -343,7 +343,7 @@ fechas = ['20250610', '20250611', '20250612', '20250613', '20250614', '20250615'
           '20250620', '20250621', '20250622', '20250623', '20250624', '20250625', '20250626', '20250627', '20250628', '20250629',
           '20250630', '20250701', '20250702', '20250703', '20250704', '20250705', '20250706', '20250707', '20250708', '20250709',
           '20250710', '20250711', '20250712', '20250713', '20250714', '20250715', '20250716', '20250717', '20250718', '20250719',
-          '20250720', '20250721', '20250722']
+          '20250720', '20250721', '20250722', '20250723', '20250724', '20250725', '20250726', '20250727', '20250728']
 
 #Stations
 comid_1s = [9015333, 9021481, 9031188, 9025707, 9017966, 9075530, 9020865, 9039185, 9023382, 9047884, 8017519, 12061937, 12050781,
@@ -365,7 +365,7 @@ names = ['Guaviare River at Mapiripan (Colombia)', 'Esmeraldas River at Esmerald
          'Big Creek at Carbon County Wyoming']
 
 #Station test
-fechas = ['20250719', '20250720', '20250721', '20250722']
+fechas = ['20250723', '20250724', '20250725', '20250726', '20250727', '20250728']
 #comid_1s = [13061705, 13059392, 13063849]
 #comid_2s = [760644642, 760556389, 760541527]
 #names = ['North Platte River at Carbon County Wyoming', 'North Platte River at Platte County Wyoming', 'Big Creek at Carbon County Wyoming']
@@ -489,21 +489,21 @@ for fecha in fechas:
 
         #forecast_stats_records_matplotlib(ax=axs[0], df=forecast_stats_1_v1, rp_df = rperiods_v1, records_df=forecast_record_1_v1)
         #forecast_stats_records_matplotlib(ax=axs[0], df=forecast_stats_1_v1, records_df=forecast_record_1_v1)
-        #forecast_stats_records_matplotlib(ax=axs[0], df=forecast_stats_1_v1, rp_df = rperiods_v1)
-        forecast_stats_records_matplotlib(ax=axs[0], df=forecast_stats_1_v1)
+        forecast_stats_records_matplotlib(ax=axs[0], df=forecast_stats_1_v1, rp_df = rperiods_v1)
+        #forecast_stats_records_matplotlib(ax=axs[0], df=forecast_stats_1_v1)
 
         #forecast_stats_records_matplotlib(ax=axs[1], df=forecast_stats_1_v2, rp_df = rperiods_v2, records_df=forecast_record_1_v2)
         #forecast_stats_records_matplotlib(ax=axs[1], df=forecast_stats_1_v2, records_df=forecast_record_1_v2)
-        #forecast_stats_records_matplotlib(ax=axs[1], df=forecast_stats_1_v2, rp_df = rperiods_v2)
-        forecast_stats_records_matplotlib(ax=axs[1], df=forecast_stats_1_v2)
+        forecast_stats_records_matplotlib(ax=axs[1], df=forecast_stats_1_v2, rp_df = rperiods_v2)
+        #forecast_stats_records_matplotlib(ax=axs[1], df=forecast_stats_1_v2)
 
 
         # Setting x-axis range
         #axs[0].set_xlim(forecast_record_1_v1.index[0], forecast_stats_1_v1.index[-1])
         #axs[1].set_xlim(forecast_record_1_v1.index[0], forecast_stats_1_v1.index[-1])
 
-        #plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Plots_JimN\\{0}\\Forecast Comparison {0} {1}.png'.format(name, fecha), dpi=700)
-        plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Plots_JimN_NoReturnPeriods\\{0}\\Forecast Comparison {0} {1}.png'.format(name, fecha), dpi=700)
+        plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Plots_JimN\\{0}\\Forecast Comparison {0} {1}.png'.format(name, fecha), dpi=700)
+        #plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Plots_JimN_NoReturnPeriods\\{0}\\Forecast Comparison {0} {1}.png'.format(name, fecha), dpi=700)
 
         # Show the plots
         #plt.show()

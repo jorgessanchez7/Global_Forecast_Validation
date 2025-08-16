@@ -102,7 +102,7 @@ def _flow_and_probability_mapper(monthly_data: pd.DataFrame, to_probability: boo
 		if extrapolate:
 			return interpolate.interp1d(cdf, bin_edges, fill_value='extrapolate')
 		return interpolate.interp1d(cdf, bin_edges)
-
+"""
 stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations.csv')
 stations_pd = stations_pd[stations_pd['COMID_v2'] != 0]
 stations_pd = stations_pd[stations_pd['Q'] == 'YES']
@@ -139,8 +139,8 @@ for id, name, comid, folder, source in zip(IDs, Names, COMIDs, Folders, Sources)
 		corrected_df.to_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\Corrected_Data\\GEOGLOWS_v2\\{0}-{1}_Q.csv'.format(id, comid))
 	except Exception as e:
 		print(e)
-
-stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations.csv')
+"""
+stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations_v2.csv')
 stations_pd = stations_pd[stations_pd['COMID_v2'] != 0]
 stations_pd = stations_pd[stations_pd['WL'] == 'YES']
 

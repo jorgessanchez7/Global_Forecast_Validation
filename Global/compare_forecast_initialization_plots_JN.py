@@ -222,8 +222,8 @@ for comid_1, comid_2, name in zip(comid_1s, comid_2s, names):
     #simulated_v1 = simulated_v1.loc[simulated_v1.index <= pd.to_datetime("2022-05-31")]
 
     #Version 2
-    era_res_v2 = requests.get('https://geoglows.ecmwf.int/api/v2/retrospectivedaily/' + str(comid_2) + '?format=csv', verify=False).content
-    #era_res_v2 = requests.get('https://geoglows.ecmwf.int/api/v2/retrospectivehourly/' + str(comid_2) + '?format=csv', verify=False).content
+    #era_res_v2 = requests.get('https://geoglows.ecmwf.int/api/v2/retrospectivedaily/' + str(comid_2) + '?format=csv', verify=False).content
+    era_res_v2 = requests.get('https://geoglows.ecmwf.int/api/v2/retrospectivehourly/' + str(comid_2) + '?format=csv', verify=False).content
     simulated_v2 = pd.read_csv(io.StringIO(era_res_v2.decode('utf-8')), index_col=0)
     simulated_v2[simulated_v2 < 0] = 0
     simulated_v2.index = pd.to_datetime(simulated_v2.index)
@@ -295,5 +295,5 @@ for comid_1, comid_2, name in zip(comid_1s, comid_2s, names):
     plt.tight_layout()
     #plt.show()
 
-    plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Initialization_Plots\\Forecast Initialization Comparison {0}.png'.format(name), dpi=700)
-    #plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Initialization_Plots_h\\Forecast Initialization Comparison {0} h.png'.format(name), dpi=700)
+    #plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Initialization_Plots\\Forecast Initialization Comparison {0}.png'.format(name), dpi=700)
+    plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Initialization_Plots_h\\Forecast Initialization Comparison {0} h.png'.format(name), dpi=700)
