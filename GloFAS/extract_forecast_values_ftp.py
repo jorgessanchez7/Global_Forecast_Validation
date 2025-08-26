@@ -1,53 +1,90 @@
+import os
 import xarray as xr
 import pandas as pd
 
-lati = 5.475
-longi = -74.675
+import warnings
+warnings.filterwarnings("ignore")
 
-anio = '2025'
-mes = '08'
-dia = '01'
+def should_download(file_path):
+    return (not os.path.exists(file_path))
 
-fecha = '{0}{1}{2}'.format(anio, mes, dia)
+def get_glofas_forecast(lat: float, lon: float, fecha: str, base_dir: str = "D:\\GloFAS_Forecast"):
+    """
+    Lee los archivos GloFAS para una latitud, longitud y fecha determinada,
+    y devuelve un DataFrame con los pronósticos de todos los ensembles.
 
-forecast_df = pd.DataFrame()
+    Parámetros
+    ----------
+    lat : float
+        Latitud del punto de interés.
+    lon : float
+        Longitud del punto de interés.
+    fecha : str
+        Fecha en formato 'YYYYMMDD' (ejemplo: '20250801').
+    base_dir : str
+        Carpeta base donde están almacenados los archivos GloFAS.
 
-ensembles = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17',
-             '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35',
-             '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50']
+    Retorna
+    -------
+    forecast_df : pd.DataFrame
+        DataFrame con todos los ensembles concatenados.
+    """
 
-nc_file_ini = 'D:\\GloFAS_Forecast\\{0}\\initial_conditions (2).nc'.format(fecha)
-dataset_ini = xr.open_dataset(nc_file_ini, autoclose=True)
-qout_datasets_ini = dataset_ini.sel(longitude= longi, method='nearest').sel(latitude= lati, method='nearest').dis24
-time_dataset_ini = qout_datasets_ini.valid_time
+    forecast_df = pd.DataFrame()
 
-ini_df = pd.DataFrame(qout_datasets_ini, index=time_dataset_ini, columns=['Streamflow (m3/s)'])
+    ensembles = [f"{i:02d}" for i in range(51)]  # '00' a '50'
 
-print(ini_df)
+    # Recorrer ensembles
+    for ensemble in ensembles:
+        nc_file = f"{base_dir}\\{fecha}\\dis_{ensemble}_{fecha}00.nc"
+        dataset = xr.open_dataset(nc_file)
 
-for ensemble in ensembles:
+        qout_datasets = dataset.sel(lon=lon, method="nearest").sel(lat=lat, method="nearest").dis
+        time_dataset = qout_datasets.time
 
-  nc_file = 'D:\\GloFAS_Forecast\\{0}\\dis_{1}_{0}00.nc'.format(fecha, ensemble)
-  dataset = xr.open_dataset(nc_file, autoclose=True)
+        ens = int(ensemble) + 1
+        ens = f"{ens:02d}"  # siempre 2 dígitos
 
-  qout_datasets = dataset.sel(lon= longi, method='nearest').sel(lat= lati, method='nearest').dis
-  time_dataset = qout_datasets.time
+        file_df = pd.DataFrame(qout_datasets, index=time_dataset, columns=[f"ensemble_{ens}"])
+        file_df.index.name = "datetime"
+        file_df.sort_index(inplace=True)
+        file_df[file_df < 0] = 0
+        file_df.index = pd.to_datetime(file_df.index).strftime("%Y-%m-%d")
+        file_df.index = pd.to_datetime(file_df.index)
 
-  ens = int(ensemble) + 1
+        forecast_df = pd.concat([forecast_df, file_df], axis=1)
 
-  if ens < 10:
-    ens = '0{0}'.format(str(ens))
-  else:
-    ens = str(ens)
+    return forecast_df
 
-  file_df = pd.DataFrame(qout_datasets, index=time_dataset, columns=['ensemble_{0}'.format(ens)])
-  file_df.index.name = 'datetime'
-  file_df.sort_index(inplace=True)
-  file_df[file_df < 0] = 0
-  file_df.index = pd.to_datetime(file_df.index)
-  file_df.index = file_df.index.to_series().dt.strftime("%Y-%m-%d")
-  file_df.index = pd.to_datetime(file_df.index)
 
-  forecast_df = pd.concat([forecast_df, file_df], axis=1)
+fechas = ['20250731', '20250824', '20250823', '20250822', '20250821', '20250820', '20250819', '20250818', '20250817',
+          '20250816', '20250815', '20250814', '20250813', '20250812', '20250811', '20250810', '20250809', '20250808',
+          '20250807', '20250806', '20250805', '20250804', '20250803', '20250802', '20250801', '20250825']
 
-print(forecast_df)
+base_folder = "G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Values"
+
+stations_pd = pd.read_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Stations_Comparison.csv")
+
+latitudes = stations_pd['Lat_GloFAS'].to_list()
+longitudes = stations_pd['Lon_GloFAS'].to_list()
+
+for fecha in fechas:
+
+    print(fecha)
+
+    folder_path = os.path.join(base_folder, f"{fecha[0:4]}-{fecha[4:6]}-{fecha[6:8]}")
+    os.makedirs(folder_path, exist_ok=True)
+
+    for latitude, longitude in zip(latitudes, longitudes):
+
+        print(latitude, '-', longitude, '-', fecha[0:4], '-', fecha[4:6], '-', fecha[6:8])
+
+        file_path = os.path.join(folder_path, f"{latitude}_{longitude}.csv")
+        if should_download(file_path):
+
+          df_forecast = get_glofas_forecast(latitude, longitude, fecha)
+          print(df_forecast)
+          df_forecast[df_forecast < 0] = 0
+
+          df_forecast.to_csv(file_path)
+
