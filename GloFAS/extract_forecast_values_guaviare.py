@@ -37,6 +37,7 @@ def get_glofas_forecast(lat: float, lon: float, fecha: str, base_dir: str = "D:\
     # Recorrer ensembles
     for ensemble in ensembles:
         nc_file = f"{base_dir}\\{fecha}\\dis_{ensemble}_{fecha}00.nc"
+        print(nc_file)
         dataset = xr.open_dataset(nc_file)
 
         qout_datasets = dataset.sel(lon=lon, method="nearest").sel(lat=lat, method="nearest").dis
@@ -57,36 +58,39 @@ def get_glofas_forecast(lat: float, lon: float, fecha: str, base_dir: str = "D:\
     return forecast_df
 
 
+#fechas = ['20250731', '20250801', '20250802', '20250803', '20250804', '20250805', '20250806', '20250807', '20250808',
+#          '20250809', '20250810', '20250811', '20250812', '20250813', '20250814', '20250815', '20250816', '20250817',
+#          '20250818', '20250819', '20250820', '20250821', '20250822', '20250823', '20250824', '20250825', '20250826',
+#          '20250827', '20250828', '20250829', '20250830', '20250831', '20250901', '20250902', '20250903', '20250904',
+#          '20250905', '20250906', '20250907', '20250908', '20250909', '20250910', '20250911', '20250912']
+
 fechas = ['20250731', '20250801', '20250802', '20250803', '20250804', '20250805', '20250806', '20250807', '20250808',
           '20250809', '20250810', '20250811', '20250812', '20250813', '20250814', '20250815', '20250816', '20250817',
           '20250818', '20250819', '20250820', '20250821', '20250822', '20250823', '20250824', '20250825', '20250826',
-          '20250827', '20250828', '20250829', '20250830', '20250831', '20250901', '20250902', '20250903', '20250904',
-          '20250905', '20250906']
+          '20250827', '20250828']
 
 base_folder = "G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Values"
 
-stations_pd = pd.read_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Stations_Comparison.csv")
+stations_pd = pd.read_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Stations_Comparison_v1.csv")
 
 latitudes = stations_pd['Lat_GloFAS'].to_list()
 longitudes = stations_pd['Lon_GloFAS'].to_list()
 
-for fecha in fechas:
+for latitude, longitude in zip(latitudes, longitudes):
 
-    print(fecha)
-
-    folder_path = os.path.join(base_folder, f"{fecha[0:4]}-{fecha[4:6]}-{fecha[6:8]}")
-    os.makedirs(folder_path, exist_ok=True)
-
-    for latitude, longitude in zip(latitudes, longitudes):
+    for fecha in fechas:
 
         print(latitude, '-', longitude, '-', fecha[0:4], '-', fecha[4:6], '-', fecha[6:8])
+
+        folder_path = os.path.join(base_folder, f"{fecha[0:4]}-{fecha[4:6]}-{fecha[6:8]}")
+        os.makedirs(folder_path, exist_ok=True)
 
         file_path = os.path.join(folder_path, f"{latitude}_{longitude}.csv")
         if should_download(file_path):
 
-          df_forecast = get_glofas_forecast(latitude, longitude, fecha)
-          print(df_forecast)
-          df_forecast[df_forecast < 0] = 0
+            df_forecast = get_glofas_forecast(latitude, longitude, fecha)
+            #print(df_forecast)
+            df_forecast[df_forecast < 0] = 0
 
-          df_forecast.to_csv(file_path)
+            df_forecast.to_csv(file_path)
 

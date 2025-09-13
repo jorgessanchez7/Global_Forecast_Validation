@@ -11,12 +11,12 @@ warnings.filterwarnings("ignore")
 # CONFIGURACIÓN
 # =========================
 BASE_DIR_DATA = r"D:\GloFAS_Forecast"  # raíz donde están los .nc por fecha
-STATIONS_CSV = r"G:\My Drive\GEOGLOWS\Forecast_Comparison\Stations_Comparison.csv"
+STATIONS_CSV = r"G:\My Drive\GEOGLOWS\Forecast_Comparison\Stations_Comparison_v2.csv"
 OUTPUT_BASE  = r"G:\My Drive\GEOGLOWS\Forecast_Comparison\Forecast_Values"
 
-FECHAS = ['20250801', '20250802', '20250803', '20250804', '20250805', '20250806', '20250807', '20250808', '20250809',
-          '20250810', '20250811', '20250812', '20250813', '20250814', '20250815', '20250816', '20250817', '20250818',
-          '20250819', '20250820', '20250821', '20250822', '20250823', '20250824', '20250825']
+FECHAS = ['20250805', '20250806', '20250807', '20250808', '20250809', '20250810', '20250811', '20250812', '20250813',
+          '20250814', '20250815', '20250816', '20250817', '20250818', '20250819', '20250820', '20250821', '20250822',
+          '20250823', '20250824', '20250825']
 
 DATE_AS_DAY = True       # True: índice YYYY-MM-DD; False: conserva hora
 ENGINE      = "netcdf4"  # suele ir bien con GloFAS
@@ -29,10 +29,10 @@ GROUPS = {
     # Multi-punto cercanos (minilotes)
     "colombia_andes": {
         "coords": [
-            (5.475, -76.575), (5.975, -75.825), (4.775, -75.925), (4.425, -75.875),
+            (5.975, -75.825), (4.775, -75.925), (4.425, -75.875),
             (5.225, -75.825), (4.775, -75.625), (4.125, -76.225), (4.975, -75.875),
             (4.475, -74.625), (4.225, -74.625), (7.275, -75.425), (5.775, -73.025),
-            (5.675, -73.225), (5.775, -72.875), (5.525, -72.775), (2.875, -72.125)
+            (5.675, -73.225), (5.775, -72.875), (5.525, -72.775)
         ],
         "batch_size": 4
     },
@@ -41,7 +41,7 @@ GROUPS = {
         "batch_size": 2
     },
     "orinoco_67": {
-        "coords": [(1.925, -66.625), (0.925, -67.025), (0.025, -67.275)],
+        "coords": [(0.025, -67.275)],
         "batch_size": 2
     },
     "us_wyoming": {
@@ -67,7 +67,7 @@ GROUPS = {
 
     # Aislados (muy dispersos): procesa de a 1
     "south_america_isolated": {
-        "coords": [(-12.625, -63.425), (-4.225, -55.875), (-6.125, -52.525), (-14.175, -43.675)],
+        "coords": [(-6.125, -52.525), (-14.175, -43.675)],
         "batch_size": 1
     },
     "north_america_isolated": {
