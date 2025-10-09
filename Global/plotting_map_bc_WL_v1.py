@@ -8,7 +8,7 @@ import cartopy.feature as cfeature
 from cartopy.io.img_tiles import OSM
 import matplotlib.patches as mpatches
 
-stations_df = pd.read_csv('Metrics_GEOGloWS_v1_WL.csv')
+stations_df = pd.read_csv('E:\\GEOGloWS\\Error_Metrics\\Metrics\\Metrics_GEOGloWS_v1_WL.csv')
 
 # Example station data (longitudes, latitudes, and KGE values)
 lons = stations_df['Longitude'].to_list()
@@ -136,12 +136,10 @@ def find_north_arrow_location(ax):
 
 # Example usage of the north arrow function
 north_arrow_location = find_north_arrow_location(ax)
-#add_north_arrow(ax, location=north_arrow_location, arrow_length=10)
 
 
-#plt.legend(title=r'KGE Categories', loc='lower left', fontsize=8)
 plt.legend(title=r'$\textbf{KGE Categories}$', loc='lower left', fontsize=8)
-#plt.title('Global Distribution of KGE Values for Hydrological Stations', fontsize=15)
-#plt.savefig('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots_v2/Metrics_GEOGLOWS_v1_bc_WL.png', dpi=400, bbox_inches='tight', pad_inches=0)
-plt.savefig('/Users/grad/Library/CloudStorage/Box-Box/MSc_Darlly_Rojas/2024_Winter/Updated_Plots_v2/Metrics_GEOGLOWS_v1_bc_WL.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
+
+#plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v1_bc_WL.png', dpi=400, bbox_inches='tight', pad_inches=0)
+plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v1_bc_WL.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
 #plt.show()

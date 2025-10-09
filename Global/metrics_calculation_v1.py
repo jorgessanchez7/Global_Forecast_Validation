@@ -8,7 +8,7 @@ from scipy.stats import pearsonr
 import warnings
 warnings.filterwarnings('ignore')
 
-stations_pd = pd.read_csv('/Users/grad/Github/Global_Forecast_Validation/Global/World_Stations.csv')
+stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations.csv')
 stations_pd = stations_pd[stations_pd['Q'] == 'YES']
 
 Folders = stations_pd['Folder'].tolist()
@@ -28,7 +28,7 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
 
     try:
         # Observed Data
-        df = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/Observed_Data/{0}/{1}/{2}_Q.csv'.format(folder, source, id), na_values=-9999, index_col=0)
+        df = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\Observed_Data\\{0}\\{1}\\{2}_Q.csv'.format(folder, source, id), na_values=-9999, index_col=0)
         df[df < 0] = np.nan
         df.index = pd.to_datetime(df.index)
         observed_df = df.groupby(df.index.strftime("%Y-%m-%d")).mean()
@@ -37,14 +37,14 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
         observed_df.index = pd.to_datetime(observed_df.index)
     
         # Simulated Data
-        simulated_df = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/Simulated_Data/GEOGLOWS_v1/{}.csv'.format(comid), index_col=0)
+        simulated_df = pd.read_csv('E:\\GEOGloWS\\01_Simulated_Values\\v1\\{}.csv'.format(comid), index_col=0)
         simulated_df[simulated_df < 0] = 0
         simulated_df.index = pd.to_datetime(simulated_df.index)
         simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
         simulated_df.index = pd.to_datetime(simulated_df.index)
     
         # Corrected Data
-        corrected_df = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/Corrected_Data/GEOGLOWS_v1/{0}-{1}_Q.csv'.format(id, comid), index_col=0)
+        corrected_df = pd.read_csv('E:\\GEOGloWS\\02_Corrected_Data\\v1\\{0}-{1}_Q.csv'.format(id, comid), index_col=0)
         corrected_df[corrected_df < 0] = 0
         corrected_df.index = pd.to_datetime(corrected_df.index)
         corrected_df.index = corrected_df.index.to_series().dt.strftime("%Y-%m-%d")
@@ -112,4 +112,4 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
     except Exception as e:
         print(e)
 
-all_metrics.to_csv('Metrics_GEOGloWS_v1_Q.csv')
+all_metrics.to_csv('E:\\GEOGloWS\\Error_Metrics\\Metrics\\Metrics_GEOGloWS_v1_Q.csv')

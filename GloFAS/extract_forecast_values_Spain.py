@@ -14,16 +14,14 @@ def should_download(file_path):
     #return (not os.path.exists(file_path)) or (os.path.getsize(file_path) <= 5120)  # 5KB = 5120 bytes
     return (not os.path.exists(file_path))
 
-fechas = ['20250610', '20250611', '20250612', '20250613', '20250614', '20250615', '20250616', '20250617', '20250618', '20250619',
-          '20250620', '20250621', '20250622', '20250623', '20250624', '20250625', '20250626', '20250627', '20250628', '20250629',
-          '20250630', '20250701', '20250702', '20250703', '20250704', '20250705', '20250706', '20250707', '20250708', '20250709',
-          '20250710', '20250711', '20250712', '20250713', '20250714', '20250715', '20250716', '20250717', '20250718', '20250719',
-          '20250720', '20250721', '20250722', '20250723', '20250724', '20250725', '20250726', '20250727', '20250728', '20250729',
-          '20250730', '20250731']
+fechas = ['20241010', '20241011', '20241012', '20241013', '20241014', '20241015', '20241016', '20241017', '20241018', '20241019',
+          '20241020', '20241021', '20241022', '20241023', '20241024', '20241025', '20241026', '20241027', '20241028', '20241029',
+          '20241030', '20241031', '20241101', '20241102', '20241103', '20241104', '20241105', '20241106', '20241107', '20241108',
+          '20241109', '20241110']
 
-base_folder = "G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Forecast_Values"
+base_folder = "G:\\My Drive\\Personal_Files\\Post_Doc\\GEOGLOWS_Applications\\Spain\\Forecast_Values_GloFAS"
 
-stations_pd = pd.read_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Stations_Comparison_v1.csv")
+stations_pd = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\GEOGLOWS_Applications\\Spain\\Coordenadas_POI.csv")
 
 latitudes = stations_pd['Lat_GloFAS'].to_list()
 longitudes = stations_pd['Lon_GloFAS'].to_list()
@@ -48,7 +46,7 @@ for fecha in fechas:
         "leadtime_hour": [str(lt) for lt in range(24, 721, 24)],
         "data_format": "netcdf",
         "download_format": "zip",
-        "area": [57.0, -130.0, -35.0, 144.0]
+        "area": [42.0, -2.0, 38.0, 1.0]
     }
 
     client = cdsapi.Client()

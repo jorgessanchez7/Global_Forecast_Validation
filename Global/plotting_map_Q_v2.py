@@ -8,7 +8,7 @@ import cartopy.feature as cfeature
 from cartopy.io.img_tiles import OSM
 import matplotlib.patches as mpatches
 
-stations_df = pd.read_csv('Metrics_GEOGloWS_v2_Q.csv')
+stations_df = pd.read_csv('E:\\GEOGloWS\\Error_Metrics\\Metrics\\Metrics_GEOGloWS_v2_Q.csv')
 
 # Example station data (longitudes, latitudes, and KGE values)
 lons = stations_df['Longitude'].to_list()
@@ -57,10 +57,6 @@ legend_labels = [r'$KGE < -0.41$', r'$-0.41 \leq KGE < 0.00$', r'$0.00 \leq KGE 
 legend_colors = ['red', 'orange', 'yellow', 'lightgreen', 'green']
 for color, label in zip(legend_colors, legend_labels):
     ax.plot([], [], marker='o', color=color, label=label, linestyle='None', markersize=5, markeredgewidth=0.5, markeredgecolor='black')
-
-# Display median and IQR on the plot
-#ax.text(-35, -30, f'n: {number_of_points}\nMedian KGE: {median_kge}\nIQR KGE: ({p25}, {p75})', fontsize=12, color='white',
-#        bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
 
 # Example LaTeX formatted text
 text_latex = (rf'n: {number_of_points}\\'
@@ -140,11 +136,12 @@ north_arrow_location = find_north_arrow_location(ax)
 #add_north_arrow(ax, location=north_arrow_location, arrow_length=10)
 
 
-#plt.legend(title=r'KGE Categories', loc='lower left', fontsize=8)
 plt.legend(title=r'$\textbf{KGE Categories}$', loc='lower left', fontsize=8)
-#plt.title('Global Distribution of KGE Values for Hydrological Stations', fontsize=15)
-#plt.savefig('Metrics_GEOGLOWS_v2_Q.png', dpi=400, bbox_inches='tight', pad_inches=0)
-#plt.savefig('Metrics_GEOGLOWS_v2_Q.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
-plt.savefig('Metrics_GEOGLOWS_v2_Q_bc.png', dpi=400, bbox_inches='tight', pad_inches=0)
-#plt.savefig('Metrics_GEOGLOWS_v2_Q_bc.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
+
+#plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v2_Q.png', dpi=400, bbox_inches='tight', pad_inches=0)
+#plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v2_Q.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
+
+#plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v2_Q_bc.png', dpi=400, bbox_inches='tight', pad_inches=0)
+plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v2_Q_bc.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
+
 #plt.show()

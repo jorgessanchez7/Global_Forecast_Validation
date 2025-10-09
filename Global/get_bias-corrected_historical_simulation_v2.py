@@ -102,7 +102,7 @@ def _flow_and_probability_mapper(monthly_data: pd.DataFrame, to_probability: boo
 		if extrapolate:
 			return interpolate.interp1d(cdf, bin_edges, fill_value='extrapolate')
 		return interpolate.interp1d(cdf, bin_edges)
-"""
+
 stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations.csv')
 stations_pd = stations_pd[stations_pd['COMID_v2'] != 0]
 stations_pd = stations_pd[stations_pd['Q'] == 'YES']
@@ -126,7 +126,7 @@ for id, name, comid, folder, source in zip(IDs, Names, COMIDs, Folders, Sources)
 	observed_df.index = pd.to_datetime(observed_df.index)
 
 	#Simulated Data
-	simulated_df = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\Simulated_Data\\GEOGLOWS_v2\\{}.csv'.format(comid), index_col=0)
+	simulated_df = pd.read_csv('E:\\GEOGloWS\\01_Simulated_Values\\v2\\{}.csv'.format(comid), index_col=0)
 	simulated_df[simulated_df < 0] = 0
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
@@ -134,13 +134,13 @@ for id, name, comid, folder, source in zip(IDs, Names, COMIDs, Folders, Sources)
 
 	#Getting the Bias Corrected Simulation
 	try:
-		#corrected_df = geoglows.bias.correct_historical(simulated_df, observed_df)
-		corrected_df = correct_bias(simulated_df, observed_df)
-		corrected_df.to_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\Corrected_Data\\GEOGLOWS_v2\\{0}-{1}_Q.csv'.format(id, comid))
+		corrected_df = geoglows.bias.correct_historical(simulated_df, observed_df)
+		#corrected_df = correct_bias(simulated_df, observed_df)
+		corrected_df.to_csv('E:\\GEOGloWS\\02_Corrected_Data\\v2\\{0}-{1}_Q.csv'.format(id, comid))
 	except Exception as e:
 		print(e)
-"""
-stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations_v2.csv')
+
+stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations.csv')
 stations_pd = stations_pd[stations_pd['COMID_v2'] != 0]
 stations_pd = stations_pd[stations_pd['WL'] == 'YES']
 
@@ -170,7 +170,7 @@ for id, name, comid, folder, source in zip(IDs, Names, COMIDs, Folders, Sources)
 	observed_adjusted = observed_df - min_value
 
 	#Simulated Data
-	simulated_df = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\Simulated_Data\\GEOGLOWS_v2\\{}.csv'.format(comid), index_col=0)
+	simulated_df = pd.read_csv('E:\\GEOGloWS\\01_Simulated_Values\\v2\\{}.csv'.format(comid), index_col=0)
 	simulated_df[simulated_df < 0] = 0
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 	simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
@@ -179,9 +179,9 @@ for id, name, comid, folder, source in zip(IDs, Names, COMIDs, Folders, Sources)
 
 	#Getting the Bias Corrected Simulation
 	try:
-		#corrected_df = geoglows.bias.correct_historical(simulated_df, observed_adjusted)
-		corrected_df = correct_bias(simulated_df, observed_adjusted)
+		corrected_df = geoglows.bias.correct_historical(simulated_df, observed_adjusted)
+		#corrected_df = correct_bias(simulated_df, observed_adjusted)
 		corrected_df = corrected_df + min_value
-		corrected_df.to_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\Corrected_Data\\GEOGLOWS_v2\\{0}-{1}_WL.csv'.format(id, comid))
+		corrected_df.to_csv('E:\\GEOGloWS\\03_Transformed_Data\\v2\\{0}-{1}_WL.csv'.format(id, comid))
 	except Exception as e:
 		print(e)

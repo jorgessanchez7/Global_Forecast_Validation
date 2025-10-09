@@ -1,4 +1,3 @@
-import os
 import time
 import numpy as np
 import pandas as pd
@@ -9,17 +8,11 @@ import cartopy.feature as cfeature
 from cartopy.io.img_tiles import OSM
 import matplotlib.patches as mpatches
 
-import warnings
-warnings.filterwarnings('ignore')
-
-plt.rcParams.update(plt.rcParamsDefault)
-
-stations_df = pd.read_csv('E:\\GEOGloWS\\Error_Metrics\\Metrics\\Metrics_GEOGloWS_v1_Q.csv')
+stations_df = pd.read_csv('E:\\GEOGloWS\\Error_Metrics\\Metrics\\Metrics_GEOGloWS_v2_WL.csv')
 
 # Example station data (longitudes, latitudes, and KGE values)
 lons = stations_df['Longitude'].to_list()
 lats = stations_df['Latitude'].to_list()
-#kge_values = stations_df['KGE'].to_list()
 kge_values = stations_df['Corrected KGE'].to_list()
 
 # Calculate median and IQR
@@ -36,7 +29,7 @@ time.sleep(1)
 
 # Initialize the plot with OpenStreetMap tiles
 fig, ax = plt.subplots(figsize=(15, 8), subplot_kw={'projection': OSM().crs})
-ax.add_image(OSM(), 6)  # The second argument is the zoom level
+ax.add_image(OSM(), 7)  # The second argument is the zoom level
 
 # Add country borders
 borders = cfeature.NaturalEarthFeature('cultural', 'admin_0_countries', '10m', edgecolor='black', facecolor='none')
@@ -55,21 +48,26 @@ for lon, lat, kge in zip(lons, lats, kge_values):
     else:
         color = 'green'  # 0.75 to 1.00
 
-    ax.plot(lon, lat, marker='o', color=color, markersize=3, markeredgewidth=0.5, markeredgecolor='black', transform=ccrs.Geodetic())
+    ax.plot(lon, lat, marker='o', color=color, markersize=3.5, markeredgewidth=0.5, markeredgecolor='black', transform=ccrs.Geodetic())
 
 # Custom legend
+#legend_labels = ['< -0.41', '-0.41 — 0.00', '0.00 — 0.50', '0.50 — 0.75', '0.75 — 1.00']
 legend_labels = [r'$KGE < -0.41$', r'$-0.41 \leq KGE < 0.00$', r'$0.00 \leq KGE < 0.50$', r'$0.50 \leq KGE < 0.75$', r'$0.75 \leq KGE \leq 1.00$']
 legend_colors = ['red', 'orange', 'yellow', 'lightgreen', 'green']
 for color, label in zip(legend_colors, legend_labels):
     ax.plot([], [], marker='o', color=color, label=label, linestyle='None', markersize=5, markeredgewidth=0.5, markeredgecolor='black')
 
 # Display median and IQR on the plot
+#ax.text(-35, -30, f'n: {number_of_points}\nMedian KGE: {median_kge}\nIQR KGE: ({p25}, {p75})', fontsize=12, color='white',
+#        bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+
 # Example LaTeX formatted text
 text_latex = (rf'n: {number_of_points}\\'
               rf'\text{{Median KGE}}: {median_kge}\\'
               rf'\text{{IQR KGE}}: ({p25}, {p75})')
 
 ax.text(-35, -35, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+#ax.text(0.5, 0.5, f'${text_latex}$', fontsize=12, color='black', verticalalignment='center')
 
 def draw_scale_bar(ax, location, length_km, projection):
     """ Draw a scale bar with a specified length in kilometers. """
@@ -138,14 +136,10 @@ def find_north_arrow_location(ax):
 
 # Example usage of the north arrow function
 north_arrow_location = find_north_arrow_location(ax)
-#add_north_arrow(ax, location=north_arrow_location, arrow_length=10)
 
 
 plt.legend(title=r'$\textbf{KGE Categories}$', loc='lower left', fontsize=8)
 
-#plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v1_Q.png', dpi=400, bbox_inches='tight', pad_inches=0)
-#plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v1_Q.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
-
-#plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v1_Q_bc.png', dpi=400, bbox_inches='tight', pad_inches=0)
-plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v1_Q_bc.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
+#plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v2_bc_WL.png', dpi=400, bbox_inches='tight', pad_inches=0)
+plt.savefig('E:\\GEOGloWS\\Error_Metrics\\Maps\\Metrics_GEOGLOWS_v2_bc_WL.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
 #plt.show()

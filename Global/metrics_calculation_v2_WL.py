@@ -37,7 +37,7 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
         observed_df.index = pd.to_datetime(observed_df.index)
     
         # Corrected Data
-        corrected_df = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\Corrected_Data\\GEOGLOWS_v2\\{0}-{1}_WL.csv'.format(id, comid2), index_col=0)
+        corrected_df = pd.read_csv('E:\\GEOGloWS\\03_Transformed_Data\\v2\\{0}-{1}_WL.csv'.format(id, comid2), index_col=0)
         corrected_df.index = pd.to_datetime(corrected_df.index)
         corrected_df.index = corrected_df.index.to_series().dt.strftime("%Y-%m-%d")
         corrected_df.index = pd.to_datetime(corrected_df.index)
@@ -81,4 +81,4 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
     except Exception as e:
         print(e)
 
-all_metrics.to_csv('Metrics_GEOGloWS_v2_WL.csv')
+all_metrics.to_csv('E:\\GEOGloWS\\Error_Metrics\\Metrics\\Metrics_GEOGloWS_v2_WL.csv')
