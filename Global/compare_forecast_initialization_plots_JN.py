@@ -246,49 +246,65 @@ def return_period_values(time_series_df, comid):
 
     return rperiods_df
 
-#Stations
-comid_1s = [9015333, 9009049, 9017966, 9075530, 9020865, 9023382, 9039185, 9047884, 8017519, 13063849, 9007779, 9010517, 9025707, 12061937,
-            12050781, 12014938, 9011402, 9011932, 9008503, 9021481, 5025920, 5031640, 9009403, 9031188, 5018188, 600366, 9010683, 7050298,
-            9012628, 13061982, 258721, 13009292, 7054410, 7055650, 13061705, 13059392, 947104, 9096566, 9085273, 9008223, 9010077, 9011280,
-            9005322, 9008234, 9080933, 1018826, 1012389, 10049455, 9009300, 10009772, 4061319]
-comid_2s = [610353609, 610439693, 620569841, 620953148, 620803818, 621030902, 621073787, 621109666, 470499982, 760541527, 610382462,
-            610421255, 670089457, 220372327, 220720275, 220276772, 610408076, 610384326, 610392160, 670086330, 441167304, 441185243,
-            610327062, 670081320, 441292437, 220527770, 610350855, 180234968, 610372901, 760583077, 540893378, 720111586, 140759702,
-            160521695, 760644642, 760556389, 770368864, 640458755, 640101447, 610420314, 610436201, 610453830, 610358623, 610411513,
-            630202025, 530187786, 520337491, 280354418, 610368409, 280758239, 420746965]
-latitudes = [2.875, 5.475, 1.925, -12.625, 0.925, 0.025, -4.225, -6.125, 44.675, 41.175, 5.975, 4.775, -0.625, 44.725, 47.175, 53.175,
-             4.425, 4.225, 5.675, 0.875, 26.775, 25.575, 5.225, -2.175, 28.575, 45.375, 4.775, 10.175, 4.125, 41.775, -34.125, 55.275,
-             8.675, 8.175, 41.875, 42.575, 18.175, -19.025, -15.475, 5.775, 4.975, 4.475, 7.275, 5.775, -14.175, -4.175, -1.575, 43.475,
-             5.525, 56.475, 30.375]
-longitudes = [-72.125, -76.575, -66.625, -63.425, -67.025, -67.275, -55.875, -52.525, 76.475, -106.525, -75.825, -75.925, -80.325, 19.775,
-              20.275, 30.275, -75.875, -74.625, -73.225, -79.625, 93.475, 81.625, -75.825, -79.875, 70.025, 40.275, -75.625, 15.475, -76.225,
-              -90.275, 141.325, -129.075, 10.275, 34.875, -107.025, -105.025, -95.375, -57.475, -57.375, -72.875, -75.875, -74.625, -75.425,
-              -73.025, -43.675, 143.775, 110.425, 46.375, -72.775, 41.975, 111.675]
-names = ['Guaviare River at Mapiripan (Colombia)', 'AGUASAL [11017010]', 'Amazonas_casiquiare_km2764', 'Amazonas_guapore_km3139',
-         'Amazonas_negro_km2523', 'Amazonas_uaupes_km2380', 'Amazonas_tapajos_km0810', 'Amazonas_xingu_km1020', 'Balkhash_ili_km0392',
-         'Big Creek at Carbon County Wyoming', 'BOLOMBOLO', 'CARTAGO [26127040]', 'Chone River after joint with Tosagua River (Ecuador)',
-         'Danube_sava_km1327', 'Danube_tisza_km1617', 'Dniepr_dnepr_km1390', 'EL ALAMBRADO', 'EL LIMONAR [21197150]', 'EL PALO [24037030]',
-         'Esmeraldas River at Esmeraldas (Ecuador)', 'Ganges-Brahmaputra_brahmaputra_km0809', 'Ganges-Brahmaputra_ganges_km1381',
-         'GUARACAS [26147080]', 'Guayas River at Duran (Ecuador)', 'Indus_indus_km0949', 'Kuban_kuban_km0397', 'LA BANANERA 6-909',
-         'Lake-Chad_logone_km0500', 'MATEGUADUA [26107130]', 'Mississippi_mississippi_km2378', 'Murray_murray_km0651', 'Nass_nass_km0058',
-         'Niger_benue_km1000', 'Nile_baro_km4616', 'North Platte River at Carbon County Wyoming', 'North Platte River at Platte County Wyoming',
-         'Papaloapan_san-Juan_km0134', 'Parana_paraguai_km2622', 'Parana_paraguai_km3506', 'PUENTE CHAMEZA [24037290]', 'PUENTE NEGRO [26147140]',
-         'PUENTE PORTILLO [21207960]', 'PUERTO VALDIVIA', 'SAN RAFAEL [24037190]', 'Sao-Francisco_sao-Francisco_km1577', 'Sepik_sepik_km0150',
-         'Sungai-Ketapang_sungai-Ketapang_km0121', 'Terek_terek_km0150', 'VADO HONDO [35197020]', 'Volga_kliaz-Ma_km2504', 'Yangtze_chang-Jiang_km1426']
+def kge(sim, obs):
+    sim, obs = np.array(sim), np.array(obs)
+    mask = ~np.isnan(sim) & ~np.isnan(obs)
+    sim, obs = sim[mask], obs[mask]
+    if len(sim) == 0 or np.std(sim) == 0 or np.std(obs) == 0:
+        return np.nan
+    r = np.corrcoef(sim, obs)[0, 1]
+    alpha = (np.std(sim) / np.mean(sim)) / (np.std(obs) / np.mean(obs))
+    beta = np.mean(sim) / np.mean(obs)
+    return 1 - np.sqrt((r - 1)**2 + (alpha - 1)**2 + (beta - 1)**2)
 
-fechas = ['20250610', '20250611', '20250612', '20250613', '20250614', '20250615', '20250616', '20250617', '20250618', '20250619',
-          '20250620', '20250621', '20250622', '20250623', '20250624', '20250625', '20250626', '20250627', '20250628', '20250629',
-          '20250630', '20250701', '20250702', '20250703', '20250704', '20250705', '20250706', '20250707', '20250708', '20250709',
-          '20250710', '20250711', '20250712', '20250713', '20250714', '20250715', '20250716', '20250717', '20250718', '20250719',
-          '20250720', '20250721', '20250722', '20250723', '20250724', '20250725', '20250726', '20250727', '20250728', '20250729',
-          '20250730', '20250731', '20250801', '20250802', '20250803', '20250804', '20250805', '20250806', '20250807', '20250808',
-          '20250809', '20250810', '20250811', '20250812', '20250813', '20250814', '20250815', '20250816', '20250817', '20250818',
-          '20250819', '20250820', '20250821', '20250822', '20250823', '20250824', '20250825', '20250826', '20250827', '20250828',
-          '20250829', '20250830', '20250831', '20250901', '20250902', '20250903', '20250904', '20250905', '20250906', '20250907',
-          '20250908', '20250909', '20250910', '20250911', '20250912', '20250913', '20250914', '20250915', '20250916', '20250917',
-          '20250918', '20250919', '20250920', '20250921', '20250922', '20250923', '20250924', '20250925', '20250926', '20250927',
-          '20250928', '20250929', '20250930', '20251001', '20251002', '20251003', '20251004', '20251005', '20251006', '20251007',
-          '20251008']
+
+def align_and_resample(df_high, df_low, res_low):
+    """
+    Ajusta df_high (mayor resolución) a la resolución de df_low (res_low).
+    """
+    if res_low == 'D':  # Diario
+        df_high_resampled = df_high.resample('D').mean()
+    elif res_low == '3H':  # Cada 3 horas (bloques personalizados)
+        df_high_resampled = (df_high.groupby(df_high.index.floor('3H')).mean())
+    else:
+        df_high_resampled = df_high
+    return df_high_resampled
+
+def calc_kge_between(df1, df2, res1, res2):
+    """
+    Calcula el KGE entre dos series ajustando resoluciones distintas.
+    """
+    df1c, df2c = df1.copy(), df2.copy()
+
+    # Ajustar resolución si son distintas
+    if res1 != res2:
+        if res1 == 'H' and res2 == '3H':
+            df1c = align_and_resample(df1c, df2c, '3H')
+        elif res1 == '3H' and res2 == 'H':
+            df2c = align_and_resample(df2c, df1c, '3H')
+        elif res1 == 'H' and res2 == 'D':
+            df1c = align_and_resample(df1c, df2c, 'D')
+        elif res1 == 'D' and res2 == 'H':
+            df2c = align_and_resample(df2c, df1c, 'D')
+        elif res1 == '3H' and res2 == 'D':
+            df1c = align_and_resample(df1c, df2c, 'D')
+        elif res1 == 'D' and res2 == '3H':
+            df2c = align_and_resample(df2c, df1c, 'D')
+
+    # Alinear índices
+    common_idx = df1c.index.intersection(df2c.index)
+    if len(common_idx) < 5:
+        return np.nan  # insuficientes datos comunes
+
+    df1c, df2c = df1c.loc[common_idx], df2c.loc[common_idx]
+    return kge(df1c.iloc[:, 0], df2c.iloc[:, 0])
+
+stations = pd.read_csv("G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Stations_Comparison_v1.csv")
+comid_1s = stations['COMID_v1'].to_list()
+comid_2s = stations['COMID_v2'].to_list()
+latitudes = stations['Lat_GloFAS'].to_list()
+longitudes = stations['Lon_GloFAS'].to_list()
+names = stations['name'].to_list()
 
 for comid_1, comid_2, name, latitude, longitude in zip(comid_1s, comid_2s, names, latitudes, longitudes):
 
@@ -373,45 +389,72 @@ for comid_1, comid_2, name, latitude, longitude in zip(comid_1s, comid_2s, names
     # Creating the plot
     plt.figure(figsize=(15, 6))
 
-    # Retrospective Simulations
+    # Crear figura con dos filas: una para el gráfico, otra para la tabla
+    fig, (ax, ax_table) = plt.subplots(
+        nrows=2,
+        figsize=(15, 7),
+        gridspec_kw={'height_ratios': [4, 1]}  # 4 partes para gráfico, 1 para tabla
+    )
+
+    # --- Gráfico principal ---
+    # (todo lo que tenías antes con plt.plot(...) ahora usa ax.plot(...))
     if not simulated_v1_plot.empty:
-        plt.plot(simulated_v1_plot.index, simulated_v1_plot.iloc[:, 0], 'b--', label='Retrospective Simulation v1')
-    else:
-        print("simulated_v1_plot está vacío, no se graficará.")
-
+        ax.plot(simulated_v1_plot.index, simulated_v1_plot.iloc[:, 0], '#9467bd', label='Retrospective Simulation v1')
     if not simulated_v2_plot.empty:
-        plt.plot(simulated_v2_plot.index, simulated_v2_plot.iloc[:, 0], 'b-', label='Retrospective Simulation v2')
-    else:
-        print("simulated_v2_plot está vacío, no se graficará.")
-
+        ax.plot(simulated_v2_plot.index, simulated_v2_plot.iloc[:, 0], 'blue', label='Retrospective Simulation v2')
     if not simulated_glofas_plot.empty:
-        plt.plot(simulated_glofas_plot.index, simulated_glofas_plot.iloc[:, 0], 'b-.', label='Retrospective Simulation GloFAS')
-    else:
-        print("simulated_glofas_plot está vacío, no se graficará.")
-
-    # Forecast Records
+        ax.plot(simulated_glofas_plot.index, simulated_glofas_plot.iloc[:, 0], '#1f77b4', label='Retrospective Simulation GloFAS')
     if not forecast_record_v1.empty:
-        plt.plot(forecast_record_v1.index, forecast_record_v1['average_flow'], linestyle='--', color='#FFA15A', label='Forecast Record v1')
-    else:
-        print("forecast_record_v1 está vacío, no se graficará.")
-
+        ax.plot(forecast_record_v1.index, forecast_record_v1['average_flow'], linestyle='--', color='#FFA15A', label='Forecast Record v1')
     if not forecast_record_v2.empty:
-        plt.plot(forecast_record_v2.index, forecast_record_v2['average_flow'], linestyle='-', color='#FFA15A', label='Forecast Record v2')
-    else:
-        print("forecast_record_v2 está vacío, no se graficará.")
-
+        ax.plot(forecast_record_v2.index, forecast_record_v2['average_flow'], linestyle='-', color='#e377c2', label='Forecast Record v2')
     if not forecast_record_glofas.empty:
-        plt.plot(forecast_record_glofas.index, forecast_record_glofas['average_flow'], linestyle='-.', color='#FFA15A', label='Forecast Record GloFAS')
-    else:
-        print("forecast_record_v2 está vacío, no se graficará.")
+        ax.plot(forecast_record_glofas.index, forecast_record_glofas['average_flow'], linestyle='-.', color='#d62728', label='Forecast Record GloFAS')
 
-    # Formatting
-    plt.title('Forecast Initialization Comparison {0}'.format(name))
-    plt.xlabel('Date')
-    plt.ylabel('Streamflow (m³/s)')
-    plt.legend()
-    plt.grid(True)
+    # Formato del gráfico
+    ax.set_title(f'Forecast Initialization Comparison {name}')
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Streamflow (m³/s)')
+    ax.legend()
+    ax.grid(True)
+
+    series_dict = {
+        'Retrospective Simulation GEOGLOWS v2': (simulated_v2_plot, 'H'),
+        'Retrospective Simulation GloFAS': (simulated_glofas_plot, 'D'),
+        'Forecast Record GEOGLOWS v1': (forecast_record_v1, '3H'),
+        'Forecast Record GEOGLOWS v2': (forecast_record_v2, '3H'),
+        'Forecast Record GloFAS': (forecast_record_glofas, 'D')
+    }
+
+    names_series = list(series_dict.keys())
+    kge_matrix = pd.DataFrame(index=names_series, columns=names_series, dtype=float)
+
+    for i, (name_i, (df_i, res_i)) in enumerate(series_dict.items()):
+        for j, (name_j, (df_j, res_j)) in enumerate(series_dict.items()):
+            if i == j:
+                kge_matrix.loc[name_i, name_j] = calc_kge_between(df_i, df_j, res_i, res_j)
+            else:
+                kge_matrix.loc[name_i, name_j] = calc_kge_between(df_i, df_j, res_i, res_j)
+
+    kge_matrix = kge_matrix.round(2)
+
+    # --- Crear la tabla en el eje inferior ---
+    ax_table.axis('off')  # quitar ejes
+    table = ax_table.table(
+        cellText=kge_matrix.values,
+        rowLabels=kge_matrix.index,
+        colLabels=kge_matrix.columns,
+        cellLoc='center',
+        loc='center'
+    )
+    table.auto_set_font_size(False)
+    table.set_fontsize(8)
+    table.scale(1.2, 1.2)
+
+    # Título para la tabla
+    ax_table.set_title('KGE Matrix', fontsize=10, fontweight='bold', pad=10)
+
     plt.tight_layout()
-    #plt.show()
-
-    plt.savefig('G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Initialization_Plots_h\\Forecast Initialization Comparison {0}.png'.format(name), dpi=700)
+    plt.subplots_adjust(hspace=0.3)  # más espacio entre gráfico y tabla
+    plt.savefig(f'G:\\My Drive\\GEOGLOWS\\Forecast_Comparison\\Initialization_Plots\\Forecast Initialization Comparison {name}.png', dpi=700)
+    plt.close(fig)
