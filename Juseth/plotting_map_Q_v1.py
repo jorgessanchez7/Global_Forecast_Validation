@@ -14,14 +14,10 @@ warnings.filterwarnings('ignore')
 
 plt.rcParams.update(plt.rcParamsDefault)
 
-#region = 'south_america-geoglows'
-region = 'north_america-geoglows'
-
-stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\{}\\Metrics_GEOGLOWS_v1_Comparisons.csv'.format(region))
-#stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\{}\\Metrics_GEOGloWS_v1_Q.csv'.format(region))
-#stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\{}\\Metrics_GEOGloWS_v1_RBC_Q.csv'.format(region))
-#stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\{}\\Metrics_GEOGloWS_v1_MFDC-QM_Q.csv'.format(region))
-
+#stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGLOWS_v1_Comparisons.csv')
+#stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_Q.csv')
+#stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_RBC_Q.csv')
+stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_MFDC-QM_Q.csv')
 
 # Example station data (longitudes, latitudes, and KGE values)
 lons = stations_df['Longitude'].to_list()
@@ -41,14 +37,14 @@ plt.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 time.sleep(1)
 
 # Initialize the plot with OpenStreetMap tiles
-fig, ax = plt.subplots(figsize=(8, 15), subplot_kw={'projection': OSM().crs})
-ax.add_image(OSM(), 7)  # The second argument is the zoom level
+fig, ax = plt.subplots(figsize=(15, 8), subplot_kw={'projection': OSM().crs})
+ax.add_image(OSM(), 6)  # The second argument is the zoom level
 
 # Add country borders
 borders = cfeature.NaturalEarthFeature('cultural', 'admin_0_countries', '10m', edgecolor='black', facecolor='none')
 ax.add_feature(borders, linewidth=0.25)
 
-# Plotting
+#Plotting points
 for lon, lat, kge in zip(lons, lats, kge_values):
     if kge < -0.41:
         color = 'red'  # < -0.41
@@ -75,7 +71,7 @@ text_latex = (rf'n: {number_of_points}\\'
               rf'\text{{Median KGE}}: {median_kge}\\'
               rf'\text{{IQR KGE}}: ({p25}, {p75})')
 
-ax.text(-48, -30, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+ax.text(-35, -35, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
 
 def draw_scale_bar(ax, location, length_km, projection):
     """ Draw a scale bar with a specified length in kilometers. """
@@ -100,7 +96,7 @@ min_lat, max_lat = min(lats), max(lats)
 buffer = 1  # buffer in degrees, adjust as necessary
 map_extent = [min_lon - buffer, max_lon + buffer, min_lat - buffer, max_lat + buffer]
 
-draw_scale_bar(ax, [-50, 5], 1500, ccrs.PlateCarree())
+draw_scale_bar(ax, [-150, 0], 5000, ccrs.PlateCarree())
 
 
 def add_north_arrow(ax, location, arrow_length=10, arrow_color='black', text_color='blue'):
@@ -143,22 +139,23 @@ def find_north_arrow_location(ax):
     return (x_location, y_location)
 
 # Example usage of the north arrow function
-#north_arrow_location = find_north_arrow_location(ax)
+north_arrow_location = find_north_arrow_location(ax)
 #add_north_arrow(ax, location=north_arrow_location, arrow_length=10)
-
 
 plt.legend(title=r'$\textbf{KGE Categories}$', loc='lower left', fontsize=8)
 
-plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGLOWS_v1_Comparisons.png'.format(region), dpi=700, bbox_inches='tight', pad_inches=0)
-plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGLOWS_v1_Comparisons.pdf'.format(region), format='pdf', dpi=700, bbox_inches='tight', pad_inches=0)
+#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\Metrics_GEOGLOWS_v1_Comparisons.png', dpi=400, bbox_inches='tight', pad_inches=0)
+#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\Metrics_GEOGLOWS_v1_Comparisons.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
+#plt.show()
 
-#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_Q.png'.format(region), dpi=700, bbox_inches='tight', pad_inches=0)
-#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_Q.pdf'.format(region), format='pdf', dpi=700, bbox_inches='tight', pad_inches=0)
+#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\Metrics_GEOGloWS_v1_Q.png', dpi=400, bbox_inches='tight', pad_inches=0)
+#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\Metrics_GEOGloWS_v1_Q.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
+#plt.show()
 
-#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_RBC_Q.png'.format(region), dpi=700, bbox_inches='tight', pad_inches=0)
-#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_RBC_Q.pdf'.format(region), format='pdf', dpi=700, bbox_inches='tight', pad_inches=0)
+#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\Metrics_GEOGloWS_v1_RBC_Q.png', dpi=400, bbox_inches='tight', pad_inches=0)
+#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\Metrics_GEOGloWS_v1_RBC_Q.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
+#plt.show()
 
-#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_MFDC-QM_Q.png'.format(region), dpi=700, bbox_inches='tight', pad_inches=0)
-#plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_MFDC-QM_Q.pdf'.format(region), format='pdf', dpi=700, bbox_inches='tight', pad_inches=0)
-
+plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\Metrics_GEOGloWS_v1_MFDC-QM_Q.png', dpi=400, bbox_inches='tight', pad_inches=0)
+plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\Metrics_GEOGloWS_v1_MFDC-QM_Q.pdf', format='pdf', dpi=400, bbox_inches='tight', pad_inches=0)
 #plt.show()

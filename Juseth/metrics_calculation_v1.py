@@ -11,8 +11,6 @@ warnings.filterwarnings('ignore')
 stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations.csv')
 stations_pd = stations_pd[stations_pd['samplingFeatureType'] != 0]
 stations_pd = stations_pd[stations_pd['Q'] == 'YES']
-#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'south_america']
-stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'north_america']
 
 Folders = stations_pd['Folder'].tolist()
 Sources = stations_pd['Data_Source'].tolist()
@@ -39,25 +37,25 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
         observed_df.index = pd.to_datetime(observed_df.index)
         observed_df.index = observed_df.index.to_series().dt.strftime("%Y-%m-%d")
         observed_df.index = pd.to_datetime(observed_df.index)
-    
+
         # Simulated Data
         simulated_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Historical_Simulation_or\\{}_or.csv'.format(comid), index_col=0)
         simulated_df[simulated_df < 0] = 0
         simulated_df.index = pd.to_datetime(simulated_df.index)
         simulated_df.index = simulated_df.index.to_series().dt.strftime("%Y-%m-%d")
         simulated_df.index = pd.to_datetime(simulated_df.index)
-    
+
         merged_df = hd.merge_data(obs_df=observed_df, sim_df=simulated_df)
 
         sim_array = merged_df.iloc[:, 0].values
         obs_array = merged_df.iloc[:, 1].values
-    
+
         sim_mean = statistics.mean(sim_array)
         obs_mean = statistics.mean(obs_array)
-    
+
         sim_std = statistics.stdev(sim_array)
         obs_std = statistics.stdev(obs_array)
-    
+
         bias = sim_mean / obs_mean
         variability = ((sim_std / sim_mean) / (obs_std / obs_mean))
         r, p = pearsonr(obs_array, sim_array)
@@ -83,8 +81,9 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
     except Exception as e:
         print(e)
 
-#all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\south_america-geoglows\\Metrics_GEOGLOWS_v1_Comparisons.csv')
-all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\north_america-geoglows\\Metrics_GEOGLOWS_v1_Comparisons.csv')
+all_metrics.dropna(subset=['KGE'], inplace=True)
+all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGLOWS_v1_Comparisons.csv')
+
 
 #Comparison 2. GEOGLOWS v1 (by Juseth) vs. Observed Data
 
@@ -153,8 +152,9 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
     except Exception as e:
         print(e)
 
-#all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\south_america-geoglows\\Metrics_GEOGloWS_v1_Q.csv')
-all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\north_america-geoglows\\Metrics_GEOGloWS_v1_Q.csv')
+all_metrics.dropna(subset=['KGE'], inplace=True)
+all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_Q.csv')
+
 
 #Comparison 3. GEOGLOWS v1 (Runoff Bias Correction) vs. Observed Data
 
@@ -223,8 +223,9 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
     except Exception as e:
         print(e)
 
-#all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\south_america-geoglows\\Metrics_GEOGloWS_v1_RBC_Q.csv')
-all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\north_america-geoglows\\Metrics_GEOGloWS_v1_RBC_Q.csv')
+all_metrics.dropna(subset=['KGE'], inplace=True)
+all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_RBC_Q.csv')
+
 
 #Comparison 4. GEOGLOWS v1 (MFDC-QM) vs. Observed Data
 
@@ -293,5 +294,6 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
     except Exception as e:
         print(e)
 
-#all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\south_america-geoglows\\Metrics_GEOGloWS_v1_MFDC-QM_Q.csv')
-all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\north_america-geoglows\\Metrics_GEOGloWS_v1_MFDC-QM_Q.csv')
+all_metrics.dropna(subset=['KGE'], inplace=True)
+all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_MFDC-QM_Q.csv')
+

@@ -5,15 +5,13 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#region = 'south_america-geoglows'
-region = 'north_america-geoglows'
 
 # -----------------------------
 # ARCHIVOS DE ENTRADA
 # -----------------------------
-path_v1      = r"E:\Post_Doc\GEOGLOWS_Applications\Runoff_Bias_Correction\GEOGLOWS_v1\Error_Metrics\{region}\Metrics_GEOGloWS_v1_Q.csv"
-path_rbc     = r"E:\Post_Doc\GEOGLOWS_Applications\Runoff_Bias_Correction\GEOGLOWS_v1\Error_Metrics\{region}\Metrics_GEOGloWS_v1_RBC_Q.csv"
-path_mfdcqm  = r"E:\Post_Doc\GEOGLOWS_Applications\Runoff_Bias_Correction\GEOGLOWS_v1\Error_Metrics\{region}\Metrics_GEOGloWS_v1_MFDC-QM_Q.csv"
+path_v1      = r"E:\Post_Doc\GEOGLOWS_Applications\Runoff_Bias_Correction\GEOGLOWS_v1\Error_Metrics\Metrics_GEOGloWS_v1_Q.csv"
+path_rbc     = r"E:\Post_Doc\GEOGLOWS_Applications\Runoff_Bias_Correction\GEOGLOWS_v1\Error_Metrics\Metrics_GEOGloWS_v1_RBC_Q.csv"
+path_mfdcqm  = r"E:\Post_Doc\GEOGLOWS_Applications\Runoff_Bias_Correction\GEOGLOWS_v1\Error_Metrics\Metrics_GEOGloWS_v1_MFDC-QM_Q.csv"
 
 # -----------------------------
 # LECTURA DE DATOS
@@ -60,12 +58,7 @@ plt.title('Cumulative Distribution Function (CDF) of KGE metric for GEOGloWS v1 
 plt.legend(loc='upper left', fontsize=10)
 plt.grid(True, linestyle='--', linewidth=0.8, alpha=0.6)
 
-# Activar subgrilla y hacerla más densa
-plt.minorticks_on()
-plt.grid(which='minor', linestyle=':', linewidth=0.5, alpha=0.5)
-
-# Espaciado de ticks principales
-plt.xticks(np.arange(-1, 1.01, 0.2))
+plt.xticks(np.arange(-1, 1.01, 0.1))
 plt.yticks(np.arange(0, 1.01, 0.1))
 
 plt.xlim(-1, 1)
@@ -75,5 +68,5 @@ plt.ylim(0, 1)
 # GUARDAR FIGURA
 # -----------------------------
 plt.tight_layout()
-plt.savefig(r"E:\Post_Doc\GEOGLOWS_Applications\Runoff_Bias_Correction\GEOGLOWS_v1\Error_Metrics\{region}\CDF_KGE_GEOGLOWS_v1.png", dpi=400)
+plt.savefig(r"E:\Post_Doc\GEOGLOWS_Applications\Runoff_Bias_Correction\GEOGLOWS_v1\Maps\CDF_KGE_GEOGLOWS_v1.png", dpi=400)
 plt.show()

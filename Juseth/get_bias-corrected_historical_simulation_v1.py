@@ -12,7 +12,18 @@ stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydros
 stations_pd = stations_pd[stations_pd['samplingFeatureType'] != 0]
 stations_pd = stations_pd[stations_pd['Q'] == 'YES']
 #stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'south_america']
-stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'north_america']
+#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'north_america']
+#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'europe']
+#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'central_america']
+#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'africa']
+#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'australia']
+#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'islands']
+#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'japan']
+#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'south_asia']
+#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'central_asia']
+#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'east_asia']
+#stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'middle_east']
+stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == 'west_asia']
 
 Folders = stations_pd['Folder'].tolist()
 Sources = stations_pd['Data_Source'].tolist()
