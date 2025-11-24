@@ -8,16 +8,19 @@ from scipy.stats import pearsonr
 import warnings
 warnings.filterwarnings('ignore')
 
-stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations.csv')
-stations_pd = stations_pd[stations_pd['samplingFeatureType'] != 0]
-stations_pd = stations_pd[stations_pd['Q'] == 'YES']
+stations_all = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations.csv')
+stations_all = stations_all[stations_all['samplingFeatureType'] != 0]
+stations_all = stations_all[stations_all['Q'] == 'YES']
 
-regions = ['africa', 'australia', 'central_america', 'central_asia', 'east_asia-geoglows', 'europe', 'islands', 'japan',
+#regions = ['africa', 'australia', 'central_america', 'central_asia', 'east_asia-geoglows', 'europe', 'islands', 'japan',
+#           'middle_east', 'north_america', 'south_america', 'south_asia', 'west_asia']
+
+regions = ['central_asia', 'east_asia', 'europe', 'islands', 'japan',
            'middle_east', 'north_america', 'south_america', 'south_asia', 'west_asia']
 
 for region in regions:
 
-    stations_pd = stations_pd[stations_pd['GEOGloWS_v1_region'] == '{0}'.format(region)]
+    stations_pd = stations_all[stations_all['GEOGloWS_v1_region'] == '{0}'.format(region)]
 
     Folders = stations_pd['Folder'].tolist()
     Sources = stations_pd['Data_Source'].tolist()
@@ -35,7 +38,7 @@ for region in regions:
 
     for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Names, COMIDs, COMID2s, Latitudes, Longitudes, Folders, Sources):
 
-        print(id, ' - ', name, ' - ', comid, ' - ', comid2, ' - ', latitude, ' - ', longitude)
+        print(region, ' - ', id, ' - ', name, ' - ', comid, ' - ', comid2, ' - ', latitude, ' - ', longitude)
 
         try:
             # Observed Data (GEOGLOWS v1 Original)
@@ -98,7 +101,7 @@ for region in regions:
 
     for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Names, COMIDs, COMID2s, Latitudes, Longitudes, Folders, Sources):
 
-        print(id, ' - ', name, ' - ', comid, ' - ', comid2, ' - ', latitude, ' - ', longitude)
+        print(region, ' - ', id, ' - ', name, ' - ', comid, ' - ', comid2, ' - ', latitude, ' - ', longitude)
 
         try:
             # Observed Data
@@ -169,7 +172,7 @@ for region in regions:
 
     for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Names, COMIDs, COMID2s, Latitudes, Longitudes, Folders, Sources):
 
-        print(id, ' - ', name, ' - ', comid, ' - ', comid2, ' - ', latitude, ' - ', longitude)
+        print(region, ' - ', id, ' - ', name, ' - ', comid, ' - ', comid2, ' - ', latitude, ' - ', longitude)
 
         try:
             # Observed Data
@@ -240,7 +243,7 @@ for region in regions:
 
     for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Names, COMIDs, COMID2s, Latitudes, Longitudes, Folders, Sources):
 
-        print(id, ' - ', name, ' - ', comid, ' - ', comid2, ' - ', latitude, ' - ', longitude)
+        print(region, ' - ', id, ' - ', name, ' - ', comid, ' - ', comid2, ' - ', latitude, ' - ', longitude)
 
         try:
             # Observed Data

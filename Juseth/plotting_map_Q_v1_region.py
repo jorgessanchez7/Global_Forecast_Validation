@@ -20,10 +20,10 @@ regions = ['africa-geoglows', 'australia-geoglows', 'central_america-geoglows', 
 
 for region in regions:
 
-    stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\{}\\Metrics_GEOGLOWS_v1_Comparisons.csv'.format(region))
+    #stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\{}\\Metrics_GEOGLOWS_v1_Comparisons.csv'.format(region))
     #stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\{}\\Metrics_GEOGloWS_v1_Q.csv'.format(region))
     #stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\{}\\Metrics_GEOGloWS_v1_RBC_Q.csv'.format(region))
-    #stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\{}\\Metrics_GEOGloWS_v1_MFDC-QM_Q.csv'.format(region))
+    stations_df = pd.read_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\{}\\Metrics_GEOGloWS_v1_MFDC-QM_Q.csv'.format(region))
 
 
     # Example station data (longitudes, latitudes, and KGE values)
@@ -78,8 +78,6 @@ for region in regions:
                   rf'\text{{Median KGE}}: {median_kge}\\'
                   rf'\text{{IQR KGE}}: ({p25}, {p75})')
 
-    ax.text(-48, -30, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
-
     def draw_scale_bar(ax, location, length_km, projection):
         """ Draw a scale bar with a specified length in kilometers. """
         x, y = location
@@ -91,9 +89,15 @@ for region in regions:
                 color='black', linewidth=3)
 
         # Scale bar text
-        ax.text(x + scale_length_deg / 2, y - 1.5, f'{length_km} km',
-                horizontalalignment='center', verticalalignment='top',
-                transform=projection, color='black', fontsize=12)
+        if region == 'central_asia-geoglows':
+            ax.text(x + scale_length_deg / 2, y - 0.125, f'{length_km} km', horizontalalignment='center', verticalalignment='top', transform=projection, color='black', fontsize=12)
+        elif region == 'japan-geoglows':
+            ax.text(x + scale_length_deg / 2, y - 0.5, f'{length_km} km', horizontalalignment='center', verticalalignment='top', transform=projection, color='black', fontsize=12)
+        elif region == 'west_asia-geoglows':
+            ax.text(x + scale_length_deg / 2, y - 0.5, f'{length_km} km', horizontalalignment='center', verticalalignment='top', transform=projection, color='black', fontsize=12)
+        else:
+            ax.text(x + scale_length_deg / 2, y - 1.5, f'{length_km} km', horizontalalignment='center', verticalalignment='top', transform=projection, color='black', fontsize=12)
+
 
     # Assuming lons and lats are your lists of longitude and latitude values
     min_lon, max_lon = min(lons), max(lons)
@@ -101,9 +105,53 @@ for region in regions:
 
     # Optionally, add a buffer to each side
     buffer = 1  # buffer in degrees, adjust as necessary
-    map_extent = [min_lon - buffer, max_lon + buffer, min_lat - buffer, max_lat + buffer]
+    if region == 'central_asia-geoglows':
+        map_extent = [min_lon - buffer, max_lon + buffer, min_lat - (4 * buffer), max_lat + (4 * buffer)]
+    else:
+        map_extent = [min_lon - buffer, max_lon + buffer, min_lat - buffer, max_lat + buffer]
 
-    draw_scale_bar(ax, [-50, 5], 1500, ccrs.PlateCarree())
+    if region == 'africa-geoglows':
+        ax.text(-15, -10, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [-15, 0], 2500, ccrs.PlateCarree())
+    elif region == 'australia-geoglows':
+        ax.text(90, -25, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [90, -20], 2500, ccrs.PlateCarree())
+    elif region == 'central_america-geoglows':
+        ax.text(-155, 25, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [-155, 35], 2500, ccrs.PlateCarree())
+    elif region == 'central_asia-geoglows':
+        ax.text(95, 47.125, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [93, 49], 500, ccrs.PlateCarree())
+    elif region == 'east_asia-geoglows':
+        ax.text(90, 40, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [90, 45], 1500, ccrs.PlateCarree())
+    elif region == 'europe-geoglows':
+        ax.text(-35, 50, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [-35, 60], 1500, ccrs.PlateCarree())
+    elif region == 'islands-geoglows':
+        ax.text(126, -30, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [113.5, -25], 4000, ccrs.PlateCarree())
+    elif region == 'japan-geoglows':
+        ax.text(125, 35, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [125, 40], 1000, ccrs.PlateCarree())
+    elif region == 'middle_east-geoglows':
+        ax.text(38, 22, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [38, 27], 1000, ccrs.PlateCarree())
+    elif region == 'north_america-geoglows':
+        ax.text(-160, 45, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [-160, 50], 2000, ccrs.PlateCarree())
+    elif region == 'south_america-geoglows':
+        ax.text(-48, -30, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [-50, 5], 1500, ccrs.PlateCarree())
+    elif region == 'south_asia-geoglows':
+        ax.text(87, 15, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [80, 20], 2000, ccrs.PlateCarree())
+    elif region == 'west_asia-geoglows':
+        ax.text(45, 42, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [45, 45], 1500, ccrs.PlateCarree())
+    else:
+        ax.text(-35, -35, f'${text_latex}$', fontsize=12, color='white', bbox=dict(facecolor='black', alpha=0.5), transform=ccrs.Geodetic())
+        draw_scale_bar(ax, [-150, 0], 5000, ccrs.PlateCarree())
 
 
     def add_north_arrow(ax, location, arrow_length=10, arrow_color='black', text_color='blue'):
@@ -152,8 +200,8 @@ for region in regions:
 
     plt.legend(title=r'$\textbf{KGE Categories}$', loc='lower left', fontsize=8)
 
-    plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGLOWS_v1_Comparisons.png'.format(region), dpi=700, bbox_inches='tight', pad_inches=0)
-    plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGLOWS_v1_Comparisons.pdf'.format(region), format='pdf', dpi=700, bbox_inches='tight', pad_inches=0)
+    #plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGLOWS_v1_Comparisons.png'.format(region), dpi=700, bbox_inches='tight', pad_inches=0)
+    #plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGLOWS_v1_Comparisons.pdf'.format(region), format='pdf', dpi=700, bbox_inches='tight', pad_inches=0)
 
     #plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_Q.png'.format(region), dpi=700, bbox_inches='tight', pad_inches=0)
     #plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_Q.pdf'.format(region), format='pdf', dpi=700, bbox_inches='tight', pad_inches=0)
@@ -161,7 +209,7 @@ for region in regions:
     #plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_RBC_Q.png'.format(region), dpi=700, bbox_inches='tight', pad_inches=0)
     #plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_RBC_Q.pdf'.format(region), format='pdf', dpi=700, bbox_inches='tight', pad_inches=0)
 
-    #plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_MFDC-QM_Q.png'.format(region), dpi=700, bbox_inches='tight', pad_inches=0)
-    #plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_MFDC-QM_Q.pdf'.format(region), format='pdf', dpi=700, bbox_inches='tight', pad_inches=0)
+    plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_MFDC-QM_Q.png'.format(region), dpi=700, bbox_inches='tight', pad_inches=0)
+    plt.savefig('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Maps\\{}\\Metrics_GEOGloWS_v1_MFDC-QM_Q.pdf'.format(region), format='pdf', dpi=700, bbox_inches='tight', pad_inches=0)
 
     #plt.show()
