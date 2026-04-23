@@ -8,14 +8,24 @@ from scipy.stats import pearsonr
 import warnings
 warnings.filterwarnings('ignore')
 
-stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations.csv')
-stations_pd = stations_pd[stations_pd['samplingFeatureType'] != 0]
-stations_pd = stations_pd[stations_pd['Q'] == 'YES']
 
-Folders = stations_pd['Folder'].tolist()
-Sources = stations_pd['Data_Source'].tolist()
-IDs = stations_pd['samplingFeatureCode'].tolist()
-COMIDs = stations_pd['samplingFeatureType'].tolist()
+METADATA_XLSX = r"E:\Post_Doc\GEOGLOWS_Applications\Runoff_Bias_Correction\GEOGLOWS_v1\world_stations.xlsx"
+stations_pd = pd.read_excel(METADATA_XLSX, sheet_name="final_stations")
+stations_pd = stations_pd[stations_pd['comid'] != 0]
+stations_pd = stations_pd[stations_pd['streamflow'] == 'YES']
+
+Folders = stations_pd['folder'].tolist()
+Sources = stations_pd['source'].tolist()
+IDs = stations_pd['station_code'].tolist()
+COMIDs = stations_pd['comid'].tolist()
+#stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations.csv')
+#stations_pd = stations_pd[stations_pd['samplingFeatureType'] != 0]
+#stations_pd = stations_pd[stations_pd['Q'] == 'YES']
+
+#Folders = stations_pd['Folder'].tolist()
+#Sources = stations_pd['Data_Source'].tolist()
+#IDs = stations_pd['samplingFeatureCode'].tolist()
+#COMIDs = stations_pd['samplingFeatureType'].tolist()
 COMID2s = stations_pd['COMID_v2'].tolist()
 Names = stations_pd['name'].tolist()
 Latitudes = stations_pd['latitude'].to_list()
@@ -82,7 +92,7 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
         print(e)
 
 all_metrics.dropna(subset=['KGE'], inplace=True)
-all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGLOWS_v1_Comparisons.csv')
+all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGLOWS_v1_Comparisons.csv', index=False)
 
 
 #Comparison 2. GEOGLOWS v1 (by Juseth) vs. Observed Data
@@ -153,7 +163,7 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
         print(e)
 
 all_metrics.dropna(subset=['KGE'], inplace=True)
-all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_Q.csv')
+all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_Q.csv', index=False)
 
 
 #Comparison 3. GEOGLOWS v1 (Runoff Bias Correction) vs. Observed Data
@@ -224,7 +234,7 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
         print(e)
 
 all_metrics.dropna(subset=['KGE'], inplace=True)
-all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_RBC_Q.csv')
+all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_RBC_Q.csv', index=False)
 
 
 #Comparison 4. GEOGLOWS v1 (MFDC-QM) vs. Observed Data
@@ -295,5 +305,5 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
         print(e)
 
 all_metrics.dropna(subset=['KGE'], inplace=True)
-all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_MFDC-QM_Q.csv')
+all_metrics.to_csv('E:\\Post_Doc\\GEOGLOWS_Applications\\Runoff_Bias_Correction\\GEOGLOWS_v1\\Error_Metrics\\Metrics_GEOGloWS_v1_MFDC-QM_Q.csv', index=False)
 
