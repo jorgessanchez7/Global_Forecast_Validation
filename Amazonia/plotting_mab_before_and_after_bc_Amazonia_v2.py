@@ -1,12 +1,11 @@
 """
 Bias correction comparison map for Amazonia (Brazil, Colombia, Ecuador, Peru).
 Side-by-side: Before vs. After bias correction.
-Matches the aesthetic of the user's original code (OSM base tiles, LaTeX legend,
-dark stats box, custom scale bar).
+Reads a single CSV (Metrics_GEOGloWS_v1_Q.csv) instead of shapefiles.
 """
 import time
 import numpy as np
-import geopandas as gpd
+import pandas as pd
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
@@ -17,18 +16,24 @@ plt.rcParams['text.usetex'] = True
 plt.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 # ---------- Load and filter data ----------
-before = gpd.read_file(r"E:\PhD\2022_Fall\Dissertation_v14\Shapes\South_America\Amazonia\Metrics_Before_Bias_Correction_Amazonia.shp")
-after = gpd.read_file(r"E:\PhD\2022_Fall\Dissertation_v14\Shapes\South_America\Amazonia\Metrics_After_Bias_Correction_Amazonia.shp")
+csv_path = r"Metrics_GEOGloWS_v2_Q.csv"
+df = pd.read_csv(csv_path)
 
+# In this CSV, "Folder" is the continent and "Data_Source" is the country
 selected_countries = ['Brazil', 'Colombia', 'Ecuador', 'Peru']
-before = before[before['Country'].isin(selected_countries)].copy()
-after  = after[after['Country'].isin(selected_countries)].copy()
+df = df[(df['Folder'] == 'South_America') &
+        (df['Data_Source'].isin(selected_countries))].copy()
 
-kge_col = 'KGE__2012_'
+# Drop rows with missing coordinates or KGE values, just in case
+df = df.dropna(subset=['Latitude', 'Longitude', 'KGE', 'Corrected KGE'])
 
+# "Before" uses raw KGE; "After" uses Corrected KGE
 # Cap at 1.0 (KGE is bounded above by 1; tiny numerical drift can exceed it)
-before['kge_capped'] = before[kge_col].clip(upper=1.0)
-after['kge_capped']  = after[kge_col].clip(upper=1.0)
+before = df[['Latitude', 'Longitude', 'KGE']].rename(columns={'KGE': 'kge'}).copy()
+after  = df[['Latitude', 'Longitude', 'Corrected KGE']].rename(columns={'Corrected KGE': 'kge'}).copy()
+
+before['kge_capped'] = before['kge'].clip(upper=1.0)
+after['kge_capped']  = after['kge'].clip(upper=1.0)
 
 # ---------- Helper: KGE -> color ----------
 def kge_color(k):
@@ -39,8 +44,8 @@ def kge_color(k):
     else:                return 'green'
 
 # ---------- Helper: stats ----------
-def panel_stats(gdf):
-    k = gdf['kge_capped'].values
+def panel_stats(d):
+    k = d['kge_capped'].values
     return {
         'n':      len(k),
         'median': round(float(np.median(k)), 2),
@@ -84,7 +89,7 @@ OSM_ZOOM = 5    # whole Amazon region; tile count is manageable here
 # Map extent matching the four target countries
 extent = [-82, -34, -34, 13]   # lon_min, lon_max, lat_min, lat_max
 
-def plot_panel(ax, gdf, stats, title):
+def plot_panel(ax, data, stats, title):
     ax.set_extent(extent, crs=ccrs.PlateCarree())
 
     # OSM base map (zoom level 5 covers the continental extent at low cost)
@@ -98,7 +103,7 @@ def plot_panel(ax, gdf, stats, title):
 
     # Plot stations one-by-one (mirrors the original loop / marker style)
     geo = ccrs.Geodetic()
-    for lon, lat, k in zip(gdf.geometry.x, gdf.geometry.y, gdf['kge_capped']):
+    for lon, lat, k in zip(data['Longitude'], data['Latitude'], data['kge_capped']):
         ax.plot(lon, lat, marker='o', color=kge_color(k),
                 markersize=3.0, markeredgewidth=0.5,
                 markeredgecolor='black', transform=geo, zorder=3)
@@ -166,7 +171,7 @@ leg.get_frame().set_linewidth(0.6)
 plt.subplots_adjust(left=0.02, right=0.98, top=0.96,
                     bottom=0.10, wspace=0.04)
 
-out = r'E:\PhD\2022_Fall\Dissertation_v14\Figures\South_America\Bias_Correction_Map_Amazonia.png'
+out = r'E:\PhD\2022_Fall\Dissertation_v14\Figures\South_America\Bias_Correction_Map_Amazonia_v2.png'
 plt.savefig(out, dpi=300, facecolor='white')
 print('Saved:', out)
 print('Before:', stats_before)

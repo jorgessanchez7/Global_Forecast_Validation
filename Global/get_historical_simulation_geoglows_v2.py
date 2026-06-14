@@ -6,8 +6,8 @@ import datetime as dt
 import warnings
 warnings.filterwarnings('ignore')
 
-stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations.csv')
-
+#stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations_Hydroserver.csv')
+stations_pd = pd.read_csv('G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations_Hydroserver_v2.csv')
 
 stations_pd = stations_pd[stations_pd['COMID_v2'] != 0]
 IDs = stations_pd['samplingFeatureCode'].tolist()

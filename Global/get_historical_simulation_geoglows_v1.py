@@ -7,8 +7,7 @@ import datetime as dt
 import warnings
 warnings.filterwarnings('ignore')
 
-#stations_pd = pd.read_csv('/Users/grad/Github/Global_Forecast_Validation/Global/World_Stations.csv')
-stations_pd = pd.read_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/World_Stations.csv')
+stations_pd = pd.read_csv("G:\\My Drive\\Personal_Files\\Post_Doc\\Global_Hydroserver\\World_Stations_Hydroserver.csv")
 #stations_pd = stations_pd[stations_pd['Data_Source'] == 'Togo']
 
 stations_pd = stations_pd[stations_pd['samplingFeatureType'] != 0]
@@ -17,7 +16,7 @@ IDs = stations_pd['samplingFeatureCode'].tolist()
 COMIDs = stations_pd['samplingFeatureType'].tolist()
 Names = stations_pd['name'].tolist()
 
-output_folder = "/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/Simulated_Data/GEOGLOWS_v1"
+output_folder = "E:\\GEOGloWS\\01_Simulated_Values\\v1"
 
 for id, name, comid in zip(IDs, Names, COMIDs):
 
@@ -39,4 +38,4 @@ for id, name, comid in zip(IDs, Names, COMIDs):
 	simulated_df.index = pd.to_datetime(simulated_df.index)
 	simulated_df = simulated_df.loc[simulated_df.index <= pd.to_datetime("2022-05-31")]
 
-	simulated_df.to_csv('/Users/grad/Library/CloudStorage/Box-Box/Post_Doc/Global_Hydroserver/Simulated_Data/GEOGLOWS_v1/{}.csv'.format(comid))
+	simulated_df.to_csv('E:\\GEOGloWS\\01_Simulated_Values\\v1\\{}.csv'.format(comid))

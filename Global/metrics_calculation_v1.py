@@ -19,10 +19,11 @@ COMID2s = stations_pd['COMID_v2'].tolist()
 Names = stations_pd['name'].tolist()
 Latitudes = stations_pd['latitude'].to_list()
 Longitudes = stations_pd['longitude'].to_list()
+Country_Names = stations_pd['country_name'].to_list()
 
 all_metrics = pd.DataFrame()
 
-for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Names, COMIDs, COMID2s, Latitudes, Longitudes, Folders, Sources):
+for id, name, comid, comid2, latitude, longitude, folder, source, country_name in zip(IDs, Names, COMIDs, COMID2s, Latitudes, Longitudes, Folders, Sources, Country_Names):
 
     print(id, ' - ', name, ' - ', comid, ' - ', comid2, ' - ', latitude, ' - ', longitude)
 
@@ -95,6 +96,7 @@ for id, name, comid, comid2, latitude, longitude, folder, source in zip(IDs, Nam
             'Name': [name],
             'Latitude': [latitude],
             'Longitude': [longitude],
+            'country_name': [country_name],
             'COMID_v1': [comid],
             'COMID_v2': [comid2],
             'Bias': [bias],

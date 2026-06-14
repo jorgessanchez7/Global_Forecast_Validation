@@ -6,8 +6,8 @@ import pandas as pd
 # === RUTAS DE ENTRADA / SALIDA ===
 STATIONS_CSV = r"G:\My Drive\Personal_Files\Post_Doc\Hydroweb\Hydroweb_Stations_row_SHP.csv"
 
-DIR_OP = r"C:\Users\jsanchez\Documents\github\Global_Forecast_Validation\Hydroweb\hydroweb_download\HYDROWEB_RIVERS_OPE"
-DIR_RESEARCH = r"C:\Users\jsanchez\Documents\github\Global_Forecast_Validation\Hydroweb\hydroweb_download\HYDROWEB_RIVERS_RESEARCH"
+DIR_OP = r"C:\Users\jsanchez\Documents\github\Global_Forecast_Validation\Hydroweb\hydroweb_download\HYDROWEB_RIVERS_OPE\HYDROWEB_RIVERS_OPE"
+DIR_RESEARCH = r"C:\Users\jsanchez\Documents\github\Global_Forecast_Validation\Hydroweb\hydroweb_download\HYDROWEB_RIVERS_RESEARCH\HYDROWEB_RIVERS_RESEARCH"
 
 FALLBACK_DIR = r"E:\GEOGloWS\04_Observed_Satellite_Water_Levels\Hydroweb"
 OUTPUT_DIR = r"E:\GEOGloWS\04_Observed_Satellite_Water_Levels\Hydroweb"
